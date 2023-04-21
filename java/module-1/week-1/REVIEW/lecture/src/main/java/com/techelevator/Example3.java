@@ -9,13 +9,7 @@ public class Example3 {
      ageGroup(12) → "Child"
     */
     public String ageGroup(int age) {
-      if(age < 13){
-          return "Child";
-      }else if(age <= 17){
-          return "Teen";
-      }else {
-          return "Adult";
-      }
+        return "Adult";
     }
 
     /*
@@ -28,13 +22,6 @@ public class Example3 {
     */
     public int greenTicket(int a, int b, int c) {
         int winnings = 0;
-        if(a == b && b == c){
-            winnings = 20;
-        }else if(a != b && b != c && a != c){
-            winnings = 0;
-        }else{
-            winnings = 10;
-        }
 
         return winnings;
     }
@@ -47,16 +34,6 @@ public class Example3 {
      blackjack(19, 22) → 19
     */
     public int blackjack(int a, int b) {
-        if(a > 21 && b > 21){
-            return 0;
-        }else if(a > 21){
-            return b;
-        }else if(b > 21){
-            return a;
-        }else if(a >= b){
-            return a;
-        }else{
-            return b;
-        }
+        return 0;
     }
 }
