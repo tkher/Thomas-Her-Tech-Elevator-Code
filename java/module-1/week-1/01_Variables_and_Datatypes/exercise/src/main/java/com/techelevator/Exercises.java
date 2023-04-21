@@ -342,7 +342,6 @@ public class Exercises {
 		Example: "John", "Smith, "D" —> "Smith, John D."
 	    */
 
-
 	    /* Exercise 53
 	    53. The distance between New York and Chicago is 800 miles, and the train has already travelled 537 miles.
 	    What percentage of the trip as a whole number has been completed?
