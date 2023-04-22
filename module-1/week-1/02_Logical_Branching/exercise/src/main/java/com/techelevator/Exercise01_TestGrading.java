@@ -8,7 +8,6 @@ public class Exercise01_TestGrading<passingScore, gradeTestPassFail> {
      */
 
 
-
     /*
     Grade-o-matic v1.0 scores tests as pass-fail.
     A score of 70 or higher is a passing score. Anything lower is a failing score.
@@ -45,12 +44,15 @@ public class Exercise01_TestGrading<passingScore, gradeTestPassFail> {
     public int gradeTestNumeric(int score) {
         if (score >= 90) {
             return 3;
-        } else if (score >= 50) {
+        } else if (score >= 50 && score <= 89) {
             return 2;
-        } else {
+        } else if (score >= 25 && score <= 49) {
+            return 1;
+        } else if(score <=24) {
             return 0;
-        }
-
+    }
+        return 0;
+}
     /*
     Grade-o-matic has received even more requests to grade using the classic letter scale.
     Grade-o-matic v3.0 can now score tests on a letter scale.
