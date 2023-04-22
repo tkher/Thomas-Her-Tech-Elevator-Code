@@ -1,11 +1,13 @@
 package com.techelevator;
 
-public class Exercise01_TestGrading {
+public class Exercise01_TestGrading<passingScore, gradeTestPassFail> {
 
     /*
     Grade-o-matic Incorporated has a program to grade student tests.
     The problems below ask you to implement the logic for returning a grade based on a student's test score.
      */
+
+
 
     /*
     Grade-o-matic v1.0 scores tests as pass-fail.
@@ -18,7 +20,11 @@ public class Exercise01_TestGrading {
     gradeTestPassFail(45) ➔ false
      */
     public boolean gradeTestPassFail(int score) {
-        return false;
+        if (score >= 70) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /*
@@ -37,8 +43,13 @@ public class Exercise01_TestGrading {
     gradeTestNumeric(10) ➔ 0
      */
     public int gradeTestNumeric(int score) {
-        return 0;
-    }
+        if (score >= 90) {
+            return 3;
+        } else if (score >= 50) {
+            return 2;
+        } else {
+            return 0;
+        }
 
     /*
     Grade-o-matic has received even more requests to grade using the classic letter scale.
@@ -55,7 +66,17 @@ public class Exercise01_TestGrading {
     gradeTestLetter(70) ➔ 'C'
     gradeTestLetter(45) ➔ 'F'
      */
-    public char gradeTestLetter(int score) {
-        return ' ';
+        public char gradeTestLetter (int score) {
+            if (score >= 90) {
+                return 'A';
+            } else if (score >= 80 && score <= 89) {
+                return 'B';
+            } else if (score >= 70 && score <= 79) {
+                return 'C';
+            } else if (score >= 60 && score <= 69) {
+                return 'D';
+            }
+            return 'F';
+        }
+
     }
-}
