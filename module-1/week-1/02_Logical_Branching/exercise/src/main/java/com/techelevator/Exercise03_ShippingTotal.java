@@ -44,7 +44,7 @@ public class Exercise03_ShippingTotal {
      * calculateShippingTotal(45) ➔ 33.75
      */
     public double calculateShippingTotal(int weightPounds) {
-        return 0.0;
+        return 0.0; a
     }
 
     /*
