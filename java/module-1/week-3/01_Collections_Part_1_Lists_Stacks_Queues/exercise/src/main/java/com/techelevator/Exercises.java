@@ -45,10 +45,11 @@ public class Exercises {
 	 no4LetterWords( {"Jack", "Jill", "Jane", "John", "Jim"} )  ->  ["Jim"]
 	 */
 	public List<String> no4LetterWords(String[] stringArray) {
-		List<String>lessThanFour = new ArrayList<String>(Arrays.asList(stringArray));
-		for(String i : lessThanFour) {
-			if(i.length() < 4) {
-				lessThanFour.remove(i);
+		List<String>lessThanFour = new ArrayList<String>();
+
+		for(String i : stringArray) {
+			if(i.length() > 4 || i.length() < 4) {
+				lessThanFour.add(i);
 			}
 		}
 		return lessThanFour;
@@ -77,7 +78,15 @@ public class Exercises {
 	 findLargest( [34070, 1380, 81238, 7782, 234, 64362, 627] ) -> 81238
 	 */
 	public Integer findLargest(List<Integer> integerList) {
-		return null;
+		Integer largestValue = 0;
+
+		for(int i : integerList){
+			if (i > largestValue) {
+				largestValue = i;
+			}
+		}
+
+		return largestValue;
 	}
 
 	/*
@@ -87,7 +96,14 @@ public class Exercises {
 	 oddOnly( {734, 233, 782, 811, 3, 9999} ) -> [233, 811, 3, 9999]
 	 */
 	public List<Integer> oddOnly(Integer[] integerArray) {
-		return null;
+		List<Integer> listOfOddIntergers = new ArrayList<>();
+
+		for(int i : integerArray) {
+			if (i%2 == 1) {
+				listOfOddIntergers.add(i);
+			}
+		}
+		return listOfOddIntergers;
 	}
 
 	/*
@@ -98,9 +114,22 @@ public class Exercises {
 	 foundIntTwice( [9, 9, 44, 2, 88, 9], 9) -> true
 	 */
 	public boolean foundIntTwice(List<Integer> integerList, int intToFind) {
-		return false;
-	}
+		List<Boolean> intValueAppearsTwice = new ArrayList<Boolean>();
+		Integer intCounter = 0;
 
+		for (int i : integerList) {
+			if (i == intToFind) {
+				intCounter += 1;
+			}
+
+		}
+
+		if (intCounter > 1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	/*
 	 Given an array of Integers, return a List that contains the same Integers (as Strings). Except any multiple of 3
 	must be replaced by the String "Fizz", any multiple of 5 must be replaced by the String "Buzz",
@@ -114,6 +143,12 @@ public class Exercises {
 	HINT: To convert an Integer x to a String, you can use x.toString() in your code. For example, if x = 1, then x.toString() returns "1."
 	 */
 	public List<String> fizzBuzzList(Integer[] integerArray) {
+		List<String> intAsStrings = new ArrayList<String>();
+
+		for(int i : integerArray) {
+
+		}
+
 		return null;
 	}
 
@@ -127,6 +162,7 @@ public class Exercises {
      interleaveLists( [1, 2, 5, 8, 10], [4, 5, 6] )  ->  [1, 4, 2, 5, 5, 6, 8, 10]
 	 */
 	public List<Integer> interleaveLists(List<Integer> listOne, List<Integer> listTwo) {
+
 		return null;
 	}
 
