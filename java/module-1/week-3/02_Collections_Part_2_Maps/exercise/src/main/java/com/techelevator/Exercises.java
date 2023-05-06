@@ -34,8 +34,35 @@ public class Exercises {
 	 *
 	 */
 	public String animalGroupName(String animalName) {
-		return null;
-	}
+		Map<String, String> nameOfAnimalGroups = new HashMap<String, String>();
+		nameOfAnimalGroups.put("Rhino", "Crash");
+		nameOfAnimalGroups.put("Giraffe", "Tower");
+		nameOfAnimalGroups.put("Elephant", "Herd");
+		nameOfAnimalGroups.put("Lion", "Pride");
+		nameOfAnimalGroups.put("Crow", "Murder");
+		nameOfAnimalGroups.put("Pigeon", "Kit");
+		nameOfAnimalGroups.put("Flamingo", "Pat");
+		nameOfAnimalGroups.put("Deer", "Herd");
+		nameOfAnimalGroups.put("Dog", "Pack");
+		nameOfAnimalGroups.put("Crocodile", "Float");
+
+		if (nameOfAnimalGroups.()) {
+			return
+		}
+
+//		for (Map.Entry<String,String> animal : nameOfAnimalGroups.entrySet()) {
+//			if(animal.getKey().equalsIgnoreCase(animalName)) {
+//				return animal.getValue();
+//			} else {
+//				return "unknown";
+//			}
+//		}
+
+		//		for (String i : nameOfAnimalGroups.keySet()) {
+//			if (i.equalsIgnoreCase(animalName)) {
+//				return nameOfAnimalGroups.get(i);
+//			} else {
+//				return "unknown";
 
 	/*
 	 * Given a String item number (a.k.a. SKU), return the discount percentage if the item is on sale.
@@ -60,6 +87,9 @@ public class Exercises {
 	 *
 	 */
 	public double isItOnSale(String itemNumber) {
+
+
+		}
 		return -1.0;
 	}
 
