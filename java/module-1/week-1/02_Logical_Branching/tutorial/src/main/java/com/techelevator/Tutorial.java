@@ -51,6 +51,15 @@ public class Tutorial {
                 int lowTemperatureF = 34;
                 if (highTemperatureF - lowTemperatureF > 20) {
                     System.out.println("* Dress in layers today, as the temperature may swing dramatically.");
+
+                    System.out.println("Hello World");
+
+                    String[] dataset = new String[3];
+                        dataset[0] = "apple";
+                        dataset[1] = "orange";
+                        dataset[2] = "pear";
+
+                        System.out.println(dataset[0], dataset[1]);
                 }
         }
 }

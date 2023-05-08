@@ -473,6 +473,9 @@ public class Exercises {
 		int distanceTraveled = 537;
 		int percentageTraveled = (distanceTraveled * 100 ) / totalTravelDistance;
 
+
+
+
 	}
 
 }
