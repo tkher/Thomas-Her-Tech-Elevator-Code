@@ -1,6 +1,7 @@
 package com.techelevator;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class Exercises {
@@ -35,21 +36,23 @@ public class Exercises {
 	 */
 	public String animalGroupName(String animalName) {
 		Map<String, String> nameOfAnimalGroups = new HashMap<String, String>();
-		nameOfAnimalGroups.put("Rhino", "Crash");
-		nameOfAnimalGroups.put("Giraffe", "Tower");
-		nameOfAnimalGroups.put("Elephant", "Herd");
-		nameOfAnimalGroups.put("Lion", "Pride");
-		nameOfAnimalGroups.put("Crow", "Murder");
-		nameOfAnimalGroups.put("Pigeon", "Kit");
-		nameOfAnimalGroups.put("Flamingo", "Pat");
-		nameOfAnimalGroups.put("Deer", "Herd");
-		nameOfAnimalGroups.put("Dog", "Pack");
-		nameOfAnimalGroups.put("Crocodile", "Float");
+		nameOfAnimalGroups.put("RHINO", "Crash");
+		nameOfAnimalGroups.put("GIRAFFE", "Tower");
+		nameOfAnimalGroups.put("ELEPHANT", "Herd");
+		nameOfAnimalGroups.put("LION", "Pride");
+		nameOfAnimalGroups.put("CROW", "Murder");
+		nameOfAnimalGroups.put("PIGEON", "Kit");
+		nameOfAnimalGroups.put("FLAMINGO", "Pat");
+		nameOfAnimalGroups.put("DEER", "Herd");
+		nameOfAnimalGroups.put("DOG", "Pack");
+		nameOfAnimalGroups.put("CROCODILE", "Float");
 
-		if (nameOfAnimalGroups.()) {
-			return
+		if (animalName != null && nameOfAnimalGroups.containsKey(animalName.toUpperCase())) {
+			return nameOfAnimalGroups.get(animalName.toUpperCase());
+		} else {
+			return "unknown";
 		}
-
+	}
 //		for (Map.Entry<String,String> animal : nameOfAnimalGroups.entrySet()) {
 //			if(animal.getKey().equalsIgnoreCase(animalName)) {
 //				return animal.getValue();
@@ -89,7 +92,7 @@ public class Exercises {
 	public double isItOnSale(String itemNumber) {
 
 
-		}
+
 		return -1.0;
 	}
 

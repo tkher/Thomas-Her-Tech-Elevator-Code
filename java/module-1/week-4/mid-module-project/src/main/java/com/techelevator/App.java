@@ -41,19 +41,18 @@ public class App {
          */
 
 
-
-         //split the data set by delimiter
+        //split the data set by delimiter
         for (String i : dataset) {
             String[] subStringData = i.split(FIELD_DELIMITER);
-            // add each field to appropriate list
 
-        for (int x = 0; x <=0; x+=4) {
-            titles.add(subStringData[x]);
-            authors.add(subStringData[x + 1]);
-            int subStringDataToInt = Integer.parseInt(subStringData[x + 2]);
-            publishedYears.add(subStringDataToInt);
-            BigDecimal subStringDataToBigDecimal = new BigDecimal(subStringData[x +3]);
-            prices.add(subStringDataToBigDecimal);
+            // add each field to appropriate list
+            for (int x = 0; x <= 0; x += 4) {
+                titles.add(subStringData[x]);
+                authors.add(subStringData[x + 1]);
+                int subStringDataToInt = Integer.parseInt(subStringData[x + 2]);
+                publishedYears.add(subStringDataToInt);
+                BigDecimal subStringDataToBigDecimal = new BigDecimal(subStringData[x + 3]);
+                prices.add(subStringDataToBigDecimal);
             }
         }
     }
@@ -84,8 +83,7 @@ public class App {
                         break;
                     }
                 }
-            }
-            else if (mainMenuSelection == 2) {
+            } else if (mainMenuSelection == 2) {
                 while (true) {
                     printSearchBooksMenu();
                     int searchBooksMenuSelection = promptForMenuSelection("Please choose an option: ");
@@ -145,7 +143,7 @@ public class App {
                         displayPricesList(prices);
                     } else if (searchBooksMenuSelection == 7) {
                         // Search by price range
-                        double filterFromPrice= promptForPrice("Enter \"from\" price: ");
+                        double filterFromPrice = promptForPrice("Enter \"from\" price: ");
                         double filterToPrice = promptForPrice("Enter \"to\" price: ");
                         /*
                          Requirement: 9b
@@ -177,42 +175,54 @@ public class App {
      Write the displaySearchResults(List<Integer> indexes) method.
      See README for additional details.
      */
+    private void displaySearchResults(List<Integer> indexes) {
+
+        //Loop through index
+        for (Integer i : indexes) {
+        System.out.print(titles.get(i) + " " + authors.get(i) + " " + publishedYears.get(i) + " "
+                + prices.get
+
+
+            }
+        }
+
 
     /*
      Requirement: 3a
      Complete the `filterByTitle()` method.
      See README for additional details.
      */
-    private List<Integer> filterByTitle(String filterTitle) {
-        return null;
-    }
+            private List<Integer> filterByTitle(String filterTitle) {
+
+                return null;
+            }
 
     /*
      Requirement: 4a
      Complete the `filterByAuthor()` method.
      See README for additional details.
      */
-    private List<Integer> filterByAuthor(String filterAuthor) {
-        return null;
-    }
+            private List<Integer> filterByAuthor(String filterAuthor) {
+                return null;
+            }
 
     /*
      Requirement: 5a
      Complete the `filterByPublishedYear()` method.
      See README for additional details.
      */
-    private List<Integer> filterByPublishedYear(int filterYear) {
-        return null;
-    }
+            private List<Integer> filterByPublishedYear(int filterYear) {
+                return null;
+            }
 
     /*
      Requirement: 6a
      Complete the `filterByPublishedYearRange()` method.
      See README for additional details.
      */
-    private List<Integer> filterByPublishedYearRange(int filterFromYear, int filterToYear) {
-        return null;
-    }
+            private List<Integer> filterByPublishedYearRange(int filterFromYear, int filterToYear) {
+                return null;
+            }
 
     /*
      Requirement: 7a
@@ -225,18 +235,18 @@ public class App {
      Complete the `filterByPrice()` method.
      See README for additional details.
      */
-    private List<Integer> filterByPrice(double filterPrice) {
-        return null;
-    }
+            private List<Integer> filterByPrice(double filterPrice) {
+                return null;
+            }
 
     /*
      Requirement: 9a
      Complete the `filterByPriceRange()` method.
      See README for additional details.
      */
-    private List<Integer> filterByPriceRange(double filterFromPrice, double filterToPrice) {
-        return null;
-    }
+            private List<Integer> filterByPriceRange(double filterFromPrice, double filterToPrice) {
+                return null;
+            }
 
     /*
      Requirement: 10a
@@ -245,134 +255,135 @@ public class App {
      */
 
 
-    // UI methods
+            // UI methods
 
-    private void printMainMenu() {
-        System.out.println("1: Display data and subsets");
-        System.out.println("2: Search books");
-        System.out.println("0: Exit");
-        System.out.println();
-    }
+            private void printMainMenu() {
+                System.out.println("1: Display data and subsets");
+                System.out.println("2: Search books");
+                System.out.println("0: Exit");
+                System.out.println();
+            }
 
-    private void printDataAndSubsetsMenu() {
-        System.out.println("1: Display dataset");
-        System.out.println("2: Display titles");
-        System.out.println("3: Display authors");
-        System.out.println("4: Display published years");
-        System.out.println("5: Display prices");
-        System.out.println("0: Return to main menu");
-        System.out.println();
-    }
+            private void printDataAndSubsetsMenu() {
+                System.out.println("1: Display dataset");
+                System.out.println("2: Display titles");
+                System.out.println("3: Display authors");
+                System.out.println("4: Display published years");
+                System.out.println("5: Display prices");
+                System.out.println("0: Return to main menu");
+                System.out.println();
+            }
 
-    private void printSearchBooksMenu() {
-        System.out.println("1: Search by title");
-        System.out.println("2: Search by author");
-        System.out.println("3: Search by published year");
-        System.out.println("4: Search by published year range");
-        System.out.println("5: Find most recent books");
-        System.out.println("6: Search by price");
-        System.out.println("7: Search by price range");
-        System.out.println("8: Find least expensive books");
-        System.out.println("0: Return to main menu");
-        System.out.println();
-    }
+            private void printSearchBooksMenu() {
+                System.out.println("1: Search by title");
+                System.out.println("2: Search by author");
+                System.out.println("3: Search by published year");
+                System.out.println("4: Search by published year range");
+                System.out.println("5: Find most recent books");
+                System.out.println("6: Search by price");
+                System.out.println("7: Search by price range");
+                System.out.println("8: Find least expensive books");
+                System.out.println("0: Return to main menu");
+                System.out.println();
+            }
 
-    private void displayDataset(String[] dataset) {
-        System.out.println("Dataset");
-        System.out.println("-------");
-        for (String data : dataset) {
-            System.out.println(data);
-        }
-        System.out.println();
-        promptForReturn();
-    }
+            private void displayDataset(String[] dataset) {
+                System.out.println("Dataset");
+                System.out.println("-------");
+                for (String data : dataset) {
+                    System.out.println(data);
+                }
+                System.out.println();
+                promptForReturn();
+            }
 
-    private void displayTitlesList(List<String> titles) {
-        System.out.println("Titles");
-        System.out.println("-------");
-        for (int i = 0; i < titles.size(); i++) {
-            System.out.println(i + ": " + titles.get(i));
-        }
-        System.out.println();
-        promptForReturn();
-    }
+            private void displayTitlesList(List<String> titles) {
+                System.out.println("Titles");
+                System.out.println("-------");
+                for (int i = 0; i < titles.size(); i++) {
+                    System.out.println(i + ": " + titles.get(i));
+                }
+                System.out.println();
+                promptForReturn();
+            }
 
-    private void displayAuthorsList(List<String> authors) {
-        System.out.println("Authors");
-        System.out.println("-------");
-        for (int i = 0; i < authors.size(); i++) {
-            System.out.println(i + ": " + authors.get(i));
-        }
-        System.out.println();
-        promptForReturn();
-    }
+            private void displayAuthorsList(List<String> authors) {
+                System.out.println("Authors");
+                System.out.println("-------");
+                for (int i = 0; i < authors.size(); i++) {
+                    System.out.println(i + ": " + authors.get(i));
+                }
+                System.out.println();
+                promptForReturn();
+            }
 
-    private void displayPublishedYearsList(List<Integer> publishedYears) {
-        System.out.println("Published Years");
-        System.out.println("---------------");
-        for (int i = 0; i < publishedYears.size(); i++) {
-            System.out.println(i + ": " + publishedYears.get(i));
-        }
-        System.out.println();
-        promptForReturn();
-    }
+            private void displayPublishedYearsList(List<Integer> publishedYears) {
+                System.out.println("Published Years");
+                System.out.println("---------------");
+                for (int i = 0; i < publishedYears.size(); i++) {
+                    System.out.println(i + ": " + publishedYears.get(i));
+                }
+                System.out.println();
+                promptForReturn();
+            }
 
-    private void displayPricesList(List<BigDecimal> prices) {
-        System.out.println("Prices");
-        System.out.println("------");
-        for (int i = 0; i < prices.size(); i++) {
-            System.out.println(i + ": " + prices.get(i));
-        }
-        System.out.println();
-        promptForReturn();
-    }
+            private void displayPricesList(List<BigDecimal> prices) {
+                System.out.println("Prices");
+                System.out.println("------");
+                for (int i = 0; i < prices.size(); i++) {
+                    System.out.println(i + ": " + prices.get(i));
+                }
+                System.out.println();
+                promptForReturn();
+            }
 
-    private int promptForMenuSelection(String prompt) {
-        System.out.print(prompt);
-        int menuSelection;
-        try {
-            menuSelection = Integer.parseInt(keyboard.nextLine());
-        } catch (NumberFormatException e) {
-            menuSelection = -1;
-        }
-        return menuSelection;
-    }
+            private int promptForMenuSelection(String prompt) {
+                System.out.print(prompt);
+                int menuSelection;
+                try {
+                    menuSelection = Integer.parseInt(keyboard.nextLine());
+                } catch (NumberFormatException e) {
+                    menuSelection = -1;
+                }
+                return menuSelection;
+            }
 
-    private String promptForString(String prompt) {
-        System.out.print(prompt);
-        return keyboard.nextLine();
-    }
+            private String promptForString(String prompt) {
+                System.out.print(prompt);
+                return keyboard.nextLine();
+            }
 
-    private int promptForPublishedYear(String prompt) {
-        int year;
-        while (true) {
-            System.out.println(prompt);
-            try {
-                year = Integer.parseInt(keyboard.nextLine());
-                break;
-            } catch (NumberFormatException e) {
-                System.out.println("The year provided is not well-formed. It must be YYYY.");
+            private int promptForPublishedYear(String prompt) {
+                int year;
+                while (true) {
+                    System.out.println(prompt);
+                    try {
+                        year = Integer.parseInt(keyboard.nextLine());
+                        break;
+                    } catch (NumberFormatException e) {
+                        System.out.println("The year provided is not well-formed. It must be YYYY.");
+                    }
+                }
+                return year;
+            }
+
+            private double promptForPrice(String prompt) {
+                double price;
+                while (true) {
+                    System.out.println(prompt);
+                    try {
+                        price = Double.parseDouble(keyboard.nextLine());
+                        break;
+                    } catch (NumberFormatException e) {
+                        System.out.println("The price provided is not a valid monetary value.");
+                    }
+                }
+                return price;
+            }
+
+            private void promptForReturn() {
+                System.out.println("Press RETURN to continue.");
+                keyboard.nextLine();
             }
         }
-        return year;
-    }
 
-    private double promptForPrice(String prompt) {
-        double price;
-        while (true) {
-            System.out.println(prompt);
-            try {
-                price = Double.parseDouble(keyboard.nextLine());
-                break;
-            } catch (NumberFormatException e) {
-                System.out.println("The price provided is not a valid monetary value.");
-            }
-        }
-        return price;
-    }
-
-    private void promptForReturn() {
-        System.out.println("Press RETURN to continue.");
-        keyboard.nextLine();
-    }
-}
