@@ -95,7 +95,14 @@ public class App {
                          Replace `displayTitlesList(titles)` with calls to the
                          `filterByTitle()` and `displaySearchResults()` methods.
                          */
-                        displayTitlesList(titles);
+
+                        //Remove displayTitlesList(titles)'
+                        //displayTitlesList(titles);
+
+                        //Replace with calls to filterByTitle and displaySearchResults() methods
+                        displaySearchResults(filterByTitle(filterTitle));
+
+
                     } else if (searchBooksMenuSelection == 2) {
                         // Search by author
                         String filterAuthor = promptForString("Enter author: ");
@@ -177,11 +184,11 @@ public class App {
      */
     private void displaySearchResults(List<Integer> indexes) {
 
-        //Loop through index
+        //Loop through indexes
         for (Integer i : indexes) {
-        System.out.print(titles.get(i) + " " + authors.get(i) + " " + publishedYears.get(i) + " "
-                + prices.get
-
+        //Print out SearchResults
+            System.out.print(titles.get(i) + " " + authors.get(i) + " " + publishedYears.get(i) + " "
+                + prices.get(i));
 
             }
         }
@@ -193,8 +200,16 @@ public class App {
      See README for additional details.
      */
             private List<Integer> filterByTitle(String filterTitle) {
+            //declare List of filtered Titles
+            List<Integer> foundTitles = new ArrayList<>();
 
-                return null;
+            //Find matching Titles by loop
+            for (String i : titles) {
+                if (i.contains(filterTitle)) {
+                    foundTitles.add(titles.indexOf(i));
+                    }
+                }
+                return foundTitles;
             }
 
     /*
