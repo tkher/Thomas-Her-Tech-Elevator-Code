@@ -1,6 +1,7 @@
 package com.techelevator;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.*;
 
 public class App {
@@ -111,7 +112,14 @@ public class App {
                          Replace `displayAuthorsList(authors)` with calls to the
                          `filterByAuthor()` and `displaySearchResults()` methods.
                          */
-                        displayAuthorsList(authors);
+
+                        //Remove displayAuthorsList(authors);
+                        //displayAuthorsList(authors);
+
+                        //Replace with calls to filterByAuthor and displaySearchResults() methods
+                        displaySearchResults(filterByAuthor(filterAuthor));
+
+
                     } else if (searchBooksMenuSelection == 3) {
                         // Search by published year
                         int filterYear = promptForPublishedYear("Enter date (YYYY): ");
@@ -120,7 +128,13 @@ public class App {
                          Replace `displayPublishedYearsList(publishedYears)` with calls
                          to the `filterByPublishedYear()` and `displaySearchResults()` methods.
                          */
-                        displayPublishedYearsList(publishedYears);
+
+                        //Remove displayPublishedYearsList(publishedYears);
+                        //displayPublishedYearsList(publishedYears);
+
+                        //Replace with calls to filterByPublishedYear() and displaySearchResults() methods
+                        displaySearchResults(filterByPublishedYear(filterYear));
+
                     } else if (searchBooksMenuSelection == 4) {
                         // Search by published year range
                         int filterFromYear = promptForPublishedYear("Enter \"from\" date (YYYY): ");
@@ -130,7 +144,13 @@ public class App {
                          Replace `displayPublishedYearsList(publishedYears)` with calls
                          to the `filterByPublishedYearRange()` and `displaySearchResults()` methods.
                          */
-                        displayPublishedYearsList(publishedYears);
+
+                        //Remove displayPublishedYearsList(publishedYears);
+                        //displayPublishedYearsList(publishedYears);
+
+                        ////Replace with calls to filterByPublishedYearRange() and displaySearchResults() methods
+                        displaySearchResults(filterByPublishedYearRange(filterFromYear, filterToYear));
+
                     } else if (searchBooksMenuSelection == 5) {
                         // Find the most recent books
                         /*
@@ -186,12 +206,12 @@ public class App {
 
         //Loop through indexes
         for (Integer i : indexes) {
-        //Print out SearchResults
-            System.out.print(titles.get(i) + " " + authors.get(i) + " " + publishedYears.get(i) + " "
-                + prices.get(i));
+            //Print out SearchResults
+            System.out.println(titles.get(i) + " " + authors.get(i) + " " + publishedYears.get(i) + " "
+                    + prices.get(i));
 
-            }
         }
+    }
 
 
     /*
@@ -199,51 +219,116 @@ public class App {
      Complete the `filterByTitle()` method.
      See README for additional details.
      */
-            private List<Integer> filterByTitle(String filterTitle) {
-            //declare List of filtered Titles
-            List<Integer> foundTitles = new ArrayList<>();
+    private List<Integer> filterByTitle(String filterTitle) {
+        //declare List of found matches for Titles
+        List<Integer> foundTitles = new ArrayList<>();
 
-            //Find matching Titles by loop
-            for (String i : titles) {
-                if (i.contains(filterTitle)) {
-                    foundTitles.add(titles.indexOf(i));
-                    }
-                }
-                return foundTitles;
+        //Find matching Titles by loop
+        for (String i : titles) {
+            String a = i.toUpperCase();
+            String b = filterTitle.toUpperCase();
+            if (a.contains(b)) {
+                foundTitles.add(titles.indexOf(i));
             }
+        }
+        return foundTitles;
+    }
 
     /*
      Requirement: 4a
      Complete the `filterByAuthor()` method.
      See README for additional details.
      */
-            private List<Integer> filterByAuthor(String filterAuthor) {
-                return null;
+    private List<Integer> filterByAuthor(String filterAuthor) {
+        //Declare list of found matches for authors
+        List<Integer> foundAuthors = new ArrayList<>();
+
+        //Find matching Authors by loop
+        for (String i : authors) {
+            String a = i.toUpperCase();
+            String b = filterAuthor.toUpperCase();
+            if (a.equalsIgnoreCase(b)) {
+                foundAuthors.add(authors.indexOf(i));
             }
+        }
+        return foundAuthors;
+    }
 
     /*
      Requirement: 5a
      Complete the `filterByPublishedYear()` method.
      See README for additional details.
      */
-            private List<Integer> filterByPublishedYear(int filterYear) {
-                return null;
-            }
+    private List<Integer> filterByPublishedYear(int filterYear) {
+        //Declare list of found matches for published year
+        List<Integer> foundPublishedYear = new ArrayList<>();
 
+        //Find matching published year by loop
+        for (Integer i : publishedYears) {
+            LocalDate date = LocalDate.of(i, 1, 1);
+            int year = date.getYear();
+            if (year == filterYear) {
+                foundPublishedYear.add(publishedYears.indexOf(i));
+            }
+        }
+        return foundPublishedYear;
+    }
+
+    // Currently not working, maybe need to convert to local date or create two list>find matches> return non matches.
+// or can remove matches prior to from date and remove matches post to date.
     /*
      Requirement: 6a
      Complete the `filterByPublishedYearRange()` method.
      See README for additional details.
      */
-            private List<Integer> filterByPublishedYearRange(int filterFromYear, int filterToYear) {
-                return null;
+    private List<Integer> filterByPublishedYearRange(int filterFromYear, int filterToYear) {
+        //Declare list of found matches for Published Years by Range
+        List<Integer> foundPublishedYearByRange = new ArrayList<>();
+
+
+        //Find matching published years by from year via loop
+        for (Integer i : publishedYears) {
+            if (i >= filterFromYear) {
+                foundPublishedYearByRange.add(publishedYears.indexOf(i));
             }
+        }
+        //Remove matching published years by To Year via loop
+        for (Integer i : foundPublishedYearByRange) {
+            if (i >= filterToYear) {
+                foundPublishedYearByRange.remove(foundPublishedYearByRange.indexOf(i));
+            }
+        }
+        return foundPublishedYearByRange;
+    }
 
     /*
      Requirement: 7a
      Add the `private List<Integer> findMostRecentBooks()` method.
      See README for additional details.
      */
+
+    //Add the method
+    private List<Integer> findMostRecentBooks(int filterRecentYear) {
+
+        //Declare a list for latest publications
+        List<Integer> latestPublications = new ArrayList<>();
+
+        //Determine the latest year of publication years withing published years
+        for (int i = 0; i <=0; i++) {
+            int mostRecentPublication = 0;
+            if (publishedYears.indexOf(i) >= mostRecentPublication) {
+                mostRecentPublication = publishedYears.indexOf(i);
+            }
+            for (Integer x : publishedYears) {
+                if (x == mostRecentPublication) {
+                    latestPublications.add(x);
+                }
+            }
+        }
+
+        return latestPublications;
+    }
+
 
     /*
      Requirement: 8a
