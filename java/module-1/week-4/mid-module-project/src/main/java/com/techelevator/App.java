@@ -408,7 +408,8 @@ public class App {
 
         }
         for (int i = 0; i < prices.size(); i++) {
-            if (i == theMostExpensiveBookEva) {
+            int intPrice = ((prices.get(i)).intValue());
+            if (intPrice == theMostExpensiveBookEva) {
                 foundLeastExpensive.add(i);
             }
         }
