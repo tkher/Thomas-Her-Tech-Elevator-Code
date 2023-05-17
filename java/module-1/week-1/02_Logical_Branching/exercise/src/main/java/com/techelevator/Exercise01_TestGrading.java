@@ -1,13 +1,20 @@
 package com.techelevator;
 
+<<<<<<< HEAD
 public class Exercise01_TestGrading<passingScore, gradeTestPassFail> {
+=======
+public class Exercise01_TestGrading {
+>>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc
 
     /*
     Grade-o-matic Incorporated has a program to grade student tests.
     The problems below ask you to implement the logic for returning a grade based on a student's test score.
      */
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc
     /*
     Grade-o-matic v1.0 scores tests as pass-fail.
     A score of 70 or higher is a passing score. Anything lower is a failing score.
@@ -19,11 +26,15 @@ public class Exercise01_TestGrading<passingScore, gradeTestPassFail> {
     gradeTestPassFail(45) ➔ false
      */
     public boolean gradeTestPassFail(int score) {
+<<<<<<< HEAD
         if (score >= 70) {
             return true;
         } else {
             return false;
         }
+=======
+        return false;
+>>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc
     }
 
     /*
@@ -42,6 +53,7 @@ public class Exercise01_TestGrading<passingScore, gradeTestPassFail> {
     gradeTestNumeric(10) ➔ 0
      */
     public int gradeTestNumeric(int score) {
+<<<<<<< HEAD
         if (score >= 90) {
             return 3;
         } else if (score >= 50 && score <= 89) {
@@ -53,6 +65,11 @@ public class Exercise01_TestGrading<passingScore, gradeTestPassFail> {
     }
         return 0;
 }
+=======
+        return 0;
+    }
+
+>>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc
     /*
     Grade-o-matic has received even more requests to grade using the classic letter scale.
     Grade-o-matic v3.0 can now score tests on a letter scale.
@@ -68,6 +85,7 @@ public class Exercise01_TestGrading<passingScore, gradeTestPassFail> {
     gradeTestLetter(70) ➔ 'C'
     gradeTestLetter(45) ➔ 'F'
      */
+<<<<<<< HEAD
         public char gradeTestLetter (int score) {
             if (score >= 90) {
                 return 'A';
@@ -82,3 +100,9 @@ public class Exercise01_TestGrading<passingScore, gradeTestPassFail> {
         }
 
     }
+=======
+    public char gradeTestLetter(int score) {
+        return ' ';
+    }
+}
+>>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc

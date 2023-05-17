@@ -1,8 +1,12 @@
 package com.techelevator;
 
+<<<<<<< HEAD
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+=======
+import java.util.ArrayList;
+>>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc
 import java.util.List;
 
 public class Exercises {
@@ -18,9 +22,13 @@ public class Exercises {
 	 array2List( {"Left", "Right", "Forward", "Back"} )  ->  ["Left", "Right", "Forward", "Back"]
 	 */
 	public List<String> array2List(String[] stringArray) {
+<<<<<<< HEAD
 		List<String> fruitList = new ArrayList<String>(Arrays.asList(stringArray));
 
 		return fruitList;
+=======
+		return null;
+>>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc
 	}
 
 	/*
@@ -30,11 +38,15 @@ public class Exercises {
 	 list2Array( ["Left", "Right", "Forward", "Back"] )  ->  {"Left", "Right", "Forward", "Back"}
 	 */
 	public String[] list2Array(List<String> stringList) {
+<<<<<<< HEAD
 		String[] fruitArray = new String[stringList.size()];
 		for (int i = 0; i < stringList.size(); i++) {
 			fruitArray[i] = stringList.get(i);
 		}
 		return fruitArray;
+=======
+		return null;
+>>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc
 	}
 
 	/*
@@ -45,6 +57,7 @@ public class Exercises {
 	 no4LetterWords( {"Jack", "Jill", "Jane", "John", "Jim"} )  ->  ["Jim"]
 	 */
 	public List<String> no4LetterWords(String[] stringArray) {
+<<<<<<< HEAD
 		List<String>lessThanFour = new ArrayList<String>();
 
 		for(String i : stringArray) {
@@ -53,6 +66,9 @@ public class Exercises {
 			}
 		}
 		return lessThanFour;
+=======
+		return null;
+>>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc
 	}
 
 	/*
@@ -62,6 +78,7 @@ public class Exercises {
 	 arrayInt2ListDouble( {84, 99, 3285, 13, 877} ) -> [42, 49.5, 1642.5, 6.5, 438.5]
 	 */
 	public List<Double> arrayInt2ListDouble(int[] intArray) {
+<<<<<<< HEAD
 		List<Double> arrayOfNumbers = new ArrayList<Double>();
 		for (int i : intArray) {
 			double dValue = i;
@@ -69,6 +86,9 @@ public class Exercises {
 		}
 
 		return arrayOfNumbers;
+=======
+		return null;
+>>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc
 	}
 
 	/*
@@ -78,6 +98,7 @@ public class Exercises {
 	 findLargest( [34070, 1380, 81238, 7782, 234, 64362, 627] ) -> 81238
 	 */
 	public Integer findLargest(List<Integer> integerList) {
+<<<<<<< HEAD
 		Integer largestValue = 0;
 
 		for(int i : integerList){
@@ -87,6 +108,9 @@ public class Exercises {
 		}
 
 		return largestValue;
+=======
+		return null;
+>>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc
 	}
 
 	/*
@@ -96,6 +120,7 @@ public class Exercises {
 	 oddOnly( {734, 233, 782, 811, 3, 9999} ) -> [233, 811, 3, 9999]
 	 */
 	public List<Integer> oddOnly(Integer[] integerArray) {
+<<<<<<< HEAD
 		List<Integer> listOfOddIntergers = new ArrayList<>();
 
 		for(int i : integerArray) {
@@ -104,6 +129,9 @@ public class Exercises {
 			}
 		}
 		return listOfOddIntergers;
+=======
+		return null;
+>>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc
 	}
 
 	/*
@@ -114,6 +142,7 @@ public class Exercises {
 	 foundIntTwice( [9, 9, 44, 2, 88, 9], 9) -> true
 	 */
 	public boolean foundIntTwice(List<Integer> integerList, int intToFind) {
+<<<<<<< HEAD
 		List<Boolean> intValueAppearsTwice = new ArrayList<Boolean>();
 		Integer intCounter = 0;
 
@@ -130,6 +159,11 @@ public class Exercises {
 			return false;
 		}
 	}
+=======
+		return false;
+	}
+
+>>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc
 	/*
 	 Given an array of Integers, return a List that contains the same Integers (as Strings). Except any multiple of 3
 	must be replaced by the String "Fizz", any multiple of 5 must be replaced by the String "Buzz",
@@ -143,6 +177,7 @@ public class Exercises {
 	HINT: To convert an Integer x to a String, you can use x.toString() in your code. For example, if x = 1, then x.toString() returns "1."
 	 */
 	public List<String> fizzBuzzList(Integer[] integerArray) {
+<<<<<<< HEAD
 
 		String[] newIntegerArray = new String[integerArray.length];
 
@@ -161,6 +196,9 @@ public class Exercises {
 //		intAsStrings.add(newIntegerArray[a]);
 //	}
 		return intAsStrings;
+=======
+		return null;
+>>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc
 	}
 
 	/*
@@ -173,12 +211,15 @@ public class Exercises {
      interleaveLists( [1, 2, 5, 8, 10], [4, 5, 6] )  ->  [1, 4, 2, 5, 5, 6, 8, 10]
 	 */
 	public List<Integer> interleaveLists(List<Integer> listOne, List<Integer> listTwo) {
+<<<<<<< HEAD
 		List<Integer> combinedList = new ArrayList<Integer>();
 
 //		for (int i : listOne) {
 //			if ()
 //		}
 
+=======
+>>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc
 		return null;
 	}
 

@@ -1,7 +1,10 @@
 package com.techelevator;
 
 import java.util.HashMap;
+<<<<<<< HEAD
 import java.util.Locale;
+=======
+>>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc
 import java.util.Map;
 
 public class Exercises {
@@ -35,6 +38,7 @@ public class Exercises {
 	 *
 	 */
 	public String animalGroupName(String animalName) {
+<<<<<<< HEAD
 		Map<String, String> nameOfAnimalGroups = new HashMap<String, String>();
 		nameOfAnimalGroups.put("RHINO", "Crash");
 		nameOfAnimalGroups.put("GIRAFFE", "Tower");
@@ -66,6 +70,10 @@ public class Exercises {
 //				return nameOfAnimalGroups.get(i);
 //			} else {
 //				return "unknown";
+=======
+		return null;
+	}
+>>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc
 
 	/*
 	 * Given a String item number (a.k.a. SKU), return the discount percentage if the item is on sale.
@@ -90,9 +98,12 @@ public class Exercises {
 	 *
 	 */
 	public double isItOnSale(String itemNumber) {
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc
 		return -1.0;
 	}
 

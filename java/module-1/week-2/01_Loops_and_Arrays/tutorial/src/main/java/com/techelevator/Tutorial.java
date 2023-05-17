@@ -3,6 +3,7 @@ package com.techelevator;
 public class Tutorial {
 
     public static void main(String[] args) {
+<<<<<<< HEAD
         // write your code here
         int i;
         for (i = 0; i <= 5; i++) {
@@ -43,3 +44,15 @@ public class Tutorial {
 }
 
 
+=======
+
+        // write your code here
+
+
+
+
+
+
+    }
+}
+>>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc

@@ -9,6 +9,7 @@ public class Tutorial {
     public static void main(String[] args) {
 
         // Step One: Declare a Map
+<<<<<<< HEAD
         Map<String,String> projects = new HashMap<String, String>();
 
     	
@@ -26,6 +27,15 @@ public class Tutorial {
               System.out.println("Key = " + i + "and value = " + (projects.get(i)));
 
         }
+=======
+
+
+    	// Step Two: Add items to a Map
+
+
+    	// Step Three: Loop through a Map
+
+>>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc
     }
 
 }

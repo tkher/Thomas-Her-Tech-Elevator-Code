@@ -3,6 +3,7 @@ package com.techelevator;
 import java.util.Scanner;
 
 public class KilometerConverter {
+<<<<<<< HEAD
     public  static  void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
@@ -30,5 +31,9 @@ public class KilometerConverter {
         final double MILES_PER_KILOMETER = 0.621371;
         return kilometers * MILES_PER_KILOMETER;
     }
+=======
+
+
+>>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc
     
 }

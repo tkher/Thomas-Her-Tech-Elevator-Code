@@ -1,5 +1,6 @@
 package com.techelevator;
 
+<<<<<<< HEAD
 import java.util.Scanner;
 
 public class TempConvert {
@@ -22,6 +23,11 @@ public class TempConvert {
 				System.out.print(inputTemperature + "F is " + temperatureCelsius +"C");
 			}
 		//}
+=======
+public class TempConvert {
+
+	public static void main(String[] args) {
+>>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc
 
 	}
 

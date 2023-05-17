@@ -25,7 +25,11 @@ public class Exercise04_Cards {
     getFirstCard(["K-C", "Q-D", "J-H", "10-S", "Q-C"]) → "K-C"
     */
     public String getFirstCard(String[] hand) {
+<<<<<<< HEAD
         return hand[0];
+=======
+        return "";
+>>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc
     }
 
     /*
@@ -42,12 +46,16 @@ public class Exercise04_Cards {
     discardFirstCard(["K-C", "Q-D", "J-H", "10-S", "Q-C"]) → ["Q-D", "J-H", "10-S", "Q-C"]
      */
     public String[] discardFirstCard(String[] hand) {
+<<<<<<< HEAD
         String[] newHand = new String[4];
         newHand [0] = hand[1];
         newHand [1] = hand[2];
         newHand [2] = hand[3];
         newHand [3] = hand[4];
         return newHand;
+=======
+        return new String[] {};
+>>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc
     }
 
     /*
@@ -66,6 +74,7 @@ public class Exercise04_Cards {
     discardTopCard([]) → []
      */
     public String[] discardTopCard(String[] remainingDeck) {
+<<<<<<< HEAD
         String[] newDeck = new String[remainingDeck.length-1];
         String[] emptyDeck = new String [0];
         for (int i = 0; i <= remainingDeck.length-1; i ++) {
@@ -75,5 +84,8 @@ public class Exercise04_Cards {
             }
         }
         return newDeck;
+=======
+        return new String[] {};
+>>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc
     }    
 }

@@ -9,8 +9,12 @@ public class Exercises {
 	 helloName("X") → "Hello X!"
 	 */
 	public String helloName(String name) {
+<<<<<<< HEAD
 		String greeting = "Hello " + name +"!";
 		return greeting;
+=======
+		return null;
+>>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc
 	}
 
 	/*
@@ -21,8 +25,12 @@ public class Exercises {
 	 makeAbba("What", "Up") → "WhatUpUpWhat"
 	 */
 	public String makeAbba(String a, String b) {
+<<<<<<< HEAD
 		String reOrder = a+b+b+a;
 		return reOrder;
+=======
+		return null;
+>>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc
 	}
 
 	/*

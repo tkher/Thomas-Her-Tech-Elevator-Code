@@ -15,6 +15,7 @@ public class Tutorial {
                 System.out.println("**************************************");
 
                 // Step Two: Declare and initialize Weather Station variables
+<<<<<<< HEAD
                 int highTemperatureF = 55;
                 boolean precipitationExpected = true;
                 final int FREEZING_TEMPERATURE_F = 32;
@@ -61,5 +62,29 @@ public class Tutorial {
 
                         System.out.println(dataset[0], dataset[1]);
                 }
+=======
+
+
+
+                // Step Three: Report today's expected conditions to the user.
+
+
+
+                // Step Four: Determine if the user should bring a coat. (when the temperature < 65°F)
+
+
+
+                // Step Five: Determine if the user should bring an umbrella
+
+
+
+                // Step Six: Advise the user on the type of jacket they should be wearing. (<= 0°F, <= freezing, < 65°F)
+
+
+
+                // Step Seven: If the temperature delta for the day is more than 20°F, advise the user to dress in layers.
+
+                
+>>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc
         }
 }

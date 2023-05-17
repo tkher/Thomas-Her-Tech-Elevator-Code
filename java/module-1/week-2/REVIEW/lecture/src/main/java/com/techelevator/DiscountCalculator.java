@@ -24,6 +24,12 @@ public class DiscountCalculator {
             //Calculate the total price
             double total = 0;
             for (int i = 0; i < priceArray.length; i++) {
+<<<<<<< HEAD
+=======
+                if(priceArray[i].equals("")){
+                    continue;
+                }
+>>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc
                 double undiscountedPrice = Double.parseDouble(priceArray[i]);
                 total += undiscountedPrice;
             }
@@ -32,10 +38,18 @@ public class DiscountCalculator {
             int discountPercent = Integer.parseInt(discount);
             double discountAmount = total * (discountPercent / 100.0);
             double discountedTotal = total - discountAmount;
+<<<<<<< HEAD
 
             //Print out the discounted price
             System.out.format("The total price is: $%.2f.\n", total);
             System.out.format("The discounted total is: $%.2f.\n", discountedTotal);
+=======
+            double discountedTotalWithTax = discountedTotal * 1.07;
+
+            //Print out the discounted price
+            System.out.format("The total price is: $%.2f.\n", total);
+            System.out.format("The discounted total including tax is: $%.2f.\n", discountedTotalWithTax);
+>>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc
 
             System.out.print("Are you finished (y/n)? ");
             String response = input.nextLine();

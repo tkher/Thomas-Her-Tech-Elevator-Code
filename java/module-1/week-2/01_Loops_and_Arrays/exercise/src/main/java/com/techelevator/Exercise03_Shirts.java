@@ -17,6 +17,7 @@ public class Exercise03_Shirts {
     buildOrder() → ['S', 'S', 'S', 'M', 'M', 'L']
      */
     public char[] buildOrder() {
+<<<<<<< HEAD
         char[] shirtOrder = new char[6];
         shirtOrder [0] = 'S';
         shirtOrder [1] = 'S';
@@ -28,6 +29,11 @@ public class Exercise03_Shirts {
     }
 
 
+=======
+        return new char[] {};    
+    }
+
+>>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc
     /*
     Another customer called in and is hosting a large networking event and
     needs a bulk order. Rather than indicate how many of each shirt they
@@ -44,6 +50,7 @@ public class Exercise03_Shirts {
     buildBulkOrder(4) → ['S', 'M', 'L', 'S']
     buildBulkOrder(0) → []
      */
+<<<<<<< HEAD
     public char[] buildBulkOrder(int numberOfShirts) {
         char[] evenDistribution = new char[numberOfShirts];
         for (int i = 0; i < numberOfShirts; i+=3) {
@@ -58,6 +65,10 @@ public class Exercise03_Shirts {
             evenDistribution[i] = LARGE_TSHIRT;
         }
         return evenDistribution;
+=======
+    public char[] buildBulkOrder(int numberOfShirts) { 
+        return new char[] {};    
+>>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc
     }
 
     /*
@@ -74,6 +85,7 @@ public class Exercise03_Shirts {
     placeRequest([]) → false
      */
     public boolean placeRequest(char[] order) {
+<<<<<<< HEAD
         boolean requestSmalls = false;
         for (int a = 0; a < order.length; a++) {
             if(order[a] == 'S') {
@@ -81,5 +93,8 @@ public class Exercise03_Shirts {
             }
         }
         return requestSmalls;
+=======
+        return false; 
+>>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc
     }
 }

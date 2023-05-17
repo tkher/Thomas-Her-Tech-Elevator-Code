@@ -23,7 +23,11 @@ public class Exercise00_GettingStarted {
         // value is false, but this code returns true.
         // Modify the following line to change ">=" to ">" and re-run the test. It will pass.
 
+<<<<<<< HEAD
         boolean isAboveFreezing = highTemperatureF > FREEZING_TEMPERATURE_F;
+=======
+        boolean isAboveFreezing = highTemperatureF >= FREEZING_TEMPERATURE_F;
+>>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc
 
         if (precipitationExpected && isAboveFreezing) {
             return true;

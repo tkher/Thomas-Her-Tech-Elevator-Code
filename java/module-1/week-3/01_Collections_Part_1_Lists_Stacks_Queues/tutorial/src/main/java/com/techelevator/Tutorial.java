@@ -11,6 +11,7 @@ public class Tutorial {
     public static void main(String[] args) {
 
     	// Step One: Declare a List
+<<<<<<< HEAD
         List<String> nameList = new ArrayList<>();
     	
     	// Step Two: Add values to a List
@@ -31,6 +32,21 @@ public class Tutorial {
         for (String element : nameList) {
             System.out.println("Name " + element);
         }
+=======
+
+    	
+    	// Step Two: Add values to a List
+
+    	
+    	// Step Three: Looping through a List in a for loop
+
+    	
+    	// Step Four: Remove an item
+
+    	
+    	// Step Five: Looping through List in a for-each loop
+
+>>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc
     }
 
 }
