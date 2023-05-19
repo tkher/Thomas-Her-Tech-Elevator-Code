@@ -13,16 +13,17 @@ public class FruitTree {
     }
 
     //Getters and Setters
-    public String getTypeOfFruit() { return getTypeOfFruit();}
+    public String getTypeOfFruit() { return typeOfFruit;}
 
-    public int getPiecesOfFruitLeft() { return getPiecesOfFruitLeft();}
+    public int getPiecesOfFruitLeft() { return piecesOfFruitLeft;}
 
 //    public int getStartingPiecesOfFruit() { return startingPiecesOfFruit;}
 
     //methods
     public boolean pickFruit (int numberOfPiecesToRemove) {
         //need more logic
-        if (numberOfPiecesToRemove >= piecesOfFruitLeft) {
+        if ((piecesOfFruitLeft - numberOfPiecesToRemove) >=0) {
+            piecesOfFruitLeft = piecesOfFruitLeft - numberOfPiecesToRemove;
             return true;
         }else{
             return false;
