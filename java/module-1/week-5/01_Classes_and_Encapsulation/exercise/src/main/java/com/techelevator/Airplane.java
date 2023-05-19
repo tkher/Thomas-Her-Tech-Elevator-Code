@@ -17,7 +17,7 @@ public class Airplane {
 
     //Getters
     public int getAvailableFirstClassSeats() {
-        return this.totalFirstClassSeats - bookedCoachSeats;
+        return this.totalFirstClassSeats - bookedFirstClassSeats;
     }
 
     public int getAvailableCoachSeats() {
@@ -48,14 +48,14 @@ public class Airplane {
     //Methods
     public boolean reserveSeats(boolean forFirstClass, int totalNumberOfSeats) {
         if (forFirstClass) {
-            if (totalNumberOfSeats > (this.totalFirstClassSeats - bookedCoachSeats)) {
-                this.bookedFirstClassSeats = bookedFirstClassSeats + totalNumberOfSeats;
+            if (totalNumberOfSeats < (getAvailableFirstClassSeats())) {
+                this.bookedFirstClassSeats += totalNumberOfSeats;
                 forFirstClass = true;
             } else {
                 forFirstClass = false;
             }
         } else {
-            if (totalNumberOfSeats > (this.totalCoachSeats - bookedCoachSeats)) {
+            if (totalNumberOfSeats < (this.totalCoachSeats - bookedCoachSeats)) {
                 this.bookedCoachSeats = bookedCoachSeats + totalNumberOfSeats;
                 forFirstClass = true;
             } else {
