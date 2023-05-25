@@ -23,6 +23,20 @@ public class Bookstore {
         shoppingCart.add(twoCities);
         shoppingCart.add(threeMusketeers);
         shoppingCart.add(childhoodEnd);
+//        System.out.println(shoppingCart.receipt());
+
+        //Add new movies and purchase them
+        Movie toystory = new Movie("Toy Story", "R", 81, 19.99);
+        shoppingCart.add(toystory);
+
+        Movie airplane = new Movie();
+        airplane.setTitle("Airplane!");
+        airplane.setRating("PG-13");
+        airplane.setRunLength(88);
+        airplane.setPrice(14.99);
+
+        shoppingCart.add(airplane);
+
         System.out.println(shoppingCart.receipt());
     }
 }
