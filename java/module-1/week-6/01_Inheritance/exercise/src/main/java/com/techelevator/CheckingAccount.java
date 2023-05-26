@@ -13,14 +13,14 @@ public class CheckingAccount extends BankAccount {
     }
 
     public int withdraw(int amountToWithdraw) {
-        int overdraftLimit = -100;
-        int overdraftFee = -10;
-        if (checkingBalance > overdraftLimit) {
+//        int overdraftLimit = -100;
+//        int overdraftFee = 10;
+        if (getBalance() - amountToWithdraw > -100) {
             super.withdraw(amountToWithdraw);
         }
-        if (checkingBalance < 0) {
-            super.withdraw(amountToWithdraw + 10);
+        if (getBalance() < 0) {
+            super.withdraw(10);
         }
-        return checkingBalance;
+        return getBalance();
     }
 }
