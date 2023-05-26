@@ -8,16 +8,18 @@ public class CheckingAccount extends BankAccount {
         super(accountHolderName, accountNumber, balance);
     }
 
-    public CheckingAccount() {
-        super();
+    public CheckingAccount(String accountHolder, String accountNumber) {
+        super(accountHolder, accountNumber);
     }
 
     public int withdraw(int amountToWithdraw) {
-        super.withdraw();
         int overdraftLimit = -100;
         int overdraftFee = -10;
-        if ((withdraw() > overdraftLimit)) {
-            checkingBalance = withdraw() - amountToWithdraw - overdraftFee;
+        if (checkingBalance > overdraftLimit) {
+            super.withdraw(amountToWithdraw);
+        }
+        if (checkingBalance < 0) {
+            super.withdraw(amountToWithdraw + 10);
         }
         return checkingBalance;
     }

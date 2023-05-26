@@ -42,8 +42,4 @@ public class BankAccount {
         return balance;
     }
 
-    public int withdraw() {
-        return withdraw();
-    }
-
 }
