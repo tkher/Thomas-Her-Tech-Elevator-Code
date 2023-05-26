@@ -40,4 +40,11 @@ public class BankAccount {
         return balance;
     }
 
+    public int transferTo(BankAccount destinationAccount, int transferAmount) {
+        withdraw(transferAmount);
+        destinationAccount.balance = transferAmount;
+        return balance;
+    }
+
+
 }
