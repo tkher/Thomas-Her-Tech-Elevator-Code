@@ -50,9 +50,15 @@ public class BankCustomer implements Accountable{
     }
 
     //methods
+
+    int totalBalance = 0;
     @Override
     public int getBalance() {
-        return getBalance();
+        for (Accountable account : accounts) {
+            totalBalance += account.getBalance();
+
+        }
+        return totalBalance;
     }
 
     public List getAccounts(List Accountable[]) {
@@ -64,7 +70,7 @@ public class BankCustomer implements Accountable{
     }
 
     public boolean isVip() {
-        if (getBalance() > 25000.00) {
+        if (totalBalance > 25000.00) {
             return true;
         } else {
             return false;
