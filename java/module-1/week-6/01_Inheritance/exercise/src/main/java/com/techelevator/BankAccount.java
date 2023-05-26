@@ -33,13 +33,17 @@ public class BankAccount {
     }
 
     public int deposit(int amountToDeposit) {
-        balance = balance + amountToDeposit;
+        this.balance = balance + amountToDeposit;
         return balance;
     }
 
     public int withdraw(int amountToWithdraw) {
-        balance = balance - amountToWithdraw;
+        this.balance = balance - amountToWithdraw;
         return balance;
+    }
+
+    public int withdraw() {
+        return withdraw();
     }
 
 }
