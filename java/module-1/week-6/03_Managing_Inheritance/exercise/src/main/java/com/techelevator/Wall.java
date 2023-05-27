@@ -6,6 +6,8 @@ public abstract class Wall {
 
     //constructor
     public Wall(String name, String color) {
+        this.name = name;
+        this.color = color;
 
     }
 
