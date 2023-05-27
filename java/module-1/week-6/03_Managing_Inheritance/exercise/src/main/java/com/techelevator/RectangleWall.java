@@ -11,6 +11,10 @@ public class RectangleWall extends Wall{
         this.height = height;
     }
 
+    public RectangleWall(String name, String color) {
+        super(name, color);
+    }
+
     //getters
 
     public int getLength() {
