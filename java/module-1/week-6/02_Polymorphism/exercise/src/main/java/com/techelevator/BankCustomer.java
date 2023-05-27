@@ -45,9 +45,6 @@ public class BankCustomer implements Accountable{
         this.phoneNumber = phoneNumber;
     }
 
-    public List<Accountable> getAccounts() {
-        return accounts;
-    }
 
     //methods
 
@@ -61,8 +58,12 @@ public class BankCustomer implements Accountable{
         return totalBalance;
     }
 
-    public List getAccounts(List Accountable[]) {
-        return accounts;
+      public Accountable[] getAccounts() {
+        Accountable[] allAccounts = new Accountable[accounts.size()];
+        for(int i = 0; i < accounts.size(); i ++) {
+            allAccounts[i] = accounts.get(i);
+        }
+        return allAccounts;
     }
 
     public void addAccount(Accountable newAccount) {
