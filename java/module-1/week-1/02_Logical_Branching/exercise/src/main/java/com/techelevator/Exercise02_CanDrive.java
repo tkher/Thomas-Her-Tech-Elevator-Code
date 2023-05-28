@@ -21,19 +21,13 @@ public class Exercise02_CanDrive {
     canDrive(false, false) ➔ false
      */
     public boolean canDrive(boolean hasPermit, boolean withLicensedPassenger) {
-<<<<<<< HEAD
         if (hasPermit && withLicensedPassenger) {
             return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
-
-=======
-        return false;
-    }
-
->>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc
     /*
     In some states, the licensed passenger must be of a certain age.
     Implement the logic to return true if the person has a permit and is with a licensed passenger who is 21 or over.
@@ -44,13 +38,11 @@ public class Exercise02_CanDrive {
     canDrive(false, true, 23) ➔ false
      */
     public boolean canDrive(boolean hasPermit, boolean withLicensedPassenger, int passengerAge) {
-<<<<<<< HEAD
-        if (hasPermit && withLicensedPassenger && (passengerAge >= 21)) {
+        if (hasPermit && withLicensedPassenger && passengerAge >= 21) {
             return true;
+        } else {
+            return false;
         }
-=======
->>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc
-        return false;
     }
 
     /*
@@ -64,14 +56,16 @@ public class Exercise02_CanDrive {
     canDrive(false, true, 23, true) ➔ false
      */
     public boolean canDrive(boolean hasPermit, boolean withLicensedPassenger, int passengerAge, boolean isPassengerOurGuardian) {
-<<<<<<< HEAD
-        if (hasPermit && withLicensedPassenger && (passengerAge >= 21)) {
+//        boolean legalGuardian = false;
+//        if (passengerAge >= 18 && isPassengerOurGuardian) {
+//            legalGuardian = true;
+//        }
+        if (hasPermit && withLicensedPassenger && passengerAge >= 21) {
             return true;
-        } else if (hasPermit && withLicensedPassenger && (passengerAge >= 18) && isPassengerOurGuardian) {
+        } else if (hasPermit && withLicensedPassenger && passengerAge >= 18 && isPassengerOurGuardian) {
             return true;
+        } else {
+            return false;
         }
-=======
->>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc
-        return false;
     }
 }

@@ -1,20 +1,12 @@
 package com.techelevator;
 
-<<<<<<< HEAD
-public class Exercise01_TestGrading<passingScore, gradeTestPassFail> {
-=======
 public class Exercise01_TestGrading {
->>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc
 
     /*
     Grade-o-matic Incorporated has a program to grade student tests.
     The problems below ask you to implement the logic for returning a grade based on a student's test score.
      */
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc
     /*
     Grade-o-matic v1.0 scores tests as pass-fail.
     A score of 70 or higher is a passing score. Anything lower is a failing score.
@@ -26,16 +18,13 @@ public class Exercise01_TestGrading {
     gradeTestPassFail(45) ➔ false
      */
     public boolean gradeTestPassFail(int score) {
-<<<<<<< HEAD
         if (score >= 70) {
             return true;
         } else {
             return false;
         }
-=======
-        return false;
->>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc
     }
+
 
     /*
     Grade-o-matic received numerous requests from customers to grade using a point-based system.
@@ -53,23 +42,19 @@ public class Exercise01_TestGrading {
     gradeTestNumeric(10) ➔ 0
      */
     public int gradeTestNumeric(int score) {
-<<<<<<< HEAD
+        int grade = 0;
         if (score >= 90) {
-            return 3;
-        } else if (score >= 50 && score <= 89) {
-            return 2;
-        } else if (score >= 25 && score <= 49) {
-            return 1;
-        } else if(score <=24) {
-            return 0;
-    }
-        return 0;
-}
-=======
-        return 0;
+            grade = 3;
+        } else if (score >= 50) {
+            grade = 2;
+        } else if (score >= 25) {
+            grade = 1;
+        } else {
+            grade = 0;
+        }
+        return grade;
     }
 
->>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc
     /*
     Grade-o-matic has received even more requests to grade using the classic letter scale.
     Grade-o-matic v3.0 can now score tests on a letter scale.
@@ -85,24 +70,20 @@ public class Exercise01_TestGrading {
     gradeTestLetter(70) ➔ 'C'
     gradeTestLetter(45) ➔ 'F'
      */
-<<<<<<< HEAD
-        public char gradeTestLetter (int score) {
-            if (score >= 90) {
-                return 'A';
-            } else if (score >= 80 && score <= 89) {
-                return 'B';
-            } else if (score >= 70 && score <= 79) {
-                return 'C';
-            } else if (score >= 60 && score <= 69) {
-                return 'D';
-            }
-            return 'F';
-        }
-
-    }
-=======
     public char gradeTestLetter(int score) {
-        return ' ';
+        char letterGrade;
+        if (score >= 90) {
+            letterGrade = 'A';
+        } else if (score >= 80) {
+            letterGrade = 'B';
+        } else if (score >= 70) {
+            letterGrade = 'C';
+        } else if (score >= 60) {
+            letterGrade = 'D';
+        } else {
+            letterGrade = 'F';
+        }
+        return letterGrade;
     }
 }
->>>>>>> 6cf82d46e82b190b79c85c70bfcc67aaf55f72dc
+
