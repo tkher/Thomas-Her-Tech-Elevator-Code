@@ -32,7 +32,11 @@ public class Exercise07_StoreHours {
     isStoreOpen(22) ➔ false
      */
     public boolean isStoreOpen(int currentHour) {
-        return false;
+        if (currentHour >= 8 && currentHour < 17) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /*
@@ -54,7 +58,8 @@ public class Exercise07_StoreHours {
     isStoreOpen(12, 'S') ➔ false
      */
     public boolean isStoreOpen(int currentHour, char currentDay) {
-        return false;
+        boolean onDaysOpen = (currentDay == 'M') || (currentDay == 'W') || (currentDay == 'F');
+        return currentHour >= 8 && currentHour < 17 && onDaysOpen;
     }
 
 
@@ -72,6 +77,19 @@ public class Exercise07_StoreHours {
     isStoreOpen(9, 'S', true) ➔ true
      */
     public boolean isStoreOpen(int currentHour, char currentDay, boolean isSummer) {
-        return false;
+        boolean onDaysOpen = (currentDay == 'M') || (currentDay == 'W') || (currentDay == 'F');
+        boolean isSummerMondayFridayHours = ((currentDay == 'M') || (currentDay == 'F') && currentHour >= 8 && currentHour < 17);
+        boolean isSummerWednesdayHours = ((currentDay == 'W') && currentHour >= 8 && currentHour < 20 );
+        boolean isSummerSaturdayHours = ((currentDay == 'S') && currentHour >= 9 && currentHour < 15);
+        boolean isNormalBusinessHours = (currentHour >= 8 && currentHour < 17);
+        boolean isSummerBusinessHours = (isSummerMondayFridayHours && isSummerWednesdayHours && isSummerSaturdayHours);
+
+        if (isSummer && isSummerBusinessHours) {
+            return true;
+        } else if (currentHour >= 8 && currentHour < 17 && onDaysOpen) {
+            return true;
+        }else {
+            return false;
+        }
     }
 }
