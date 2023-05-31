@@ -9,7 +9,7 @@ public class AnimalGroupNameTest {
     public AnimalGroupName animal = new AnimalGroupName();
 
 
-    //happy path test
+    //Happy path test
     @Test
     public void test_getHerd_return_herd_string_matching_animal_string() {
 
@@ -33,8 +33,8 @@ public class AnimalGroupNameTest {
         Assert.assertEquals(unknown,"unknown");
     }
 
-    @Test
     //Test Lower/Upper Case insensitive - Snake case
+    @Test
     public void test_snake_case_and_case_insensitive () {
         //Arrange
         animalName = "DeEr";
@@ -50,6 +50,20 @@ public class AnimalGroupNameTest {
         Assert.assertEquals(upperCase, "Herd");
     }
 
-    //test for null, empty
+    //Test for null, empty
+    @Test
+    public void test_for_null_and_empty_string() {
+        //Arrange
+        animalName = null;
+
+        //Act
+        String isNull = animal.getHerd(animalName);
+        String isEmpty = animal.getHerd("");
+        //String isInt = animal.getHerd(123); ***How do I test for wrong data type input???***
+
+        //Assert
+        Assert.assertEquals( "unknown", isNull );
+        Assert.assertEquals("unknown", isEmpty);
+    }
 
 }
