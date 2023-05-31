@@ -18,10 +18,22 @@ public class CigarPartyTest {
         boolean dayIsWeekend = true;
 
         // Act - call the method
-        boolean truePartyLow = party.haveParty(lowRangeCigars, !dayIsWeekend);
+        boolean truePartyLowRange = party.haveParty(lowRangeCigars, !dayIsWeekend);
         boolean truePartyLowWeekend = party.haveParty(lowRangeCigars, dayIsWeekend);
+        boolean truePartyHighRange = party.haveParty(highRangeCigars, !dayIsWeekend);
+        boolean truePartyHighRangeWeekend = party.haveParty(highRangeCigars, dayIsWeekend);
 
         // Assert - Make sure value is correct
-        Assert.assertTrue();
+        Assert.assertTrue(truePartyLowRange);
+        Assert.assertEquals(true, truePartyLowWeekend);
+
+
     }
+
+    //Test all the False
+
+    //Test null
+
+    //
+
 }
