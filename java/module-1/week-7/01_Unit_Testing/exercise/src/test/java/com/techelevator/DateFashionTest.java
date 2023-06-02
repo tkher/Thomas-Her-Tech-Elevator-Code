@@ -32,11 +32,35 @@ public class DateFashionTest {
     }
 
     //Test returns always Yes(2)
+    @Test
+    public void always_returns_two_when_either_score_is_higher_than_eight() {
+        //arrange
+
+
+        //Act
+        int fashionScore8And3Return2 = dateFashion.getATable(8,3);
+        int fashionScore3and10Return2 = dateFashion.getATable(3,10);
+
+        //Assert
+        Assert.assertEquals(fashionScore8And3Return2, 2);
+        Assert.assertEquals(fashionScore3and10Return2, 2);
+    }
 
     //Test returns always No(0)
+    @Test
+    public void always_returns_zero_when_either_score_is_two_or_less() {
+        //arrange
 
 
+        //Act
+        int fashionScore2And10Return0 = dateFashion.getATable(2, 10);
+        int fashionScore8and0Return0 = dateFashion.getATable(8, 0);
 
+        //Assert
+        Assert.assertEquals(fashionScore2And10Return0, 0);
+        Assert.assertEquals(fashionScore8and0Return0, 0);
+
+    }
 
     //Test outside of range
     /*
