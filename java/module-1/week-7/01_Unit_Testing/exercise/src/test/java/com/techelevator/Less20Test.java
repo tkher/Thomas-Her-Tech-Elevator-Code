@@ -18,9 +18,9 @@ public class Less20Test {
         boolean ninetyNine = less20.isLessThanMultipleOf20(99);
         boolean highNumber = less20.isLessThanMultipleOf20(9999);
         //Assert
-        Assert.assertEquals(eighteen, true);
-        Assert.assertEquals(ninetyNine,true);
-        Assert.assertEquals(highNumber,true);
+        Assert.assertTrue(eighteen);
+        Assert.assertTrue(ninetyNine);
+        Assert.assertTrue(highNumber);
     }
 
     //returns false
@@ -33,9 +33,9 @@ public class Less20Test {
         boolean highNumber = less20.isLessThanMultipleOf20(9997);
         boolean numberOne  = less20.isLessThanMultipleOf20(1);
         //Assert
-        Assert.assertEquals(seventeen,false);
-        Assert.assertEquals(highNumber,false);
-        Assert.assertEquals(numberOne,false);
+        Assert.assertFalse(seventeen);
+        Assert.assertFalse(highNumber);
+        Assert.assertFalse(numberOne);
     }
 
 
@@ -48,7 +48,7 @@ public class Less20Test {
         boolean numberIsNeg = less20.isLessThanMultipleOf20(-1);
         boolean numberIsZero = less20.isLessThanMultipleOf20(0);
         //Assert
-        Assert.assertEquals(numberIsNeg,false);
-        Assert.assertEquals(numberIsZero,false);
+        Assert.assertFalse(numberIsNeg);
+        Assert.assertFalse(numberIsZero);
     }
 }
