@@ -9,10 +9,6 @@ public class MaxEnd3Test {
 
     public MaxEnd3 maxEnd3 = new MaxEnd3();
 
-//    public
-//    int[] returnsThreesBack = maxEnd3.makeArray(numsOne);
-//    int[] returnsElevensFront = maxEnd3.makeArray(numsTwo);
-//    int [] returnsZeroAll = maxEnd3.makeArray(numsThree);
 
     //Happy Path Test
     @Test
