@@ -17,24 +17,30 @@ public class WordSearch {
 	public void run() {
 		/* Your code goes here */
 
+		//Initialize variables
 		//Step 1 - Prompt user for file input
 		System.out.print("Enter path to the book file: ");
-		String filePath = userInput.nextLine();
+		String filePathForBook = userInput.nextLine();
 
 		//Prompt user for a word to search for
 		System.out.print("Enter word you are searching for: ");
 		String searchWord = userInput.nextLine();
 
-		//File object - Holds file path
-		File bookFile = new File(filePath);
+		//File object - stores file path
+		File bookFile = new File(filePathForBook);
 
-		//Variable that holds the occurences of the word
-		String foundLine = ")" + "";
+		//Store line count for every line of text
+		int lineCounter = 0;
 
+		//Scanner fileInput
 
-		try (Scanner fileInput = new Scanner(bookFile)) {
-			while (fileInput.hasNextLine()) {
-				String lineOfText = fileInput.nextLine();
+		try (Scanner inputOfBookFile = new Scanner(bookFile)) {
+			while (inputOfBookFile.hasNextLine()) {
+				String lineOfText = inputOfBookFile.nextLine(); //Reads line of book, then proceeds to next line until .nextLine returns false -end of book.
+				lineCounter ++;
+				if (lineOfText.contains(searchWord)) {
+					System.out.println(lineCounter +") " + lineOfText );
+				}
 			}
 		}
 	 catch (FileNotFoundException e) {
