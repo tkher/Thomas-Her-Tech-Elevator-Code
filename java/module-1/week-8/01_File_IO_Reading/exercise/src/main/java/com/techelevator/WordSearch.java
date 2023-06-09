@@ -2,6 +2,8 @@ package com.techelevator;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.sql.SQLOutput;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class WordSearch {
@@ -26,6 +28,10 @@ public class WordSearch {
 		System.out.print("Enter word you are searching for: ");
 		String searchWord = userInput.nextLine();
 
+		//Prompt User if should be case sensitive
+		System.out.print("Should the search be case sensitive? " +'('+"Y" +"\\" + "N" + ')');
+		String yesOrNo = userInput.nextLine();
+
 		//File object - stores file path
 		File bookFile = new File(filePathForBook);
 
@@ -38,9 +44,15 @@ public class WordSearch {
 			while (inputOfBookFile.hasNextLine()) {
 				String lineOfText = inputOfBookFile.nextLine(); //Reads line of book, then proceeds to next line until .nextLine returns false -end of book.
 				lineCounter ++;
-				if (lineOfText.contains(searchWord)) {
-					System.out.println(lineCounter +") " + lineOfText );
-				}
+				if (yesOrNo.equalsIgnoreCase("n")) {
+					String upperCaseLineOfText = lineOfText.toUpperCase();
+					String upperCaseSearchWord = searchWord.toUpperCase();
+					if (upperCaseLineOfText.contains(upperCaseSearchWord)) {
+						System.out.println(lineCounter + ") " + lineOfText);
+					}
+				} else if (lineOfText.contains(searchWord)) {
+						System.out.println(lineCounter + ") " + lineOfText);
+					}
 			}
 		}
 	 catch (FileNotFoundException e) {
