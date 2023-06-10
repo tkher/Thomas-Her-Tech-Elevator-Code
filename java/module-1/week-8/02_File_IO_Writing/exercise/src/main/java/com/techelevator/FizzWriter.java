@@ -17,22 +17,22 @@ public class FizzWriter {
 
 	public void run() {
 		/* Your code goes here */
-		int FizzBuzz = 300;
-		int[] listOfNumbers = new int[300];
-		for(int i =0; i < listOfNumbers.length; i ++) {
-			if ((i % 3 ==0) && (i % 5 == 0)) {
+//		int FizzBuzz = 300;
+//		int[] listOfNumbers = new int[300];
+//		for(int i =0; i < listOfNumbers.length; i ++) {
+//			if ((i % 3 ==0) && (i % 5 == 0)) {
 //				listOfNumbers[i]
-			} else if (i % 3 ==0) {
+//			} else if (i % 3 ==0) {
+//
+//			}
+//			listOfNumbers[i] = i;
+//		}
 
-			}
-			listOfNumbers[i] = i;
-		}
 
-
-		String stringOfNumbers = "";
-		for(int i=1; i < listOfNumbers.length; i++) {
-			stringOfNumbers += " " + listOfNumbers[i];
-		}
+//		String stringOfNumbers = "";
+//		for(int i=1; i < listOfNumbers.length; i++) {
+//			stringOfNumbers += " " + listOfNumbers[i];
+//		}
 
 //		System.out.println(stringOfNumbers);
 
@@ -45,14 +45,14 @@ public class FizzWriter {
 		try(PrintWriter write = new PrintWriter(destinationFile)) {
 			int lineOfnumbers = 300;
 			for (int i = 1; i <= lineOfnumbers; i++) {
-				if (((i % 5) == 3) && ((i % 5) == 0)) {
-					write.println("fizzbuzz");
+				if ((i % 3 == 0) && (i % 5 == 0)) {
+					write.println("FizzBuzz");
 				} else if ((i % 3) == 0) {
-					write.println("fizz");
+					write.println("Fizz");
 				} else if ((i % 5) == 0) {
-					write.println("buzz");
+					write.println("Buzz");
 				} else {
-					write.println(lineOfnumbers);
+					write.println(i);
 				}
 			}
 		} catch (FileNotFoundException e) {
