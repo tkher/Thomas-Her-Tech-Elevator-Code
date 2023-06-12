@@ -1,16 +1,11 @@
 package com.lendingcatalog.model;
 
-public class Tool {
+public class Tool implements CatalogItem{
     private String id;
     private String type;
     private String manufacturer;
     private int count;
 
-//Variables
-//String id
-//String type
-//String manufacturer
-//int count
 
     //Constructor:
     public Tool (String type, String manufacturer, int count) {
@@ -23,6 +18,10 @@ public class Tool {
     //getters
     public String getId() {
         return this.id;
+    }
+
+    public void setId() {
+        this.id = id;
     }
 
     public String getType() {
@@ -39,12 +38,16 @@ public class Tool {
 
     //Methods
 
-//    @Override
+
     //***NEED TO COMPLETE BOTH BELOW
-    public Void CatalogItem() {
-        return null;
+
+    public Void CatalogItem(boolean matchesType, boolean matchesManufacturer) {
+//        if (matchesType && matchesManufacturer) {
+//            return tool;
+//        }
     }
 
+    @Override
     public String toString() {
         return null;
     }
