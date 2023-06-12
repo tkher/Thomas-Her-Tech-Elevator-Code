@@ -40,10 +40,15 @@ public class Book implements CatalogItem {
 //      Methods:
 
 //     CatalogItem interface
-    public void CatalogItem() {
-        return null;
+    public String CatalogItem(boolean matchesName,boolean matchesCreator, boolean matchesYear) {
+        if (matchesName && matchesCreator && matchesYear) {
+
+            return title + " has been added to the catalog";
+        }//*** include time/date added and properties of the item. must be seperate logs -
+        //return writes messge to log file, does not print message.
     }
 
+    @Override
     public String toString() {
         return
         "* " + title + System.lineSeparator()

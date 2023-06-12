@@ -49,7 +49,11 @@ public class Tool implements CatalogItem{
 
     @Override
     public String toString() {
-        return null;
+        return
+        "* " + type + System.lineSeparator()
+        + " - Manufactured by: " + manufacturer + System.lineSeparator()
+        + " - Count of: " + count + System.lineSeparator()
+        + " - Id: " + id;
     }
 
 
