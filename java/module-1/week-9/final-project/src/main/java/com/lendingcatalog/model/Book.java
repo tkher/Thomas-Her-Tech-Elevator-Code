@@ -1,11 +1,13 @@
 package com.lendingcatalog.model;
 
+import java.io.File;
 import java.io.PrintWriter;
 import java.time.LocalDate;
+import java.util.UUID;
 
 public class Book implements CatalogItem {
     private String id;
-    private String title;
+    private static String title; //should this be static??
     private String author;
     private LocalDate publishDate;
 
@@ -38,15 +40,40 @@ public class Book implements CatalogItem {
     }
 
 //      Methods:
-
 //     CatalogItem interface
-    public String CatalogItem(boolean matchesName,boolean matchesCreator, boolean matchesYear) {
-        if (matchesName && matchesCreator && matchesYear) {
-
-            return title + " has been added to the catalog";
-        }//*** include time/date added and properties of the item. must be seperate logs -
-        //return writes messge to log file, does not print message.
+    public boolean matchesName(String searchStr) {
+        String searchStrToUpperCase = searchStr.toUpperCase();
+        String bookTitleToUpperCase = Book.title.toUpperCase();
+        if (bookTitleToUpperCase.contains(searchStrToUpperCase)) {
+            return true;
+        } else {
+            return false;
+        }
     }
+
+    public boolean matchesCreator(String searchStr) {
+        String searchStrToUpperCase = searchStr.toUpperCase();
+        String authorToUpperCase = Book.author.toUpperCase(); //if variable is not static??
+        if (authorToUpperCase.contains(searchStrToUpperCase)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean matchesYear(int searchYear) {
+        int publishedYear = publishDate.getYear(); //Book.publishDate??
+        return publishedYear == searchYear; //if publishedYear == searchYear, return true - else return false.
+    }
+
+    public void registerItem() {
+        //Assign unique ID to ID field
+        Book.id = UUID.randomUUID().toString();
+        //Write message to log file that indicates book was created
+        File bookLog = new File("resources/logs/BookLog.txt");
+    }
+
+
 
     @Override
     public String toString() {
