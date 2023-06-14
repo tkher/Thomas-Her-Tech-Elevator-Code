@@ -1,5 +1,7 @@
 package com.lendingcatalog.model;
 
+import com.lendingcatalog.util.FileStorageService;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -77,18 +79,22 @@ public class Book implements CatalogItem {
         //Assign unique ID to ID field
         id = UUID.randomUUID().toString();
         //Write message to log file that indicates book was created ***I think this works?
-        File bookLog = new File("resources/logs/BookLog");
+        String logPath = "resources/logs/BookLog"
+        File bookLog = new File(logPath);
 
-        try (PrintWriter writer = new PrintWriter(new FileOutputStream(bookLog,true))) {
-            writer.println("\n" + "Book Title: " + title
-                    + "\n" + "Written by: " + author
-                    + "\n" + "Published Date: " + publishDate
-                    + "\n" + "Id: " + id);
-            writer.close();
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            System.out.println("Unable to create log: " + e);
+        FileStorageService.writeContentsToFile(toString(),logPath, true );
+//        try (PrintWriter writer = new PrintWriter(new FileOutputStream(bookLog,true))) {
+//            writer.println("\n" + "Book Title: " + title
+//                    + "\n" + "Written by: " + author
+//                    + "\n" + "Published Date: " + publishDate
+//                    + "\n" + "Id: " + id);
+//              writer.println(this);  //replaces writer.println(toString());
+//              writer.close();
+//
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//            System.out.println("Unable to create log: " + e);
         }
     }
 
