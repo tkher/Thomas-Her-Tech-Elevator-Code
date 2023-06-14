@@ -20,7 +20,7 @@ public class Member {
         return this.lastName;
     }
 
-    //Methods: *****NEED TO COMPLETE BELOW
+    //Methods:
 
     @Override
     public String toString() {

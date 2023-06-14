@@ -1,5 +1,8 @@
 package com.lendingcatalog.model;
 
+import java.io.File;
+import java.util.UUID;
+
 public class Tool implements CatalogItem{
     private String id;
     private String type;
@@ -38,13 +41,40 @@ public class Tool implements CatalogItem{
 
     //Methods
 
+    @Override
+    public boolean matchesName(String searchStr) {
+        String searchStrToUpperCase = searchStr.toUpperCase();
+        String toolTypeToUpperCase = type.toUpperCase();
+        if (toolTypeToUpperCase.contains(searchStrToUpperCase)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-    //***NEED TO COMPLETE BOTH BELOW
+    @Override
+    public boolean matchesCreator(String searchStr) {
+        String searchStrToUpperCase = searchStr.toUpperCase();
+        String manufacturerToUpperCase = manufacturer.toUpperCase();
+        if (manufacturerToUpperCase.contains(searchStrToUpperCase)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-    public Void CatalogItem(boolean matchesType, boolean matchesManufacturer) {
-//        if (matchesType && matchesManufacturer) {
-//            return tool;
-//        }
+    @Override
+    //no year field - returns false
+    public boolean matchesYear(int searchYear) {
+        return false;
+    }
+
+    @Override
+    public void registerItem() {
+        //Assign unique ID to ID field
+        id = UUID.randomUUID().toString();
+        //Write message to log file that indicates book was created
+        File bookLog = new File("resources/logs/ToolLog"); //will be in next steps file IO
     }
 
     @Override

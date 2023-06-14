@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public class Book implements CatalogItem {
     private String id;
-    private static String title; //should this be static??
+    private String title;
     private String author;
     private LocalDate publishDate;
 
@@ -23,6 +23,7 @@ public class Book implements CatalogItem {
         return this.id;
     }
 
+    //This setter may not be needed
     public void setId (String id) {
         this.id = id;
     }
@@ -41,9 +42,10 @@ public class Book implements CatalogItem {
 
 //      Methods:
 //     CatalogItem interface
+    @Override
     public boolean matchesName(String searchStr) {
         String searchStrToUpperCase = searchStr.toUpperCase();
-        String bookTitleToUpperCase = Book.title.toUpperCase();
+        String bookTitleToUpperCase = title.toUpperCase();
         if (bookTitleToUpperCase.contains(searchStrToUpperCase)) {
             return true;
         } else {
@@ -51,9 +53,10 @@ public class Book implements CatalogItem {
         }
     }
 
+    @Override
     public boolean matchesCreator(String searchStr) {
         String searchStrToUpperCase = searchStr.toUpperCase();
-        String authorToUpperCase = Book.author.toUpperCase(); //if variable is not static??
+        String authorToUpperCase = author.toUpperCase();
         if (authorToUpperCase.contains(searchStrToUpperCase)) {
             return true;
         } else {
@@ -61,16 +64,18 @@ public class Book implements CatalogItem {
         }
     }
 
+    @Override
     public boolean matchesYear(int searchYear) {
-        int publishedYear = publishDate.getYear(); //Book.publishDate??
+        int publishedYear = publishDate.getYear(); //gets year of local date.
         return publishedYear == searchYear; //if publishedYear == searchYear, return true - else return false.
     }
 
+    @Override
     public void registerItem() {
         //Assign unique ID to ID field
-        Book.id = UUID.randomUUID().toString();
+        id = UUID.randomUUID().toString();
         //Write message to log file that indicates book was created
-        File bookLog = new File("resources/logs/BookLog.txt");
+        File bookLog = new File("resources/logs/BookLog"); //will be in next steps file IO
     }
 
 

@@ -2,6 +2,7 @@ package com.lendingcatalog.util;
 
 import com.lendingcatalog.util.exception.FileStorageException;
 
+import java.io.File;
 import java.util.List;
 
 public class FileStorageService {
@@ -14,4 +15,6 @@ public class FileStorageService {
     public static List<String> readContentsOfFile(String filename) throws FileStorageException {
         return null;
     }
+
+    File
 }

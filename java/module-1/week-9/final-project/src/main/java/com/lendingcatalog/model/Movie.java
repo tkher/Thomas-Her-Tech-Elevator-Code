@@ -1,6 +1,8 @@
 package com.lendingcatalog.model;
 
+import java.io.File;
 import java.time.LocalDate;
+import java.util.UUID;
 
 public class Movie implements CatalogItem{
     private String id;
@@ -38,8 +40,40 @@ public class Movie implements CatalogItem{
 
     //    Methods:
 
-    public CatalogItem() {
-        return null;
+    @Override
+    public boolean matchesName(String searchStr) {
+        String searchStrToUpperCase = searchStr.toUpperCase();
+        String movieNameToUpperCase = name.toUpperCase();
+        if (movieNameToUpperCase.contains(searchStrToUpperCase)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean matchesCreator(String searchStr) {
+        String searchStrToUpperCase = searchStr.toUpperCase();
+        String directorToUpperCase = director.toUpperCase();
+        if (directorToUpperCase.contains(searchStrToUpperCase)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean matchesYear(int searchYear) {
+        int releaseYear = releaseDate.getYear(); //gets year of release date
+        return releaseYear == searchYear;
+    }
+
+    @Override
+    public void registerItem() {
+        //Assign unique ID to ID field
+        id = UUID.randomUUID().toString();
+        //Write message to log file that indicates book was created
+        File bookLog = new File("resources/logs/MovieLog"); //will be in next steps file IO
     }
 
     @Override
