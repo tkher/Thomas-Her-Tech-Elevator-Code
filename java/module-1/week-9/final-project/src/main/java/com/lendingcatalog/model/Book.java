@@ -1,6 +1,8 @@
 package com.lendingcatalog.model;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.UUID;
@@ -24,7 +26,7 @@ public class Book implements CatalogItem {
     }
 
     //This setter may not be needed
-    public void setId (String id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -40,7 +42,7 @@ public class Book implements CatalogItem {
         return this.publishDate;
     }
 
-//      Methods:
+    //      Methods:
 //     CatalogItem interface
     @Override
     public boolean matchesName(String searchStr) {
@@ -74,8 +76,20 @@ public class Book implements CatalogItem {
     public void registerItem() {
         //Assign unique ID to ID field
         id = UUID.randomUUID().toString();
-        //Write message to log file that indicates book was created
-        File bookLog = new File("resources/logs/BookLog"); //will be in next steps file IO
+        //Write message to log file that indicates book was created ***I think this works?
+        File bookLog = new File("resources/logs/BookLog");
+
+        try (PrintWriter writer = new PrintWriter(new FileOutputStream(bookLog,true))) {
+            writer.println("\n" + "Book Title: " + title
+                    + "\n" + "Written by: " + author
+                    + "\n" + "Published Date: " + publishDate
+                    + "\n" + "Id: " + id);
+            writer.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            System.out.println("Unable to create log: " + e);
+        }
     }
 
 

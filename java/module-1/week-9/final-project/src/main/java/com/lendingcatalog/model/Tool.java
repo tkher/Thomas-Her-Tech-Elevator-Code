@@ -1,6 +1,9 @@
 package com.lendingcatalog.model;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
 import java.util.UUID;
 
 public class Tool implements CatalogItem{
@@ -74,7 +77,18 @@ public class Tool implements CatalogItem{
         //Assign unique ID to ID field
         id = UUID.randomUUID().toString();
         //Write message to log file that indicates book was created
-        File bookLog = new File("resources/logs/ToolLog"); //will be in next steps file IO
+        File toolLog = new File("resources/logs/ToolLog");
+
+        try (PrintWriter writer = new PrintWriter(new FileOutputStream(toolLog,true))) {
+            writer.println("\n" + "Tool type: " + type
+                    + "\n" + "Manufactured by: " + manufacturer
+                    + "\n" + "Id: " + id);
+            writer.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            System.out.println("Unable to create log: " + e);
+        }
     }
 
     @Override

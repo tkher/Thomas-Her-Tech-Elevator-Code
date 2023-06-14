@@ -1,6 +1,9 @@
 package com.lendingcatalog.model;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -73,7 +76,19 @@ public class Movie implements CatalogItem{
         //Assign unique ID to ID field
         id = UUID.randomUUID().toString();
         //Write message to log file that indicates book was created
-        File bookLog = new File("resources/logs/MovieLog"); //will be in next steps file IO
+        File movieLog = new File("resources/logs/MovieLog");
+
+        try (PrintWriter writer = new PrintWriter(new FileOutputStream(movieLog,true))) {
+            writer.println("\n" + "Movie Title: " + name
+                    + "\n" + "Directed by: " + director
+                    + "\n" + "Released Date: " + releaseDate
+                    + "\n" + "Id: " + id);
+            writer.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            System.out.println("Unable to create log: " + e);
+        }
     }
 
     @Override
