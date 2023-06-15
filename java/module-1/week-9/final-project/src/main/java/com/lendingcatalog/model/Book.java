@@ -1,6 +1,7 @@
 package com.lendingcatalog.model;
 
 import com.lendingcatalog.util.FileStorageService;
+import com.lendingcatalog.util.exception.FileStorageException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -75,27 +76,16 @@ public class Book implements CatalogItem {
     }
 
     @Override
-    public void registerItem() {
+    public void registerItem() throws FileStorageException {
         //Assign unique ID to ID field
         id = UUID.randomUUID().toString();
         //Write message to log file that indicates book was created ***I think this works?
-        String logPath = "resources/logs/BookLog"
+        String logPath = "src/main/resources/logs/BookLog";
         File bookLog = new File(logPath);
 
 
-        FileStorageService.writeContentsToFile(toString(),logPath, true );
-//        try (PrintWriter writer = new PrintWriter(new FileOutputStream(bookLog,true))) {
-//            writer.println("\n" + "Book Title: " + title
-//                    + "\n" + "Written by: " + author
-//                    + "\n" + "Published Date: " + publishDate
-//                    + "\n" + "Id: " + id);
-//              writer.println(this);  //replaces writer.println(toString());
-//              writer.close();
-//
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//            System.out.println("Unable to create log: " + e);
-        }
+        FileStorageService.writeContentsToFile(/*local*/ toString(),logPath, true );
+/           //call in local date and time prior to toString() in method
     }
 
 
@@ -103,6 +93,7 @@ public class Book implements CatalogItem {
     @Override
     public String toString() {
         return
+        //or put in local date/time here vs in register item methed
         "* " + title + System.lineSeparator()
         + " - Written by: " + author +System.lineSeparator()
         + " - Published: " + publishDate + System.lineSeparator()

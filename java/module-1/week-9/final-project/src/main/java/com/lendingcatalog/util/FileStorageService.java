@@ -15,13 +15,9 @@ public class FileStorageService {
         try (PrintWriter writer = new PrintWriter(new FileOutputStream(filename,appendFile))) {
             writer.println(contents);
 
-        } catch (FileStorageException e) {
-//            throw new FileStorageException(filename);
-            e.printStackTrace();
-            System.out.println("Unable to create log: " + e);
-        }catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
+            throw new FileStorageException(filename);
 
-        }
     }
 
 
