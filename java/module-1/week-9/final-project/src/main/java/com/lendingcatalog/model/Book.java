@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class Book implements CatalogItem {
@@ -83,17 +84,18 @@ public class Book implements CatalogItem {
         String logPath = "src/main/resources/logs/BookLog";
         File bookLog = new File(logPath);
 
-
         FileStorageService.writeContentsToFile(/*local*/ toString(),logPath, true );
-/           //call in local date and time prior to toString() in method
+           //call in local date and time prior to toString() in method
     }
 
 
 
     @Override
     public String toString() {
+        LocalDateTime localDateTime = LocalDateTime.now();
         return
-        //or put in local date/time here vs in register item methed
+        localDateTime +
+        //or put in local date/time here vs in register item method
         "* " + title + System.lineSeparator()
         + " - Written by: " + author +System.lineSeparator()
         + " - Published: " + publishDate + System.lineSeparator()

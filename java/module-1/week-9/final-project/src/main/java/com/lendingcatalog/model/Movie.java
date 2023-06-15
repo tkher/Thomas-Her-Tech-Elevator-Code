@@ -1,10 +1,14 @@
 package com.lendingcatalog.model;
 
+import com.lendingcatalog.util.FileStorageService;
+import com.lendingcatalog.util.exception.FileStorageException;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class Movie implements CatalogItem{
@@ -72,28 +76,32 @@ public class Movie implements CatalogItem{
     }
 
     @Override
-    public void registerItem() {
+    public void registerItem() throws FileStorageException {
         //Assign unique ID to ID field
         id = UUID.randomUUID().toString();
         //Write message to log file that indicates book was created
         File movieLog = new File("resources/logs/MovieLog");
+        String logPath = "src/main/resources/logs/MovieLog";
 
-        try (PrintWriter writer = new PrintWriter(new FileOutputStream(movieLog,true))) {
-            writer.println("\n" + "Movie Title: " + name
-                    + "\n" + "Directed by: " + director
-                    + "\n" + "Released Date: " + releaseDate
-                    + "\n" + "Id: " + id);
-            writer.close();
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            System.out.println("Unable to create log: " + e);
-        }
+        FileStorageService.writeContentsToFile(toString(),logPath,true);
+//        try (PrintWriter writer = new PrintWriter(new FileOutputStream(movieLog,true))) {
+//            writer.println("\n" + "Movie Title: " + name
+//                    + "\n" + "Directed by: " + director
+//                    + "\n" + "Released Date: " + releaseDate
+//                    + "\n" + "Id: " + id);
+//            writer.close();
+//
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//            System.out.println("Unable to create log: " + e);
+//        }
     }
 
     @Override
     public String toString() {
+        LocalDateTime localDateTime = LocalDateTime.now();
         return
+        localDateTime +
         "* " + name + System.lineSeparator()
         + " - Directed by: " + director + System.lineSeparator()
         + " - Released: " + releaseDate + System.lineSeparator()

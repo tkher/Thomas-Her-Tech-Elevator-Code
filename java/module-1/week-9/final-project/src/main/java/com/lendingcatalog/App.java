@@ -2,6 +2,8 @@ package com.lendingcatalog;
 
 import com.lendingcatalog.model.*;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;
 
 public class App {
@@ -22,7 +24,46 @@ public class App {
     }
 
     private void initialize() {
+        //convert members.dat into an ArrayList
+        List<String> membersList = new ArrayList<>();
+        //File path
+        File filePath = new File("src/main/resources/members.dat");
+        try(Scanner scanner = new Scanner(filePath)) {
+            while (scanner.hasNextLine()) {
+                //read each line of memeber data file
+                String memberData = scanner.nextLine();
+                //split memeber data by delimiter and put into list of 3 indexes - first, last and path to items
+                String[] splitMemberData = memberData.split(FIELD_DELIMITER);
+                //create memeber name for catalog key
+                Member member = new Member(splitMemberData[0],splitMemberData[1]);
+                String memberKey = member.toString();
+
+                //now i have key, i need read the cooresponding catalog file to memember, split into another string list, add to map until done
+
+                try(Scanner itemsScanner = new Scanner(splitMemberData[3])) {
+                    while (itemsScanner.hasNextLine()) {
+                        //read item file
+                        String itemData = itemsScanner.nextLine();
+                        //split item int a list with indexes - item type, name, creator, year
+                        String[] splitItemData = itemData.split(FIELD_DELIMITER);
+                        String item = splitItemData[0] + splitItemData[1] + splitItemData[2] + splitItemData[3]
+                        //add item to catalog
+                        catalog.put(memberKey,item);
+
+                        // FileStorageService.writeContentsToFile(/*local*/ toString(),logPath, true );
+                    }
+                }
+
+
+
+            }
+        }  catch (FileNotFoundException e) {
+
+        }
+
         // Requirement: Data transformation
+        // can create additional methods here
+        //Create map of items using member first and last name as key.
 
     }
 
