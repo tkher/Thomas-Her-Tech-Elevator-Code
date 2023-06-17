@@ -25,15 +25,21 @@ public class FileStorageService {
 
     public static List<String> readContentsOfFile(String filename) throws FileStorageException {
         List list = new ArrayList();
-        try (Scanner scanner = new Scanner(filename)) {
-            System.out.println(filename); //more than likely will change once in app
-//        } catch (FileNotFoundException e) {
-//            throw new FileStorageException(filename);
+        File file = new File(filename);
+        int lineCounter = 0;
+        try (Scanner scanner = new Scanner(file)) {
+            while (scanner.hasNextLine()) {
+                String fileString = scanner.nextLine();
+                lineCounter++;
+                //retrn list adds to the index of the line (-1 because needs to start at zero), per that index is the line data)
+                list.add(lineCounter - 1, fileString);
+            }
+        } catch (FileNotFoundException e) {
+            throw new FileStorageException("Could not read: " + e);
         }
         return list;
     }
 }
-
 
 
 

@@ -84,8 +84,8 @@ public class Book implements CatalogItem {
         String logPath = "src/main/resources/logs/BookLog";
         File bookLog = new File(logPath);
 
-        FileStorageService.writeContentsToFile(/*local*/ toString(),logPath, true );
-           //call in local date and time prior to toString() in method
+        FileStorageService.writeContentsToFile(toString(),logPath, true );
+
     }
 
 

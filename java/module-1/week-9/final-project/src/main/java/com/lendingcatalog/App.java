@@ -1,9 +1,12 @@
 package com.lendingcatalog;
 
 import com.lendingcatalog.model.*;
+import com.lendingcatalog.util.FileStorageService;
+import com.lendingcatalog.util.exception.FileStorageException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.time.LocalDate;
 import java.util.*;
 
 public class App {
@@ -16,57 +19,75 @@ public class App {
 
     private Map<String, List<CatalogItem>> catalog = new HashMap<>();
 
-    public static void main(String[] args) {
+
+    public static void main(String[] args) throws FileStorageException {
 
         App app = new App();
         app.initialize();
         app.run();
     }
 
-    private void initialize() {
+    private void initialize() throws FileStorageException {
         //convert members.dat into an ArrayList
-        List<String> membersList = new ArrayList<>();
+        List<String> memberDataList = new ArrayList<>();
+        //List of items per member
+        List<CatalogItem> item = new ArrayList<CatalogItem>();
         //File path
-        File filePath = new File("src/main/resources/members.dat");
-        try(Scanner scanner = new Scanner(filePath)) {
-            while (scanner.hasNextLine()) {
-                //read each line of memeber data file
-                String memberData = scanner.nextLine();
-                //split memeber data by delimiter and put into list of 3 indexes - first, last and path to items
-                String[] splitMemberData = memberData.split(FIELD_DELIMITER);
+        File filePath = new File(FILE_BASE_PATH + "members.dat");
+        String filePathString = FILE_BASE_PATH + "members.dat";
+
+
+        try {
+            memberDataList = FileStorageService.readContentsOfFile(filePathString); // test if this generates a list of memebers
+//        FileStorageService.readContentsOfFile(filePathString);
+
+            //loop through memberList and split
+            for (int i = 0; i < memberDataList.size(); i++) {
+                String memberListString = memberDataList.get(i);
+                String[] splitMemberData = memberListString.split(FIELD_DELIMITER);
+
                 //create memeber name for catalog key
-                Member member = new Member(splitMemberData[0],splitMemberData[1]);
+                Member member = new Member(splitMemberData[0], splitMemberData[1]);
                 String memberKey = member.toString();
+                String itemFilePath = FILE_BASE_PATH + splitMemberData[2]; // test if pulls up correct file path
 
-                //now i have key, i need read the cooresponding catalog file to memember, split into another string list, add to map until done
+                List<String> itemDataList = new ArrayList<>();
+                itemDataList = FileStorageService.readContentsOfFile(itemFilePath); // test if generates list of items per memember
 
-                try(Scanner itemsScanner = new Scanner(splitMemberData[3])) {
-                    while (itemsScanner.hasNextLine()) {
-                        //read item file
-                        String itemData = itemsScanner.nextLine();
-                        //split item int a list with indexes - item type, name, creator, year
-                        String[] splitItemData = itemData.split(FIELD_DELIMITER);
-                        String item = splitItemData[0] + splitItemData[1] + splitItemData[2] + splitItemData[3]
-                        //add item to catalog
-                        catalog.put(memberKey,item);
+                //loop though items and register them by item
+                for (int a = 0; a < itemDataList.size(); a++) {
+                    String itemListString = itemDataList.get(a);
+                    String[] splitItemData = itemListString.split(FIELD_DELIMITER);
 
-                        // FileStorageService.writeContentsToFile(/*local*/ toString(),logPath, true );
+                    //create item base one catagory
+                    if (splitItemData[0].equalsIgnoreCase("Book")) {
+                        String date = splitItemData[3].substring(0, 3);
+                        LocalDate dateValue = LocalDate.parse(date);
+                        Book book = new Book(splitItemData[1], splitItemData[2], dateValue);
+                        item.add(book);
+                    } else if (splitItemData[0].equalsIgnoreCase("Movie")) {
+                        String date = splitItemData[3].substring(0, 3);
+                        LocalDate dateValue = LocalDate.parse(date);
+                        Movie movie = new Movie(splitItemData[1], splitItemData[2], dateValue);
+                        item.add(movie);
+                    } else if (splitItemData[0].equalsIgnoreCase("Tool")) {
+                        String countString = splitItemData[3];
+                        int count = Integer.parseInt(countString);
+                        Tool tool = new Tool(splitItemData[1], splitItemData[2], count);
+                        item.add(tool);
+                    } else {
+                        String isNull = "This item is not found";
+                        //item.add(null object);
                     }
+
+                    catalog.put(memberKey, item);
                 }
 
-
-
             }
-        }  catch (FileNotFoundException e) {
-
+        } catch (FileStorageException e) {
+            throw new FileStorageException("Could not read: " + e);
         }
-
-        // Requirement: Data transformation
-        // can create additional methods here
-        //Create map of items using member first and last name as key.
-
     }
-
 
     private void run() {
 
@@ -94,8 +115,7 @@ public class App {
                         break;
                     }
                 }
-            }
-            else if (mainMenuSelection == 2) {
+            } else if (mainMenuSelection == 2) {
                 while (true) {
                     printSearchMenu();
                     int searchMenuSelection = promptForMenuSelection("Please choose an option: ");
