@@ -61,12 +61,12 @@ public class App {
 
                     //create item base one catagory
                     if (splitItemData[0].equalsIgnoreCase("Book")) {
-                        String date = splitItemData[3].substring(0, 3);
+                        String date = splitItemData[3];
                         LocalDate dateValue = LocalDate.parse(date);
                         Book book = new Book(splitItemData[1], splitItemData[2], dateValue);
                         item.add(book);
                     } else if (splitItemData[0].equalsIgnoreCase("Movie")) {
-                        String date = splitItemData[3].substring(0, 3);
+                        String date = splitItemData[3];
                         LocalDate dateValue = LocalDate.parse(date);
                         Movie movie = new Movie(splitItemData[1], splitItemData[2], dateValue);
                         item.add(movie);

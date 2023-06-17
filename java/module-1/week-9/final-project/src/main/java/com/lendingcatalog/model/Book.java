@@ -94,7 +94,7 @@ public class Book implements CatalogItem {
     public String toString() {
         LocalDateTime localDateTime = LocalDateTime.now();
         return
-        localDateTime +
+        "Date added: " + localDateTime + System.lineSeparator() +
         //or put in local date/time here vs in register item method
         "* " + title + System.lineSeparator()
         + " - Written by: " + author +System.lineSeparator()
