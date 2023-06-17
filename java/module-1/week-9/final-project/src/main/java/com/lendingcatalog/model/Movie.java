@@ -29,7 +29,7 @@ public class Movie implements CatalogItem{
         return this.id;
     }
 
-    public void setId() {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -79,6 +79,7 @@ public class Movie implements CatalogItem{
     public void registerItem() throws FileStorageException {
         //Assign unique ID to ID field
         id = UUID.randomUUID().toString();
+        setId(id);
         //Write message to log file that indicates book was created
         File movieLog = new File("resources/logs/MovieLog");
         String logPath = "src/main/resources/logs/MovieLog";

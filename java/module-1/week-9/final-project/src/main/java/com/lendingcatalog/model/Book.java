@@ -80,6 +80,7 @@ public class Book implements CatalogItem {
     public void registerItem() throws FileStorageException {
         //Assign unique ID to ID field
         id = UUID.randomUUID().toString();
+        setId(id);
         //Write message to log file that indicates book was created ***I think this works?
         String logPath = "src/main/resources/logs/BookLog";
         File bookLog = new File(logPath);

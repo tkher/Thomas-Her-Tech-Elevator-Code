@@ -29,7 +29,7 @@ public class Tool implements CatalogItem{
         return this.id;
     }
 
-    public void setId() {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -79,21 +79,13 @@ public class Tool implements CatalogItem{
     public void registerItem() throws FileStorageException {
         //Assign unique ID to ID field
         id = UUID.randomUUID().toString();
+        setId(id);
         //Write message to log file that indicates book was created
         String logPath = "src/main/resources/logs/ToolLog";
         File toolLog = new File("resources/logs/ToolLog");
 
         FileStorageService.writeContentsToFile(toString(),logPath,true);
-//        try (PrintWriter writer = new PrintWriter(new FileOutputStream(toolLog,true))) {
-//            writer.println("\n" + "Tool type: " + type
-//                    + "\n" + "Manufactured by: " + manufacturer
-//                    + "\n" + "Id: " + id);
-//            writer.close();
-//
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//            System.out.println("Unable to create log: " + e);
-//        }
+
     }
 
     @Override

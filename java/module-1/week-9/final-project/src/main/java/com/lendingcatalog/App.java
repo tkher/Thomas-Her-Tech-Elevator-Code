@@ -64,16 +64,19 @@ public class App {
                         String date = splitItemData[3];
                         LocalDate dateValue = LocalDate.parse(date);
                         Book book = new Book(splitItemData[1], splitItemData[2], dateValue);
+                        book.registerItem();
                         item.add(book);
                     } else if (splitItemData[0].equalsIgnoreCase("Movie")) {
                         String date = splitItemData[3];
                         LocalDate dateValue = LocalDate.parse(date);
                         Movie movie = new Movie(splitItemData[1], splitItemData[2], dateValue);
+                        movie.registerItem();
                         item.add(movie);
                     } else if (splitItemData[0].equalsIgnoreCase("Tool")) {
                         String countString = splitItemData[3];
                         int count = Integer.parseInt(countString);
                         Tool tool = new Tool(splitItemData[1], splitItemData[2], count);
+                        tool.registerItem();
                         item.add(tool);
                     } else {
                         String isNull = "This item is not found";
