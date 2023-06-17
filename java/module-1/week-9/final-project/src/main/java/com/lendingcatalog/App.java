@@ -39,7 +39,6 @@ public class App {
 
         try {
             memberDataList = FileStorageService.readContentsOfFile(filePathString); // test if this generates a list of memebers
-//        FileStorageService.readContentsOfFile(filePathString);
 
             //loop through memberList and split
             for (int i = 0; i < memberDataList.size(); i++) {
@@ -49,8 +48,9 @@ public class App {
                 //create memeber name for catalog key
                 Member member = new Member(splitMemberData[0], splitMemberData[1]);
                 String memberKey = member.toString();
-                String itemFilePath = FILE_BASE_PATH + splitMemberData[2]; // test if pulls up correct file path
 
+                //create filepath for items - loop through and split
+                String itemFilePath = FILE_BASE_PATH + splitMemberData[2]; // test if pulls up correct file path
                 List<String> itemDataList = new ArrayList<>();
                 itemDataList = FileStorageService.readContentsOfFile(itemFilePath); // test if generates list of items per memember
 
@@ -59,7 +59,7 @@ public class App {
                     String itemListString = itemDataList.get(a);
                     String[] splitItemData = itemListString.split(FIELD_DELIMITER);
 
-                    //create item base one catagory
+                    //create item base on category
                     if (splitItemData[0].equalsIgnoreCase("Book")) {
                         String date = splitItemData[3];
                         LocalDate dateValue = LocalDate.parse(date);
