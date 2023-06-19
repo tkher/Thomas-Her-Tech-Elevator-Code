@@ -17,7 +17,11 @@ public class PracticePart1 {
 		Q01_removeFraction(8.0, 2.5) -> 3.0
 	*/
 	public double Q01_removeFraction(double numerator, double denominator) {
-		return 0;
+		double resultValue = numerator/denominator;
+		int resultInt = (int) resultValue;
+
+
+		return resultInt;
 	}
 
 	/*
@@ -34,8 +38,11 @@ public class PracticePart1 {
 		Q02_isWaterTemperatureExtreme(212) -> true
 	*/
 	public boolean Q02_isWaterTemperatureExtreme(int temperature) {
-		return false;
+		int freezing =  32;
+		int boiling = 212;
+		return temperature <= freezing || temperature >= boiling;
 	}
+
 
 	/*
 	Topics: Branching
@@ -58,7 +65,11 @@ public class PracticePart1 {
 		Q03_isLeapYear(2019) -> false
 	*/
 	public boolean Q03_isLeapYear(int year) {
-		return false;
+		boolean isDivisibleBy400 = year % 400 == 0;
+		boolean isDivisibleBy4 = year % 4 == 0;
+		boolean isDivisibleBy100 = year % 100 == 0;
+
+		return isDivisibleBy400 || (isDivisibleBy4 && !isDivisibleBy100);
 	}
 
 	/*
