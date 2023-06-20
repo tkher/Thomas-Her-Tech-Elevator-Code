@@ -90,7 +90,27 @@ public class PracticePart1 {
 		Q04_carWashPrice('P', true, true) -> 11
 	*/
 	public int Q04_carWashPrice(char typeOfWash, boolean isMorning, boolean isWeekend) {
-		return 0;
+		int price = 0;
+		int discount = 1;
+		int weekendSurcharge = 2;
+		int B = 8;
+		int P = 10;
+		int S = 12;
+		if (typeOfWash == 'S') {
+			price = (price + S);
+		} else if (typeOfWash == 'P') {
+			price = (price + P);
+		} else {
+			price = (price + B);
+		}
+		if (isMorning) {
+			price = (price - discount);
+		}
+		if (isWeekend) {
+			price = (price + weekendSurcharge);
+		}
+
+		return (char) price;
 	}
 
 	/*
@@ -107,7 +127,18 @@ public class PracticePart1 {
 		 Q05_sumOfNumbersDivisibleBy7Between(56, 49) -> 0
 	*/
 	public int Q05_sumOfNumbersDivisibleBy7Between(int lowestNumber, int highestNumber) {
-		return 0;
+		int totalSum = 0;
+		for(int i = lowestNumber; i <= highestNumber; i ++) {
+			if (i % 7 == 0) {
+				totalSum += i;
+			}
+		}
+
+		if (lowestNumber > highestNumber) {
+			return 0;
+		} else {
+			return totalSum;
+		}
 	}
 
 	/*
@@ -128,7 +159,19 @@ public class PracticePart1 {
 		Q06_wordBetweenTags("<P>This is between.", "<P>") -> "" // End tag <P> not found.
 	*/
 	public String Q06_stringBetweenTags(String stringToSearch, String tag) {
-		return null;
+		String newString = "";
+		int indexA = 0;
+		if (stringToSearch.contains(tag)) {
+			indexA = stringToSearch.indexOf(tag);
+			String partialString = stringToSearch.substring(indexA);
+			if (partialString.contains(tag)) {
+				int indexB = partialString.indexOf(tag);
+				newString = partialString.substring(indexA, indexB);
+			} else {
+				newString = "";
+			}
+		}
+		return newString;
 	}
 
 	/*
