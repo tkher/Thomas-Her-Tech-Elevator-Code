@@ -24,9 +24,13 @@ public class Fibonacci {
 				secondNumber = newNumber;
 				System.out.print(", " + newNumber);
 			}
-			System.out.print(", " + userNumber);
-		}
+			if (firstNumber + secondNumber == userNumber) {
+				System.out.print(", " + userNumber);
+			} else {
+				System.out.println(", " + (firstNumber + secondNumber));
+			}
 
+		}
 	}
 }
 
