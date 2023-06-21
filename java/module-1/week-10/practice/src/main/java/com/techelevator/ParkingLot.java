@@ -72,6 +72,21 @@ public class ParkingLot {
 
     //Methods
 
+    public int getLotSize() {
+        return 0;
+    }
 
+    public int numberOfAvailableSlots (String carType) {
+        return 0;
+    }
+
+    public boolean park(Car car) {
+        return false;
+    }
+
+    public Car exit(String carType, String license) {
+        Car exitingCar = new Car("","");
+        return exitingCar;
+    }
 
 }
