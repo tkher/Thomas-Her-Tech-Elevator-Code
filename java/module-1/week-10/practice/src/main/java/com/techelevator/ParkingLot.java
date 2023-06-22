@@ -29,18 +29,13 @@ public class ParkingLot {
     //3 public constructors
     public ParkingLot(String name) {
         this.name = name;
-        isOpen();
-        getNumberOfCompactSlots();
-        getNumberOfFullsizeSlots();
-        getNumberOfMidsizeSlots();
+
     }
 
     public ParkingLot(String name, boolean open) {
         this.name = name;
         this.open = open;
-        getNumberOfCompactSlots();
-        getNumberOfFullsizeSlots();
-        getNumberOfMidsizeSlots();
+
     }
 
     public ParkingLot(String name, boolean open, int numberOfCompactSlots, int numberOfMidsizeSlots, int numberOfFullsizeSlots) {
@@ -80,10 +75,11 @@ public class ParkingLot {
 
     //Required Methods
     public int getLotSize() {
-        int numberOfParkingSpaces = numberOfCompactSlots + numberOfMidsizeSlots + numberOfFullsizeSlots;
-        return numberOfParkingSpaces;
+        return numberOfCompactSlots + numberOfMidsizeSlots + numberOfFullsizeSlots;
     }
 
+    public int
+    //my number of available slots is not counting correctly
     public int numberOfAvailableSlots(String carType) {
         //Find how many parked car there are in listOfParkedCars per each type
         int parkedCompactCounter = 0;

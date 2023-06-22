@@ -13,7 +13,9 @@ public class AssessmentPart1 {
 		 Q01_calculateFraction(5, 2) -> 2.5
 	*/
 	public double Q01_calculateFraction(int numerator, int denominator) {
-		return 0.0;
+		double convertedNumerator = numerator;
+		double convertedDenominator = denominator;
+		return convertedNumerator/convertedDenominator;
 	}
 
 	/*
