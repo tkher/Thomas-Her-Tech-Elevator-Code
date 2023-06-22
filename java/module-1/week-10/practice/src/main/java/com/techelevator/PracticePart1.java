@@ -1,5 +1,6 @@
 package com.techelevator;
 
+import javax.print.DocFlavor;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -178,8 +179,6 @@ public class PracticePart1 {
     }
 
 
-
-
     /*
     Topics: Strings, Loops
 
@@ -229,7 +228,9 @@ public class PracticePart1 {
     Q08_allowanceCalculator(7, 0, 40) -> 10
     */
     public int Q08_allowanceCalculator(int weekly, int gift, int bonus) {
-        int allowance = weekly + gift + bonus * 4 / 52;
+        int weeklySum = weekly * 52;
+        int bonusSum = bonus * 4;
+        int allowance = (weeklySum + gift + bonusSum) / 52;
         return allowance;
     }
 
@@ -252,14 +253,17 @@ public class PracticePart1 {
         Q09_isIncreasing(new int[]{2, 1, 8, 32, 256}) -> false
     */
     public boolean Q09_isIncreasing(int[] numbers) {
-        boolean result = true;
-        for (int i = 0; i < numbers.length - 1; i++) {
-            if (numbers[i] > numbers[i++]) {
-                result = false;
+        int numberOne = numbers[0];
+        int numberTwo = numbers[1];
+        for (int i = 2; i < numbers.length; i++) {
+            if (numberTwo > numberOne) {
+                numberOne = numberTwo;
+                numberTwo = numbers[i];
+            } else {
                 break;
             }
         }
-        return result;
+        return numberTwo > numberOne;
     }
 
     /*
@@ -276,7 +280,11 @@ public class PracticePart1 {
         Q10_reverseList(new ArrayList<>(List.of())) -> []
     */
     public List<Integer> Q10_reverseList(List<Integer> numbers) {
-        return new ArrayList<>();
+        List<Integer> reversedList = new ArrayList<>();
+        for (int i = numbers.size() - 1; i >= 0; i--) {
+            reversedList.add(numbers.get(i));
+        }
+        return reversedList;
     }
 
     /*
@@ -300,6 +308,11 @@ public class PracticePart1 {
              -> {"Dog": 3, "Chicken": 1, "Fish": 1, "Cat": 2, "Dinosaur": 1, "Llama": 1}
     */
     public Map<String, Integer> Q11_idealPets(String[] suggestedPets) {
-        return new HashMap<>();
+        Map<String, Integer> petCounter = new HashMap<>();
+        for (String i : suggestedPets) {
+            petCounter.put(i,petCounter.getOrDefault(i,0) +1);
+
+        }
+        return petCounter;
     }
 }
