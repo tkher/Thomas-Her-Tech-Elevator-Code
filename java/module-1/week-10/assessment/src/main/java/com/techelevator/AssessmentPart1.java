@@ -26,7 +26,9 @@ public class AssessmentPart1 {
 		 Q02_isSumEven(13, 16) -> false
 	*/
 	public boolean Q02_isSumEven(int a, int b) {
-		return false;
+		int sum = a + b;
+		boolean isEven = (sum % 2 == 0);
+		return isEven;
 	}
 
 	/*
@@ -39,7 +41,12 @@ public class AssessmentPart1 {
 		 Q03_moviePrice(21) -> 12
 	*/
 	public int Q03_moviePrice(int age) {
-		return 0;
+		int priceOfTicket = 12;
+		if (age <= 12) {
+			priceOfTicket = 7;
+		}
+
+		return priceOfTicket;
 	}
 
 	/*
