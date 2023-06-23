@@ -193,9 +193,14 @@ public class AssessmentPart1 {
 	public int[] Q10_swapFirstAndLastElements(int[] arrayOfInts) {
 		int lengthOfArray = arrayOfInts.length;
 		int[] resultArray = new int[lengthOfArray];
-		for (int i = )
+		resultArray[0] = arrayOfInts[arrayOfInts.length-1];
+		resultArray[resultArray.length-1] = arrayOfInts[0];
+		for (int i = 1; i <=arrayOfInts.length-2; i++) {
+			resultArray[i] = arrayOfInts[i];
+		}
 
-		return arrayOfInts;
+
+		return resultArray;
 	}
 
 	/*
@@ -210,7 +215,12 @@ public class AssessmentPart1 {
 		 Q11_mealCount(["Beef", "Chicken", "Fish", "Tofu", "Tofu", "Fish"]) -> {"Beef": 1, "Chicken": 1, "Fish": 2, "Tofu": 2}
 	*/
 	public Map<String, Integer> Q11_mealCount(String[] mealOrders) {
-		return null;
+		Map<String,Integer> mealMap = new HashMap<>();
+		for(String i : mealOrders) {
+			mealMap.put(i,mealMap.getOrDefault(i,0) +1);
+		}
+
+		return mealMap;
 	}
 
 }
