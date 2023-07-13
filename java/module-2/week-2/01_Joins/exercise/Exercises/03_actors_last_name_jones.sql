@@ -2,3 +2,9 @@
 -- Order the results by the actor names (A-Z) and then by movie title (A-Z). 
 -- (48 rows)
 
+Select person_name, movie.title
+from person
+join movie_actor on person.person_id = movie_actor.actor_id
+join movie on movie_actor.movie_id = movie.movie_id
+where person_name like '% Jones'
+order by person_name, movie.title;
