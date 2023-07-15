@@ -2,13 +2,7 @@
 
 INSERT INTO genre (genre_name)
 VALUES ('Sports');
---RETURNING genre_id, genre_name;
 
 UPDATE movie_genre 
 SET genre_id = (SELECT genre_id FROM genre WHERE genre_name = 'Sports')
 WHERE movie_id = (SELECT movie_id FROM movie WHERE title = 'Coach Carter');
---RETURNING genre_id, movie_id;
-
---SELECT title, movie_id
---from movie 
---where title = 'Coach Carter';
