@@ -5,7 +5,7 @@ VALUES ('Sports');
 --RETURNING genre_id, genre_name;
 
 UPDATE movie_genre 
-SET genre_id = 11771
+SET genre_id = (SELECT genre_id FROM genre WHERE genre_name = 'Sports')
 WHERE movie_id = (SELECT movie_id FROM movie WHERE title = 'Coach Carter');
 --RETURNING genre_id, movie_id;
 
