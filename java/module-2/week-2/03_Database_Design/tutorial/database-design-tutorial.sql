@@ -1,7 +1,13 @@
 /**************************************************************************
 -- Step 2: Drop all database objects to start with an empty database
 **************************************************************************/
+DROP TABLE IF EXISTS pet_service;  
 
+DROP TABLE IF EXISTS pet;  
+
+DROP TABLE IF EXISTS service;  
+
+DROP TABLE IF EXISTS customer; 
 
 
 
