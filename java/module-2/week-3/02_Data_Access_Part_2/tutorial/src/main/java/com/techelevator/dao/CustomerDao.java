@@ -25,8 +25,37 @@ public interface CustomerDao {
     List<Customer> getCustomersByName(String search, boolean useWildCard);
 
     // Step One: Create a new customer
+    /**
+     * Create a new customer in the datastore with the given information.
+     *
+     * @param customer the customer information to add
+     * @return Customer object with the id populated
+     */
+    Customer createCustomer(Customer customer);
 
     // Step Two: Update an existing customer
+    /**
+     * Update an existing customer in the datastore with the given information.
+     *
+     * @param customer the customer information to update
+     * @return Updated Customer object
+     */
+    Customer updateCustomer(Customer customer);
+
 
     // Step Three: Delete a customer
+
+    /**
+     * Delete the customer with the given id.
+     *
+     * @param customerId the id of the customer to delete
+     * @return Number of customers deleted
+     */
+    int deleteCustomerById(int customerId);
+    @Override
+    public int deleteCustomerById(int customerId) {
+        String sql = "DELETE FROM customer WHERE customer_id = ?;";
+
+        return jdbcTemplate.update(sql, customerId);
+    }
 }

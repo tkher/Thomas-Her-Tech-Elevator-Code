@@ -52,10 +52,33 @@ public class JdbcCustomerDao implements CustomerDao {
     }
 
     // Step One: Create a new customer
+    @Override
+    public Customer createCustomer(Customer customer) {
+        String sql = "INSERT INTO customer (first_name, last_name, street_address, city, phone_number, " +
+                "email_address, email_offers) VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING customer_id;";
+
+        int customerId = jdbcTemplate.queryForObject(sql, int.class, customer.getFirstName(), customer.getLastName(),
+                customer.getStreetAddress(), customer.getCity(), customer.getPhoneNumber(),
+                customer.getEmailAddress(), customer.getEmailOffers());
+
+        return getCustomerById(customerId);
+    }
 
     // Step Two: Update an existing customer
+    @Override
+    public Customer updateCustomer(Customer customer) {
+        String sql = "UPDATE customer " +
+                "SET first_name=?, last_name=?, street_address=?, city=?, phone_number=?, email_address=?, email_offers=? " +
+                "WHERE customer_id=?;";
+
+        jdbcTemplate.update(sql, customer.getFirstName(), customer.getLastName(), customer.getStreetAddress(), customer.getCity(),
+                customer.getPhoneNumber(), customer.getEmailAddress(), customer.getEmailOffers(), customer.getCustomerId());
+
+        return getCustomerById(customer.getCustomerId());
+    }
 
     // Step Three: Delete a customer
+
 
     private Customer mapRowToCustomer(SqlRowSet rowSet) {
         Customer customer = new Customer();
