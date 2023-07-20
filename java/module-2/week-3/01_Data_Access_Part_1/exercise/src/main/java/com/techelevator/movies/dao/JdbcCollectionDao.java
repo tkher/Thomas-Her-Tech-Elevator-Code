@@ -17,7 +17,13 @@ public class JdbcCollectionDao implements CollectionDao{
 
     @Override
     public List<Collection> getCollections() {
-        return null;
+        List<Collection> collections = new ArrayList<>();
+
+        String sql = SELECT
+
+
+
+        return collections;
     }
 
     @Override
