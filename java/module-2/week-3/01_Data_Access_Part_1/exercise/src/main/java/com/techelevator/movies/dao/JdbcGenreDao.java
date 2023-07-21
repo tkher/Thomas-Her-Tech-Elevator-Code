@@ -20,6 +20,9 @@ public class JdbcGenreDao implements GenreDao {
         Genre genre = new Genre();
         genre.setId(result.getInt("genre_id"));
         genre.setName(result.getString("genre_name"));
+        if (result.wasNull()) {
+            genre.setId(null);
+        }
         return genre;
 
     }
@@ -53,8 +56,6 @@ public class JdbcGenreDao implements GenreDao {
         while (result.next()) {
             genreById = mapToRowSet(result);
         }
-
-//        if(genreById.)
 
         return new Genre(genreById.getId(), genreById.getName());
     }

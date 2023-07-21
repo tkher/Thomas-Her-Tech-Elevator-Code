@@ -20,9 +20,9 @@ public class JdbcCollectionDao implements CollectionDao {
         Collection collection = new Collection();
         collection.setId(result.getInt("collection_id"));
         collection.setName(result.getString("collection_name"));
-        if (result.wasNull()) {
-            collection.setName(null);
-        }
+//        if (result.wasNull()) {
+//            collection.setName(null);
+//        }
         return collection;
     }
     @Override
@@ -63,12 +63,12 @@ public class JdbcCollectionDao implements CollectionDao {
             List<Collection> collectionsByName = new ArrayList<>();
 
             if(useWildCard) {
-                name= "%" + name + "%";
+                name = "%" + name + "%";
             }
 
-            String sql = "SELECT * " +
+            String sql = "SELECT collection_id, collection_name " +
                     "FROM collection " +
-                    "WHERE collection_name LIKE ?;";
+                    "WHERE collection_name ILIKE ?;";
 
 
             SqlRowSet result = jdbcTemplate.queryForRowSet(sql, name);
@@ -76,8 +76,6 @@ public class JdbcCollectionDao implements CollectionDao {
             while (result.next()) {
                 collectionsByName.add(mapRowToCollection(result));
             }
-
-
         return collectionsByName;
         }
     }
