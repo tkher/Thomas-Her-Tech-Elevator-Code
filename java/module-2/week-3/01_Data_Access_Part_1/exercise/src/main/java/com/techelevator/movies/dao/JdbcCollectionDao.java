@@ -16,6 +16,15 @@ public class JdbcCollectionDao implements CollectionDao {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+    private Collection mapRowToCollection(SqlRowSet result) {
+        Collection collection = new Collection();
+        collection.setId(result.getInt("collection_id"));
+        collection.setName(result.getString("collection_name"));
+        if (result.wasNull()) {
+            collection.setName(null);
+        }
+        return collection;
+    }
     @Override
     public List<Collection> getCollections() {
         List<Collection> collections = new ArrayList<>();
@@ -23,10 +32,11 @@ public class JdbcCollectionDao implements CollectionDao {
         String sql = "SELECT * " +
                 "FROM collection;";
 
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql,collections);
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
 
-        if(results.next()) {
-            collections = mapRowToCollection((results));
+        while(results.next()) {
+            Collection collection = mapRowToCollection(results);
+            collections.add(collection);
         }
 
         return collections;
@@ -36,11 +46,11 @@ public class JdbcCollectionDao implements CollectionDao {
     public Collection getCollectionById(int id) {
         Collection collectionsId = null;
 
-        String sql = "SELECT collection_id" +
+        String sql = "SELECT * " +
                 "FROM collection " +
                 "WHERE collection_id = ?;";
 
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id;
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
 
         if (results.next()) {
             collectionsId = mapRowToCollection(results);
@@ -50,16 +60,27 @@ public class JdbcCollectionDao implements CollectionDao {
 
         @Override
         public List<Collection> getCollectionsByName (String name,boolean useWildCard){
-            return null;
+            List<Collection> collectionsByName = new ArrayList<>();
+
+            if(useWildCard) {
+                name= "%" + name + "%";
+            }
+
+            String sql = "SELECT * " +
+                    "FROM collection " +
+                    "WHERE collection_name LIKE ?;";
+
+
+            SqlRowSet result = jdbcTemplate.queryForRowSet(sql, name);
+
+            while (result.next()) {
+                collectionsByName.add(mapRowToCollection(result));
+            }
+
+
+        return collectionsByName;
         }
     }
 
-    private Collection mapRowToCollection(SqlRowSet rowSet) {
-        Collection collection = new Collection();
-        collection.setId(rowSet.getInt("collection_id"));
-        collection.setName(rowSet.getString("collection_name"));
-        return collection;
-    }
 
-}
 
