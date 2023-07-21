@@ -20,9 +20,9 @@ public class JdbcGenreDao implements GenreDao {
         Genre genre = new Genre();
         genre.setId(result.getInt("genre_id"));
         genre.setName(result.getString("genre_name"));
-        if (result.wasNull()) {
-            genre.setId(null);
-        }
+//        if (result.wasNull()) {
+//            genre.setId(null);
+//        }
         return genre;
 
     }
@@ -57,11 +57,27 @@ public class JdbcGenreDao implements GenreDao {
             genreById = mapToRowSet(result);
         }
 
-        return new Genre(genreById.getId(), genreById.getName());
+        return genreById;
     }
 
     @Override
     public List<Genre> getGenresByName(String name, boolean useWildCard) {
-        return null;
+        List<Genre> genreByName = new ArrayList<>();
+
+        if(useWildCard) {
+            name = "%" + name + "%";
+        }
+
+        String sql = "SELECT * " +
+                "FROM genre " +
+                "WHERE genre_name ILIKE ?;";
+
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, name);
+
+        while (result.next()) {
+            genreByName.add(mapToRowSet(result));
+        }
+
+        return genreByName;
     }
 }
