@@ -63,18 +63,64 @@ public class JdbcDepartmentDao implements DepartmentDao {
 
 	@Override
 	public Department createDepartment(Department department) {
-		throw new DaoException("createDepartment() not implemented");
+		Department newDepartment = new Department();
+
+		try {
+			String sql = "INSERT INTO department (department_id, name) " +
+					"VALUES (?,?) " +
+					"RETURNING department_id;";
+
+			int newDeptmentId = jdbcTemplate.queryForObject(sql, int.class, department.getId(), department.getName());
+			newDepartment = getDepartmentById(newDeptmentId);
+		} catch (CannotGetJdbcConnectionException e) {
+			throw new DaoException("Cannot connect to Database", e);
+		} catch (DataIntegrityViolationException e) {
+			throw new DaoException("Data violation", e);
+		}
+		return newDepartment;
+//		throw new DaoException("createDepartment() not implemented");
 	}
 
 	@Override
 	public Department updateDepartment(Department department) {
-		throw new DaoException("updateDepartment() not implemented");
+		Department updateDepartment = null;
+
+		try {
+			String sql = "UPDATE department SET department_id=?, name=?;";
+			int numberOfRows = jdbcTemplate.update(sql, department.getId(), department.getName());
+
+			if (numberOfRows == 0) {
+				throw new DaoException("No rows returned");
+			} else {
+				updateDepartment = getDepartmentById(department.getId());
+			}
+		} catch (CannotGetJdbcConnectionException e) {
+			throw new DaoException("Cannot connect to Database", e);
+		} catch (DataIntegrityViolationException e) {
+			throw new DaoException("Data violation", e);
+		}
+
+		return updateDepartment;
 	}
 
 	@Override
 	public int deleteDepartmentById(int id) {
-		throw new DaoException("updateDepartment() not implemented");
+		int numberOfRows = 0;
+
+		String sql = "DELETE FROM department " +
+				"WHERE department_id = ?;";
+
+		try {
+			numberOfRows = jdbcTemplate.update(sql, id);
+		}catch (CannotGetJdbcConnectionException e) {
+			throw new DaoException("Cannot connect to Database", e);
+		} catch (DataIntegrityViolationException e) {
+			throw new DaoException("Data violation", e);
+		}
+
+		return numberOfRows;
 	}
+
 
 	private Department mapRowToDepartment(SqlRowSet results) {
 		Department department = new Department();

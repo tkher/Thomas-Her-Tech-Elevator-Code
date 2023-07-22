@@ -25,6 +25,7 @@ public interface CustomerDao {
     List<Customer> getCustomersByName(String search, boolean useWildCard);
 
     // Step One: Create a new customer
+
     /**
      * Create a new customer in the datastore with the given information.
      *
@@ -58,4 +59,5 @@ public interface CustomerDao {
 
         return jdbcTemplate.update(sql, customerId);
     }
+
 }
