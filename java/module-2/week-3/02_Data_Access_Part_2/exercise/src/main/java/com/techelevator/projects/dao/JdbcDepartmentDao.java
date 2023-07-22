@@ -66,11 +66,11 @@ public class JdbcDepartmentDao implements DepartmentDao {
 		Department newDepartment = new Department();
 
 		try {
-			String sql = "INSERT INTO department (department_id, name) " +
-					"VALUES (?,?) " +
+			String sql = "INSERT INTO department (name) " +
+					"VALUES (?) " +
 					"RETURNING department_id;";
 
-			int newDeptmentId = jdbcTemplate.queryForObject(sql, int.class, department.getId(), department.getName());
+			int newDeptmentId = jdbcTemplate.queryForObject(sql, int.class, department.getName());
 			newDepartment = getDepartmentById(newDeptmentId);
 		} catch (CannotGetJdbcConnectionException e) {
 			throw new DaoException("Cannot connect to Database", e);

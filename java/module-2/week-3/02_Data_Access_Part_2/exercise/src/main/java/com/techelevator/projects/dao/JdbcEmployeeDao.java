@@ -130,22 +130,84 @@ public class JdbcEmployeeDao implements EmployeeDao {
 
 	@Override
 	public Employee createEmployee(Employee employee) {
-		throw new DaoException("createEmployee() not implemented");
+		Employee newEmployee = new Employee();
+
+		String sql = "INSERT INTO employee (department_id, first_name, last_name, birth_date, hire_date) " +
+				"VALUES (?,?,?,?,?) RETURNING employee_id;";
+
+		try {
+			int newEmployeeId = jdbcTemplate.queryForObject(sql, int.class, employee.getDepartmentId(), employee.getFirstName(), employee.getLastName(),
+			employee.getBirthDate(), employee.getHireDate());
+
+			newEmployee = getEmployeeById(newEmployeeId);
+		} catch (CannotGetJdbcConnectionException e) {
+			throw new DaoException("Unable to connect to server or database", e);
+		} catch (DataIntegrityViolationException e) {
+			throw new DaoException("Data integrity violation", e);
+		}
+		return newEmployee;
 	}
 	
 	@Override
 	public Employee updateEmployee(Employee employee) {
-		throw new DaoException("updateEmployee() not implemented");
+		Employee updatedEmployee = null;
+
+		String sql = "UPDATE employee SET department_id =?, first_name =?, last_name =?, birth_date =?, hire_date =? " +
+				"WHERE employee_id = ?;";
+
+		try {
+			int numberOfRows = jdbcTemplate.update(sql, employee.getDepartmentId(), employee.getFirstName(), employee.getLastName(),
+					employee.getBirthDate(), employee.getHireDate(), employee.getId());
+
+			if (numberOfRows == 0) {
+				throw new DaoException("No rows found");
+			} else {
+				updatedEmployee = getEmployeeById(employee.getId());
+			}
+
+		} catch (CannotGetJdbcConnectionException e) {
+			throw new DaoException("Unable to connect to server or database", e);
+		} catch (DataIntegrityViolationException e) {
+			throw new DaoException("Data integrity violation", e);
+		}
+
+		return updatedEmployee;
 	}
 
 	@Override
 	public int deleteEmployeeById(int id) {
-		throw new DaoException("deleteEmployeeById() not implemented");
+		int numberOfRows = 0;
+
+		String sql = "DELETE FROM employee WHERE employee_id = ?;";
+
+		try {
+			numberOfRows = jdbcTemplate.update(sql,id);
+		} catch (CannotGetJdbcConnectionException e) {
+			throw new DaoException("Unable to connect to server or database", e);
+		} catch (DataIntegrityViolationException e) {
+			throw new DaoException("Data integrity violation", e);
+		}
+		return numberOfRows;
 	}
 
 	@Override
 	public int deleteEmployeesByDepartmentId(int departmentId) {
-		throw new DaoException("deleteEmployeeByDepartmentId() not implemented");
+		int numberOfRows = 0;
+
+		String deleteEmpIdSql = "DELETE FROM employee WHERE department_id = ?;";
+
+		String deleteDeptIdSql = "DELETE FROM department WHERE department_id = ?;";
+
+		try {
+			jdbcTemplate.update(deleteEmpIdSql, departmentId);
+
+			numberOfRows = jdbcTemplate.update(deleteDeptIdSql, departmentId);
+		} catch (CannotGetJdbcConnectionException e) {
+			throw new DaoException("Unable to connect to server or database", e);
+		} catch (DataIntegrityViolationException e) {
+			throw new DaoException("Data integrity violation", e);
+		}
+		return numberOfRows;
 	}
 
 	private Employee mapRowToEmployee(SqlRowSet result) {

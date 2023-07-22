@@ -67,12 +67,12 @@ public class JdbcProjectDao implements ProjectDao {
 	public Project createProject(Project newProject) {
 		Project createdProject = new Project();
 
-		String sql = "INSERT into project (project_id, name, from_date, to_date) " +
-				"VALUES (?,?,?,?) " +
+		String sql = "INSERT into project (name, from_date, to_date) " +
+				"VALUES (?,?,?) " +
 				"RETURNING project_id;";
 
 		try {
-			int newProjectID = jdbcTemplate.queryForObject(sql, int.class, newProject.getId(), newProject.getName(), newProject.getFromDate(), newProject.getToDate());
+			int newProjectID = jdbcTemplate.queryForObject(sql, int.class, newProject.getName(), newProject.getFromDate(), newProject.getToDate());
 
 			createdProject = getProjectById(newProjectID);
 
