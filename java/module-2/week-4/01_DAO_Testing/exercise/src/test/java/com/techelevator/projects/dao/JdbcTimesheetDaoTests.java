@@ -69,9 +69,10 @@ public class JdbcTimesheetDaoTests extends BaseDaoTests {
         //Arrange
 
         //ACT
-
+        List<Timesheet> timesheetList = dao.getTimesheetsByProjectId(1);
         //Assert
-        Assert.fail();
+        Assert.assertNotNull("Timesheet List returned null", timesheetList);
+        Assert.assertEquals("Expected size not returned", 3, timesheetList.size());
     }
 
     @Test

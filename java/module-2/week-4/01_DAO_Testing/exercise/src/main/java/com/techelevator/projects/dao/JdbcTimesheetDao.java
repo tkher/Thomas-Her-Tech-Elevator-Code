@@ -47,7 +47,7 @@ public class JdbcTimesheetDao implements TimesheetDao {
                 "ORDER BY timesheet_id;";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, employeeId);
-            if (results.next()) {
+            while (results.next()) {
                 Timesheet timesheet = mapRowToTimesheet(results);
                 timesheets.add(timesheet);
             }

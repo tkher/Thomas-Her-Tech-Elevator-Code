@@ -1,13 +1,16 @@
 Bug 1
 -----
 Test that demonstrates problem:
+returns_list_of_all_timesheets_for_employee
 
 Expected output:
+getTimesheetsByEmployeeId(1) returns 2 rows
 
 Actual output:
+1 row returned
 
 How did you fix this bug?
-
+Replaced hardcoded "if" statement with a while statement to return more than a single result.
 
 Bug 2
 -----
