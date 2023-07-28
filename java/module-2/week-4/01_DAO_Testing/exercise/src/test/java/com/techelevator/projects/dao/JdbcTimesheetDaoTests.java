@@ -29,41 +29,93 @@ public class JdbcTimesheetDaoTests extends BaseDaoTests {
 
     @Test
     public void getTimesheetById_returns_correct_timesheet_for_id() {
-        Assert.fail();
+        //Arrange
+
+        //ACT
+        Timesheet timesheet = dao.getTimesheetById(1);
+
+        //Assert
+        Assert.assertNotNull("Timesheet ID returned Null", timesheet);
+        assertTimesheetsMatch(TIMESHEET_1, timesheet);
+
     }
 
     @Test
     public void getTimesheetById_returns_null_when_id_not_found() {
-        Assert.fail();
+        //Arrange
+
+        //ACT
+        Timesheet timesheet = dao.getTimesheetById(5);
+        //Assert
+        Assert.assertNull("Timesheet ID is Null", timesheet);
     }
 
     @Test
     public void getTimesheetsByEmployeeId_returns_list_of_all_timesheets_for_employee() {
-        Assert.fail();
+        //Arrange
+
+        //ACT
+        List<Timesheet> timesheetList = dao.getTimesheetsByEmployeeId(1);
+
+        //Assert
+        Assert.assertNotNull("Timesheet List returned null", timesheetList);
+        Assert.assertEquals("Expected size not returned", 2, timesheetList.size());
+
     }
 
     @Test
     public void getTimesheetsByProjectId_returns_list_of_all_timesheets_for_project() {
+
+        //Arrange
+
+        //ACT
+
+        //Assert
         Assert.fail();
     }
 
     @Test
     public void created_timesheet_has_expected_values_when_retrieved() {
+
+        //Arrange
+
+        //ACT
+
+        //Assert
         Assert.fail();
     }
 
     @Test
     public void updated_timesheet_has_expected_values_when_retrieved() {
+
+        //Arrange
+
+        //ACT
+
+        //Assert
         Assert.fail();
     }
 
     @Test
     public void deleted_timesheet_can_no_longer_be_retrieved() {
+        //Arrange
+
+        //ACT
+
+        //Assert
+
         Assert.fail();
     }
 
     @Test
     public void getBillableHours_returns_correct_total() {
+
+        //Arrange
+
+        //ACT
+
+        //Assert
+
         Assert.fail();
     }
 

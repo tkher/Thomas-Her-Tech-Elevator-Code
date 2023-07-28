@@ -11,8 +11,12 @@ import java.util.List;
 public class JdbcSaleDaoTests extends BaseDaoTests {
 
     // Step One: Add constants for Madge
+    private static final int MADGE_CUSTOMER_ID = 3;
+    private static final int MADGE_FIRST_SALE_ID = 5;
 
     // Step Two: Add constants for customer without sale and non-existent customer
+    private static final int CUSTOMER_WITHOUT_SALES_ID = 5;
+    private static final int NON_EXISTENT_CUSTOMER_ID = 7;
 
     private JdbcSaleDao jdbcSaleDao;
 
@@ -27,14 +31,40 @@ public class JdbcSaleDaoTests extends BaseDaoTests {
     public void getSaleById_returns_correct_sale() {
 
         // Step One: Replace Assert.fail("Test not implemented.")
-        Assert.fail("Test not implemented.");
+        //Arrange
+        Sale madgeFirstSale = mapValuesToSale(MADGE_FIRST_SALE_ID, new BigDecimal("23.98"), true, MADGE_CUSTOMER_ID);
+        //ACT
+        Sale sale = jdbcSaleDao.getSaleById(MADGE_FIRST_SALE_ID);
+        //Assert
+        Assert.assertNotNull("getSaleById(" + MADGE_FIRST_SALE_ID + ") returned null", sale);
+        assertSalesMatch("getSaleById(" + MADGE_FIRST_SALE_ID + ") returned wrong or partial data", madgeFirstSale, sale);
     }
 
     @Test
     public void getSalesByCustomerId_returns_sales_for_customer_id() {
 
+
         // Step Two: Replace Assert.fail("Test not implemented.")
-        Assert.fail("Test not implemented.");
+        // Act - retrieve sales for Madge
+        List<Sale> sales = jdbcSaleDao.getSalesByCustomerId(MADGE_CUSTOMER_ID);
+        // Assert - Madge has two existing sales
+        Assert.assertEquals("getSalesByCustomerId(" + MADGE_CUSTOMER_ID + ") returned wrong number of sales",
+                2, sales.size());
+
+        // Act - retrieve customer with no sales
+        sales = jdbcSaleDao.getSalesByCustomerId(CUSTOMER_WITHOUT_SALES_ID);
+        // Assert - list of sales is empty for customer with no sales
+        Assert.assertEquals("getSalesByCustomerId(" + CUSTOMER_WITHOUT_SALES_ID +
+                ") without sales returned wrong number of sales", 0, sales.size());
+
+        // Act - retrieve customer that doesn't exist
+        sales = jdbcSaleDao.getSalesByCustomerId(NON_EXISTENT_CUSTOMER_ID);
+        // Assert - list of sales is empty for customer that doesn't exist
+        Assert.assertEquals("Customer doesn't exist, getSalesByCustomerId(" + NON_EXISTENT_CUSTOMER_ID +
+                ") returned the wrong number of sales", 0, sales.size());
+    }
+
+
     }
 
     @Test
