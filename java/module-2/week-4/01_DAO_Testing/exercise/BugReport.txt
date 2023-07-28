@@ -15,13 +15,16 @@ Replaced hardcoded "if" statement with a while statement to return more than a s
 Bug 2
 -----
 Test that demonstrates problem:
+returns_list_of_all_timesheets_for_project
 
 Expected output:
+getTimesheetsByProjectId (1) returns 3 rows
 
 Actual output:
+2 rows returned
 
 How did you fix this bug?
-
+Replaced hardcoded String sql "WHERE employee_id = ?" to "WHERE project_id = ?".
 
 Bug 3
 -----

@@ -45,7 +45,7 @@ public class JdbcTimesheetDaoTests extends BaseDaoTests {
         //Arrange
 
         //ACT
-        Timesheet timesheet = dao.getTimesheetById(5);
+        Timesheet timesheet = dao.getTimesheetById(999);
         //Assert
         Assert.assertNull("Timesheet ID is Null", timesheet);
     }
@@ -79,11 +79,16 @@ public class JdbcTimesheetDaoTests extends BaseDaoTests {
     public void created_timesheet_has_expected_values_when_retrieved() {
 
         //Arrange
+        Timesheet newTimesheet = mapValuesToTimesheet(5,1, 1, LocalDate.parse("2021-01-01"),
+                1.0, true, "Timesheet New");
 
         //ACT
+        Timesheet timesheet = dao.createTimesheet(newTimesheet);
 
         //Assert
-        Assert.fail();
+        Assert.assertNotNull("Timesheet returned Null", timesheet);
+        assertTimesheetsMatch(newTimesheet, timesheet);
+
     }
 
     @Test
@@ -128,6 +133,20 @@ public class JdbcTimesheetDaoTests extends BaseDaoTests {
         Assert.assertEquals(expected.getHoursWorked(), actual.getHoursWorked(), 0.001);
         Assert.assertEquals(expected.isBillable(), actual.isBillable());
         Assert.assertEquals(expected.getDescription(), actual.getDescription());
+    }
+
+    private static  Timesheet mapValuesToTimesheet(int timesheet_id, int employee_id, int project_id, LocalDate date_worked,
+                                                   double hours_worked, boolean billable, String description) {
+        Timesheet timesheet = new Timesheet();
+        timesheet.setTimesheetId(timesheet_id);
+        timesheet.setEmployeeId(employee_id);
+        timesheet.setProjectId(project_id);
+        timesheet.setDateWorked(date_worked);
+        timesheet.setHoursWorked(hours_worked);
+        timesheet.setBillable(billable);
+        timesheet.setDescription(description);
+        return timesheet;
+
     }
 
 }
