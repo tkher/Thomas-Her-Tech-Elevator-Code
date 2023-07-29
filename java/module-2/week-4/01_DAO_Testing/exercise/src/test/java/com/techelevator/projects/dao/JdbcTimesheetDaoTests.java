@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 public class JdbcTimesheetDaoTests extends BaseDaoTests {
 
@@ -18,6 +19,9 @@ public class JdbcTimesheetDaoTests extends BaseDaoTests {
             LocalDate.parse("2021-01-01"), 0.25, true, "Timesheet 3");
     private static final Timesheet TIMESHEET_4 = new Timesheet(4, 2, 2,
             LocalDate.parse("2021-02-01"), 2.0, false, "Timesheet 4");
+
+    private static final Timesheet newTimesheet = mapValuesToTimesheet(5,1, 1, LocalDate.parse("2021-01-01"),
+            1.0, true, "Timesheet New");
     
     private JdbcTimesheetDao dao;
 
@@ -79,8 +83,7 @@ public class JdbcTimesheetDaoTests extends BaseDaoTests {
     public void created_timesheet_has_expected_values_when_retrieved() {
 
         //Arrange
-        Timesheet newTimesheet = mapValuesToTimesheet(5,1, 1, LocalDate.parse("2021-01-01"),
-                1.0, true, "Timesheet New");
+
 
         //ACT
         Timesheet timesheet = dao.createTimesheet(newTimesheet);
@@ -95,11 +98,13 @@ public class JdbcTimesheetDaoTests extends BaseDaoTests {
     public void updated_timesheet_has_expected_values_when_retrieved() {
 
         //Arrange
-
+        Timesheet updatedTimesheet = mapValuesToTimesheet(1, 1, 1,
+                LocalDate.parse("2021-01-01"), 1.0, true, "Timesheet has been updated");
         //ACT
-
+        Timesheet timesheet = dao.updateTimesheet(updatedTimesheet);
         //Assert
-        Assert.fail();
+        Assert.assertNotNull("Timesheet returned Null", timesheet);
+        assertTimesheetsMatch(updatedTimesheet, timesheet);
     }
 
     @Test
@@ -107,10 +112,11 @@ public class JdbcTimesheetDaoTests extends BaseDaoTests {
         //Arrange
 
         //ACT
+        dao.deleteTimesheetById(1);
 
         //Assert
-
-        Assert.fail();
+        Timesheet retrievedTimesheet = dao.getTimesheetById(1);
+        Assert.assertNull("Deleted Timesheet cannot be retrieved", retrievedTimesheet);
     }
 
     @Test
@@ -119,10 +125,12 @@ public class JdbcTimesheetDaoTests extends BaseDaoTests {
         //Arrange
 
         //ACT
+        Double billableHoursTest =  dao.getBillableHours(1, 1);
 
         //Assert
+//        Assert.assertNotNull("Billable Hours is Null", billableHoursTest);
+        Assert.assertEquals(2.50, billableHoursTest, 0.001);
 
-        Assert.fail();
     }
 
     private void assertTimesheetsMatch(Timesheet expected, Timesheet actual) {
