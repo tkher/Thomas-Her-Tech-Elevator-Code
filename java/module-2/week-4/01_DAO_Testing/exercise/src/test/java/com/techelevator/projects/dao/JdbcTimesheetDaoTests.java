@@ -113,10 +113,12 @@ public class JdbcTimesheetDaoTests extends BaseDaoTests {
 
         //ACT
         dao.deleteTimesheetById(1);
+        List<Timesheet> timesheetList = dao.getTimesheetsByProjectId(1);
 
         //Assert
         Timesheet retrievedTimesheet = dao.getTimesheetById(1);
         Assert.assertNull("Deleted Timesheet cannot be retrieved", retrievedTimesheet);
+        Assert.assertEquals("Deleted timesheet did not return an expected number of timeSheets", 2,timesheetList.size());
     }
 
     @Test
