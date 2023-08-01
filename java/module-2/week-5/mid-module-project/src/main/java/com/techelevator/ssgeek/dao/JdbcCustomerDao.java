@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import javax.sql.DataSource;
+import java.util.ArrayList;
 import java.util.List;
 
 public class JdbcCustomerDao implements CustomerDao {
@@ -53,15 +54,65 @@ public Customer mapValueToRowSet (SqlRowSet results) {
 
 
     public List<Customer> getCustomers() {
-        return null;
+    List<Customer> customerList = new ArrayList<>();
+
+    String sql = "SELECT * " +
+            "FROM customer " +
+            "ORDER BY customer_id;";
+
+    SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+
+    try {
+        while (results.next()) {
+            customerList.add(mapValueToRowSet(results));
+        }
+    } catch (CannotGetJdbcConnectionException e) {
+        throw new DaoException("Cannot connect to Datebase", e);
+    } catch (DataIntegrityViolationException e) {
+        throw new DaoException("Data Violation", e);
+    }
+    return customerList;
     }
 
     public Customer createCustomer(Customer newCustomer) {
-        return null;
+    Customer customer = new Customer();
 
+    String sql = "INTO INTO customer (name, street_address1, street_address2, city, state, zip_code " +
+            "VALUES (?,?,?,?,?,?) RETURNING customer_id;";
+
+    try {
+        int customerId= jdbcTemplate.queryForObject(sql, int.class, customer.getName(), customer.getStreetAddress1(), customer.getStreetAddress2(),
+                customer.getCity(), customer.getState(), customer.getZipCode());
+
+        customer = getCustomerById(customerId);
+    } catch (CannotGetJdbcConnectionException e) {
+        throw new DaoException("Cannot connect to Datebase", e);
+    } catch (DataIntegrityViolationException e) {
+        throw new DaoException("Data Violation", e);
+    }
+    return customer;
     }
 
     public Customer updateCustomer (Customer updatedCustomer) {
-        return null;
+        Customer customer = null;
+
+        String sql = "UPDATE customer SET name = ?, street_address1 = ?, street_address2 = ?, city = ?, state = ?, zip_code = ? " +
+                "WHERE customer_id = ?;";
+
+        try {
+            int numberOfRows = jdbcTemplate.update(sql, customer.getName(), customer.getStreetAddress1(), customer.getStreetAddress2(),
+                    customer.getCity(), customer.getState(), customer.getZipCode());
+
+            if (numberOfRows == 0) {
+                throw new DaoException("Id not found");
+            } else {
+                customer = getCustomerById(customer.getCustomerId());
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Cannot connect to Datebase", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data Violation", e);
+        }
+        return customer;
     }
 }

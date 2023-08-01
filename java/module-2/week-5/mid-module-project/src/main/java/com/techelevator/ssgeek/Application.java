@@ -1,8 +1,12 @@
 package com.techelevator.ssgeek;
 
 import com.techelevator.ssgeek.dao.*;
+import com.techelevator.ssgeek.model.Customer;
 import com.techelevator.util.SystemInOutConsole;
 import org.apache.commons.dbcp2.BasicDataSource;
+
+import javax.sql.DataSource;
+import java.util.List;
 
 /**
  * Application is the class that launches the Solar System Geek Administrator by creating
@@ -23,7 +27,7 @@ public class Application {
         // Create the DAOs needed by the controller.
         //*****************************************************************************************
         // TODO: When you implement a new DAO, create an instance of it here, replacing the NULL
-        CustomerDao customerDao = null;
+        CustomerDao customerDao = new JdbcCustomerDao(dataSource);
         ProductDao productDao = null;
         SaleDao saleDao = null;
         LineItemDao lineItemDao = null;
