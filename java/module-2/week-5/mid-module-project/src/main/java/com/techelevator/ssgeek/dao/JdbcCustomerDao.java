@@ -22,7 +22,7 @@ public Customer mapValueToRowSet (SqlRowSet results) {
     customer.setCustomerId(results.getInt("customer_id"));
     customer.setName(results.getString("name"));
     customer.setStreetAddress1(results.getString("street_address1"));
-    customer.setStreetAddress2(results.getString("street_address2"));
+    customer.setStreetAddress2(results.getString("street_address2")); // this is nullable 
     customer.setCity(results.getString("city"));
     customer.setState(results.getString("state"));
     customer.setZipCode(results.getString("zip_code"));
