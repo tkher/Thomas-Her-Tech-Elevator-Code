@@ -21,11 +21,11 @@ public class AuctionService {
     }
 
     public Auction[] getAuctionsMatchingTitle(String title) {
-        return restTemplate.getForObject(API_BASE_SEARCH_URL + "title_like=" + title, Auction[].class);
+        return restTemplate.getForObject(API_BASE_SEARCH_URL + "title_like=" + title , Auction[].class);
     }
 
     public Auction[] getAuctionsAtOrBelowPrice(double price) {
-        return restTemplate.getForObject(API_BASE_SEARCH_URL + "currentBid_lte<=" + price, Auction[].class);
+        return restTemplate.getForObject(API_BASE_SEARCH_URL + "currentBid_lte=" + price, Auction[].class);
     }
 
 }
