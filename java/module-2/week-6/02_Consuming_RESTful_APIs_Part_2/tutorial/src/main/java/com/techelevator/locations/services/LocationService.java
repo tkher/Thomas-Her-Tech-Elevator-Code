@@ -23,11 +23,22 @@ public class LocationService {
     }
 
     public boolean update(Location updatedLocation) {
+//        HttpEntity<Location> entity = makeEntity(updatedLocation);
+//
+//        restTemplate.put(API_BASE_URL + updatedLocation.getId(), entity);
+
         HttpEntity<Location> entity = makeEntity(updatedLocation);
 
-        restTemplate.put(API_BASE_URL + updatedLocation.getId(), entity);
-
-        return true;
+        boolean success = false;
+        try {
+            restTemplate.put(API_BASE_URL + updatedLocation.getId(), entity);
+            success = true;
+        } catch (RestClientResponseException ex) {
+            BasicLogger.log(ex.getRawStatusCode() + " : " + ex.getStatusText());
+        } catch (ResourceAccessException ex) {
+            BasicLogger.log(ex.getMessage());
+        }
+        return success;
     }
 
     public boolean delete(int id) {
