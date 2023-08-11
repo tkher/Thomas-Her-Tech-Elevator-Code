@@ -15,8 +15,11 @@ public class LocationService {
     private final RestTemplate restTemplate = new RestTemplate();
 
     public Location add(Location newLocation) {
-        //Step Three: Add a location with POST
-        return null;
+        HttpEntity<Location> entity = makeEntity(newLocation);
+        Location returnedLocation = null;
+        returnedLocation = restTemplate.postForObject(API_BASE_URL,entity,Location.class);
+
+        return returnedLocation;
     }
 
     public boolean update(Location updatedLocation) {
