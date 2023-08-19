@@ -1,4 +1,4 @@
-package com.techelevator.locations.ModelDao;
+package com.techelevator.locations.Model;
 
 public class Location {
     private int id;
@@ -72,4 +72,6 @@ public class Location {
     public String toString() {
         return "Location [id=" + id + ", name=" + name + "]";
     }
+
+
 }

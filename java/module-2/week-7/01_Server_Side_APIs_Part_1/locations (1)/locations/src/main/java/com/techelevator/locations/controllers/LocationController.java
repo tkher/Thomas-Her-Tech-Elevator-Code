@@ -1,7 +1,7 @@
 package com.techelevator.locations.controllers;
 
-import com.techelevator.locations.ModelDao.Location;
-import org.springframework.web.bind.annotation.RestController;
+import com.techelevator.locations.Model.Location;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +10,15 @@ import java.util.List;
 public class LocationController {
 
     private List<Location> locations = new ArrayList<>();
+
+//    public Location getLocationById() {
+//        for (Location location : locations) {
+//            if (location.getId() == id) {
+//                return location;
+//            }
+//        }
+//        return null;
+//    }
 
     public LocationController() {
         locations.add(new Location(1,
@@ -50,7 +59,32 @@ public class LocationController {
                 "19103"));
     }
 
+    //Step 4 - Get a list of locations - method returns a list of locations as an array of JSON objects
+    @RequestMapping(path = "/locations", method = RequestMethod.GET)
+    public List<Location> list() {
+        return locations;
+    }
 
+    //Step 5 - Add a location - Method accepts "RequestMethod.POST" instead of "RequestMethod.GET
+    @RequestMapping(path = "/locations", method = RequestMethod.POST)
+    public Location add(@RequestBody Location location) {
+        if (location != null) {
+            locations.add(location);
+            return location;
+        }
+        return null;
+    }
+
+    //Step 6 - Return a specific location by ID
+    @RequestMapping(path = "/locations/{id}", method = RequestMethod.GET)
+    public Location get(@PathVariable int id) {
+        for (Location location : locations) {
+            if (location.getId() == id) {
+                return location;
+            }
+        }
+        return null;
+    }
 
 }
 
