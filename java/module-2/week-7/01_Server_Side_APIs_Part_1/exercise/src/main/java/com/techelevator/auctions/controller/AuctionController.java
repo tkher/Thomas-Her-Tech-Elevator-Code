@@ -38,14 +38,14 @@ public class AuctionController {
            return auctionDao.createAuction(auction);
         }
 
-    @RequestMapping(path = "", method = RequestMethod.GET)
-    public List<Auction> auctionsByTitle(@RequestParam (name = "title_like", defaultValue = "") String limit) {
-        if (limit != null) {
-            return auctionDao.getAuctionsByTitle(limit);
-        } else {
-            return auctionDao.getAuctions();
-        }
-    }
+//    @RequestMapping(path = "", method = RequestMethod.GET)
+//    public List<Auction> auctionsByTitle(@RequestParam (name = "title_like", defaultValue = "") String limit) {
+//        if (limit != null) {
+//            return auctionDao.getAuctionsByTitle(limit);
+//        } else {
+//            return auctionDao.getAuctions();
+//        }
+//    }
 
 
 
