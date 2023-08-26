@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -75,8 +76,11 @@ public class AuctionController {
     }
 
     @RequestMapping(path = "/whoami")
-    public String whoAmI() {
-        return "";
+    public String whoAmI(Principal principal) {
+
+        String identity = principal.getName();
+
+        return identity;
     }
 
 }
