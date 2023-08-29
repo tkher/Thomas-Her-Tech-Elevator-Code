@@ -1,21 +1,27 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Product;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class JdbcProductDao implements ProductDao {
+//JdbcProductDao codes the methods used
 
     private List<Product> products = new ArrayList<>();
 
+
     //    1. Get a list of all products for sale
+    @Override
     public List<Product> product () {
         return products;
     }
 
     //    2. Search for a list of products by SKU or Name
+    @Override
     public List<Product> productsBySkuOrName(@PathVariable String sku, String name) {
         List<Product> foundProducts = new ArrayList<>();
         for (Product product : products) {
@@ -31,6 +37,7 @@ public class JdbcProductDao implements ProductDao {
 
 
     //    3. Search for product by ID and return product detail
+    @Override
     public Product getProductById(@PathVariable int id) {
         for (Product product : products) {
             if (product.getProductId() == id) {
