@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
+//may require a CartService and TaxService, instead of putting into a dao
+//No dependency injections on Dao layer
 @Component
 public class JdbcCartDao implements CartDao{
 

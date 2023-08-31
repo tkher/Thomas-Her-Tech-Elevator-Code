@@ -15,6 +15,7 @@ public class Product {
     public Product() {
     }
 
+//need to check for nulls
     public Product(int productId, String productSku, String name, String description, BigDecimal price, String imageName) {
         this.productId = productId;
         this.productSku = productSku;
