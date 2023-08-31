@@ -40,7 +40,7 @@ public class JdbcProductDao implements ProductDao {
         }catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Cannot connect to JDBC database", e);
         }catch (DataIntegrityViolationException e) {
-            throw new DaoException("Data violation", e);
+            throw new DaoException("Data integrity violation", e);
         }
         return products;
     }
@@ -58,10 +58,18 @@ public class JdbcProductDao implements ProductDao {
     @Override
     public Product getProductById(int id) {
         Product product = null;
-        String sql = "";
+        String sql = "SELECT * FROM product WHERE product_id = ?";
 
-
-
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
+            if (results.next()) {
+                product = mapRowToProduct(results);
+            }
+        }catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Cannot connect to Database", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
         return product;
     }
 
