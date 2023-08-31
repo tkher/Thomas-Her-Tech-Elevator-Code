@@ -2,14 +2,12 @@ package com.techelevator.dao;
 
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Cart;
-import com.techelevator.model.CartProduct;
-import com.techelevator.model.Product;
+import com.techelevator.model.ShoppingCart;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,8 +28,8 @@ public class JdbcCartDao implements CartDao{
     //1. Get -  View Shopping Cart: List of products, qty, and prices
         //Additional Details Req: Subtotal cost, Tax amount, Cart Total: Sub + Tax
 
-    public List<CartProduct> getCartProducts() {
-        List<CartProduct> allCartItems = new ArrayList<>();
+    public List<ShoppingCart> getCartProducts() {
+        List<ShoppingCart> allCartItems = new ArrayList<>();
         String sql = "SELECT * " +
                 "FROM product INNER JOIN cart_item " +
                 "ON product.product_id = cart_item.product_id;";
@@ -51,7 +49,9 @@ public class JdbcCartDao implements CartDao{
     }
 
     @Override
-    List<Cart> getCart();
+    List<Cart> getCart() {
+        return null;
+    }
 
 
 
@@ -78,8 +78,8 @@ public class JdbcCartDao implements CartDao{
         return null;
     }
 
-    private CartProduct mapRowToCartProduct(SqlRowSet results) {
-        CartProduct cartProduct = new CartProduct();
+    private ShoppingCart mapRowToCartProduct(SqlRowSet results) {
+        ShoppingCart cartProduct = new ShoppingCart();
         cartProduct.setProductId(results.getInt("product_id"));
         cartProduct.setProductSku(results.getString("product_sku"));
         cartProduct.setName(results.getString("name"));

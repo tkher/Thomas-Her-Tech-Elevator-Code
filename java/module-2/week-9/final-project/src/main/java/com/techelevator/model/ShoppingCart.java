@@ -2,7 +2,9 @@ package com.techelevator.model;
 
 import java.math.BigDecimal;
 
-public class CartProduct {
+
+
+public class ShoppingCart {
     private int productId;
     private String productSku;
     private String name;
@@ -13,11 +15,11 @@ public class CartProduct {
     private int userId;
     private int quantity;
 
-    public CartProduct() {
+    public ShoppingCart() {
 
     }
 
-    public CartProduct(int productId, String productSku, String name, String description, BigDecimal price, String imageName, int cartItemId, int userId, int quantity) {
+    public ShoppingCart(int productId, String productSku, String name, String description, BigDecimal price, String imageName, int cartItemId, int userId, int quantity) {
         this.productId = productId;
         this.productSku = productSku;
         this.name = name;

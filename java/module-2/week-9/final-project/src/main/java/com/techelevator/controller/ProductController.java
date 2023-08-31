@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -19,7 +20,7 @@ public class ProductController {
 
     //Dependency Injection
     public ProductController(ProductDao productDao) {
-    this.productDao = productDao;
+        this.productDao = productDao;
     }
 
     //Does not need path as using base path
@@ -29,33 +30,29 @@ public class ProductController {
     }
 
     //path is HTTP request - if running on a service class
-    @RequestMapping(path = "?sku={product_sku}&name={product_name}", method = RequestMethod.GET)
+    //Anything after the question mark is a parameter (SQL)- like in a method - exceptable to have the list endpoint be the path.
+    //The ? does not have to be hardcoded either.
+    //path = "?sku={product_sku}&name={product_name}"
+    @RequestMapping(method = RequestMethod.GET)
     public List<Product> list(@PathVariable String sku, String name) {
         List<Product> foundProducts = productDao.getProduct();
-//        try{
-        if(sku == null || name == null){
-            foundProducts.add(productDao.getProductById(1)); //***Not sure what to do if null, set to product 1 as test
+        //if sku or name is null then return all products
+        if (sku == null || name == null) {
+            return foundProducts;
+
         } else {
             for (Product product : foundProducts) {
                 if (product.getProductSku().equalsIgnoreCase(sku)) {
                     foundProducts.add(product);
-//                } else if (product.getName().equalsIgnoreCase(name)) {
-//                    foundProducts.add(product);
-//                }
                 }
             }
         }
-            return foundProducts;
-//        } catch ()
-//        if (foundProducts == null) {
-//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No Products Found");
-//        } else {
-//            return foundProducts;
-//        }
+
+        return foundProducts;
     }
 
     @RequestMapping(path = "/{id}", method = RequestMethod.GET)
-    public Product product (@PathVariable int id) {
+    public Product product(@PathVariable int id) {
         Product product = productDao.getProductById(id);
         if (product == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No Products Found");
@@ -63,8 +60,6 @@ public class ProductController {
             return product;
         }
     }
-
-
 
 
 }

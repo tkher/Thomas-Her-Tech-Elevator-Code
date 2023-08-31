@@ -7,12 +7,12 @@ import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.security.core.parameters.P;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Component;D
 
 import java.util.ArrayList;
 import java.util.List;
 
-//Missing map to row sets, String sql,
+
 //Test in postman the api endpoints.
 
 @Component
@@ -31,7 +31,7 @@ public class JdbcProductDao implements ProductDao {
     @Override
     public List<Product> getProduct() {
         List<Product> products = new ArrayList<>();
-        String sql = "SELECT * FROM product";
+        String sql = "SELECT * FROM product;";
 
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
@@ -47,12 +47,43 @@ public class JdbcProductDao implements ProductDao {
     }
 
     //    2. Search for a list of products by SKU or Name
-//    @Override
-//    public List<Product> productsBySkuOrName(@PathVariable String sku, String name) {
-//        List<Product> foundProducts = new ArrayList<>();
-//        return foundProducts;
-//
-//    }
+    //2.1 Get product by SKU
+    public List<Product> getProductBySku(String sku) {
+        List<Product> products = new ArrayList<>();
+        String sql = "SELECT * FROM product WHERE product_sku = ?;";
+
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql,sku);
+            while (results.next()) {
+                products.add(mapRowToProduct(results));
+            }
+        }catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Cannot connect to JDBC database", e);
+        }catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+        return products;
+    }
+
+
+    //2.2 Get product by Name
+    public List<Product> getProductByName(String name) {
+        List<Product> products = new ArrayList<>();
+        String sql = "SELECT * FROM product WHERE name = ?;";
+
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, name);
+            while (results.next()) {
+                products.add(mapRowToProduct(results));
+            }
+        }catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Cannot connect to JDBC database", e);
+        }catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+        return products;
+    }
+
 
 
     //    3. Search for product by ID and return product detail

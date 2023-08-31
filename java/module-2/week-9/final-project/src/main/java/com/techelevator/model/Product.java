@@ -5,7 +5,7 @@ import org.springframework.security.core.parameters.P;
 import java.math.BigDecimal;
 
 public class Product {
-    private int productId;
+    private int productId; //Smart to use integer
     private String productSku;
     private String name;
     private String description;
