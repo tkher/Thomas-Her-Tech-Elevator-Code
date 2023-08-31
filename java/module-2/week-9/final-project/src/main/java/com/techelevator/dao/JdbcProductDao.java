@@ -7,7 +7,7 @@ import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.security.core.parameters.P;
-import org.springframework.stereotype.Component;D
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;

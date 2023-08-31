@@ -49,7 +49,8 @@ public class JdbcCartDao implements CartDao{
     }
 
     @Override
-    List<Cart> getCart() {
+    public List<Cart> getCart() {
+        List<Cart> cart = new ArrayList<>();
         return null;
     }
 
