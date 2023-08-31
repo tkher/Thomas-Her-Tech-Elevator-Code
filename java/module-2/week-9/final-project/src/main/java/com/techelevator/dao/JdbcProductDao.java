@@ -20,6 +20,7 @@ public class JdbcProductDao implements ProductDao {
 
     private final JdbcTemplate jdbcTemplate;
 
+    //Why do we have to set the constructor to implement jdbctemplate? is it to so each method has to implement jdbc client?
     public JdbcProductDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }

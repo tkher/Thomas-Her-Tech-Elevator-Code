@@ -1,7 +1,15 @@
 package com.techelevator.dao;
 
+import com.techelevator.exception.DaoException;
 import com.techelevator.model.Cart;
+import com.techelevator.model.CartProduct;
+import com.techelevator.model.Product;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.jdbc.CannotGetJdbcConnectionException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,14 +19,39 @@ import java.util.List;
 @Component
 public class JdbcCartDao implements CartDao{
 
-    private List<Cart> inCart = new ArrayList<>();
+    private final JdbcTemplate jdbcTemplate;
+
+    public JdbcCartDao(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate=jdbcTemplate;
+    }
+
+    private List<Cart> inCart = new ArrayList<>(); //do i really need a list of carts?
 
     //1. Get -  View Shopping Cart: List of products, qty, and prices
         //Additional Details Req: Subtotal cost, Tax amount, Cart Total: Sub + Tax
-    @Override
-    public List<Cart> getCart() {
-        return null;
+
+    public List<CartProduct> getCartProducts() {
+        List<CartProduct> allCartItems = new ArrayList<>();
+        String sql = "SELECT * " +
+                "FROM product INNER JOIN cart_item " +
+                "ON product.product_id = cart_item.product_id;";
+
+        try{
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+            while (results.next()) {
+                allCartItems.add(mapRowToCartProduct(results));
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Cannot connect to JDBC database", e);
+        }catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+
+        return allCartItems;
     }
+
+    @Override
+    List<Cart> getCart();
 
 
 
@@ -45,5 +78,19 @@ public class JdbcCartDao implements CartDao{
         return null;
     }
 
+    private CartProduct mapRowToCartProduct(SqlRowSet results) {
+        CartProduct cartProduct = new CartProduct();
+        cartProduct.setProductId(results.getInt("product_id"));
+        cartProduct.setProductSku(results.getString("product_sku"));
+        cartProduct.setName(results.getString("name"));
+        cartProduct.setDescription(results.getString("description"));
+        cartProduct.setPrice(results.getBigDecimal("price"));
+        cartProduct.setImageName(results.getString("image_name"));
+        cartProduct.setCartItemId(results.getInt("cart_item_id"));
+        cartProduct.setUserId(results.getInt("user_id"));
+        cartProduct.setQuantity(results.getInt("quantity"));
+
+        return cartProduct;
+    }
 
 }
