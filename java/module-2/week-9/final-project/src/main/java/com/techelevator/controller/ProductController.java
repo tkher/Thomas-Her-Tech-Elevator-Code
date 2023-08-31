@@ -34,13 +34,14 @@ public class ProductController {
         List<Product> foundProducts = productDao.getProduct();
 //        try{
         if(sku == null || name == null){
-            foundProducts.add(productDao.getProductById(1)); //***Not sure what to do if null
+            foundProducts.add(productDao.getProductById(1)); //***Not sure what to do if null, set to product 1 as test
         } else {
             for (Product product : foundProducts) {
                 if (product.getProductSku().equalsIgnoreCase(sku)) {
                     foundProducts.add(product);
-                } else if (product.getName().equalsIgnoreCase(name)) {
-                    foundProducts.add(product);
+//                } else if (product.getName().equalsIgnoreCase(name)) {
+//                    foundProducts.add(product);
+//                }
                 }
             }
         }
