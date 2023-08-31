@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("/products")
 public class ProductController {
 
-    private ProductDao productDao;
+    private final ProductDao productDao;
 
     //Dependency Injection
     public ProductController(ProductDao productDao) {
@@ -33,11 +33,15 @@ public class ProductController {
     public List<Product> list(@PathVariable String sku, String name) {
         List<Product> foundProducts = productDao.getProduct();
 //        try{
+        if(sku == null || name == null){
+            foundProducts.add(productDao.getProductById(1)); //***Not sure what to do if null
+        } else {
             for (Product product : foundProducts) {
                 if (product.getProductSku().equalsIgnoreCase(sku)) {
-                 foundProducts.add(product);
-            } else if (product.getName().equalsIgnoreCase(name)) {
-                foundProducts.add(product);
+                    foundProducts.add(product);
+                } else if (product.getName().equalsIgnoreCase(name)) {
+                    foundProducts.add(product);
+                }
             }
         }
             return foundProducts;
