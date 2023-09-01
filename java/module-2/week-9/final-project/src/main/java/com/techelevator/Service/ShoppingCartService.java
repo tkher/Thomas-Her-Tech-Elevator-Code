@@ -1,44 +1,35 @@
-package com.techelevator.dao;
+package com.techelevator.Service;
 
-import com.techelevator.Service.ShoppingCartService;
+import com.techelevator.controller.CartController;
+import com.techelevator.dao.JdbcCartDao;
 import com.techelevator.exception.DaoException;
-import com.techelevator.model.Cart;
 import com.techelevator.model.CartProduct;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
-import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-//may require a CartService and TaxService, instead of putting into a dao
-//No dependency injections on Dao layer
-@Component
-public class JdbcCartDao implements CartDao{
+public class ShoppingCartService {
 
-    private final JdbcTemplate jdbcTemplate;
+    CartProduct cartProduct = new CartProduct();
 
-    public JdbcCartDao(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate=jdbcTemplate;
-    }
+    static JdbcTemplate jdbcTemplate = new JdbcTemplate();
 
-
-    private List<Cart> inCart = new ArrayList<>(); //do i really need a list of carts?
-
-    //1. Get -  View Shopping Cart: List of products, qty, and prices
-        //Additional Details Req: Subtotal cost, Tax amount, Cart Total: Sub + Tax
-    public List<CartProduct> getCartProducts() {
-        List<CartProduct> allCartItems = new ArrayList<>();
+    //1. Cart items and add to a list
+    public static List<CartProduct> getAllCartProducts() {
+        List<CartProduct> cartProducts = new ArrayList<>();
         String sql = "SELECT * " +
                 "FROM product INNER JOIN cart_item " +
-                "ON product.product_id = cart_item.product_id;";
-
+                "ON product.product_id = cart_item.product_id " +
+                "WHERE user_id = 1;";
         try{
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
             while (results.next()) {
-                allCartItems.add(mapRowToCartProduct(results));
+                cartProducts.add(mapRowToCartProduct(results));
             }
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Cannot connect to JDBC database", e);
@@ -46,41 +37,30 @@ public class JdbcCartDao implements CartDao{
             throw new DaoException("Data integrity violation", e);
         }
 
-        return allCartItems;
+        return cartProducts;
     }
 
-    @Override
-    public List<Cart> getCart() {
-        List<Cart> cart = new ArrayList<>();
+    //2. get subtotal of all cart products
+    public BigDecimal getSubtotal() {
+        BigDecimal subtotal = BigDecimal.valueOf(0.00);
+        List <CartProduct> cartProducts = ShoppingCartService.getAllCartProducts();
+        for (CartProduct cartProduct: cartProducts) {
+            BigDecimal price = cartProduct.getPrice();
+            subtotal = subtotal.add(price);
+        }
+        return subtotal;
+    }
+
+    //3. get tax - need a tax service
+
+    //4. get Total - subtotal plus tax
+
+    //get cartProducts, quantity * price, return as JSON object?
+    public BigDecimal getSubTotal() {
         return null;
     }
 
-
-
-    //2. Post - Add product to Cart
-    @Override
-    public Cart addToCart(int id) {
-        return null;
-    }
-
-
-
-
-    //3. Delete - Delete specific item from Cart by ID - entire quantity
-    @Override
-    public Cart removeFromCart(int id) {
-        return null;
-    }
-
-
-
-    //4. Delete - Delete all items in cart
-    @Override
-    public Cart clearCart() {
-        return null;
-    }
-
-    private CartProduct mapRowToCartProduct(SqlRowSet results) {
+    private static CartProduct mapRowToCartProduct(SqlRowSet results) {
         CartProduct cartProduct = new CartProduct();
         cartProduct.setProductId(results.getInt("product_id"));
         cartProduct.setProductSku(results.getString("product_sku"));
