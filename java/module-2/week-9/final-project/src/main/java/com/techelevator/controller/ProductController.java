@@ -3,10 +3,7 @@ package com.techelevator.controller;
 import com.techelevator.dao.ProductDao;
 import com.techelevator.model.Product;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
@@ -33,18 +30,22 @@ public class ProductController {
     //Anything after the question mark is a parameter (SQL)- like in a method - exceptable to have the list endpoint be the path.
     //The ? does not have to be hardcoded either.
     //path = "?sku={product_sku}&name={product_name}"
-    @RequestMapping(method = RequestMethod.GET)
-    public List<Product> list(@PathVariable String sku, String name) {
-        List<Product> foundProducts = productDao.getProduct();
+    @RequestMapping(path = "/products", method = RequestMethod.GET)
+    public List<Product> listBySkuOrName(@RequestParam String sku, @RequestParam String name) {
+        List<Product> foundProducts = new ArrayList<>();
         //if sku or name is null then return all products
         if (sku == null || name == null) {
+            foundProducts = productDao.getProduct();
             return foundProducts;
 
         } else {
-            for (Product product : foundProducts) {
-                if (product.getProductSku().equalsIgnoreCase(sku)) {
+            List<Product> searchProducts = productDao.getProductBySku(sku);
+            for (Product product : searchProducts) {
                     foundProducts.add(product);
                 }
+            List<Product> searchProductName = productDao.getProductByName(sku);
+            for (Product product : searchProductName) {
+                foundProducts.add(product);
             }
         }
 

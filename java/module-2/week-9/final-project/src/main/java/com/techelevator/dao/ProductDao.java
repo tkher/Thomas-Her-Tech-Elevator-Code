@@ -12,6 +12,12 @@ public interface ProductDao {
 //    List<Product> productsBySkuOrName(String sku, String name);
 //    Do not need because both get methods just call the product()
 
+    List<Product> getProductBySku(String sku);
+
+    List<Product> getProductByName(String name);
+
+
+
     Product getProductById(int id);
 
 }
