@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Book;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -41,13 +42,52 @@ public class JdbcBookDao implements BookDao {
 
     @Override
     public Book getBookById(int bookId) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Book book = null;
+
+        String sql = "SELECT * FROM book " +
+                    "WHERE book_id = ?;";
+
+        try{
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql,bookId);
+
+            if(results.next()) {
+                book = mapRowToBook(results);
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+            //throw new UnsupportedOperationException("Not implemented yet");
+        }
+        return book;
     }
 
     @Override
     public Book updateBookRating(int bookId, BigDecimal newRating) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Book book = new Book();
+        book.setStarRating(newRating);
+
+        Book updatedBook = null;
+
+
+        String sql = "UPDATE book SET star_rating = ? " +
+                "WHERE book_id = ?;";
+
+        try{
+            int numberOfRows = jdbcTemplate.update(sql, book.getStarRating());
+
+            if(numberOfRows == 0) {
+                throw new DaoException("Zero rows affected, invalid ID");
+            } else {
+                updatedBook = getBookById(book.getBookId());
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (DataIntegrityViolationException e) {
+            //throw new UnsupportedOperationException("Not implemented yet");
+            throw new DaoException("Data integrity violation", e);
+        }
+        return updatedBook;
     }
+
 
     private Book mapRowToBook(SqlRowSet results) {
         Book book = new Book();
