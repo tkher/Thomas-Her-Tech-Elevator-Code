@@ -33,27 +33,39 @@ public class JdbcPersonDao implements PersonDao {
 
     @Override
     public Person createPerson(Person newPerson) {
-        Person newPerson = null;
+        Person person = null;
 
         String sql = "INSERT INTO person (first_name, last_name, birthdate, deathdate) " +
                     "VALUES (?,?,?,?) " +
                     "RETURNING person_id;";
 
         try{
-            int newPersonId = jdbcTemplate.queryForObject(sql, newPerson.getFirstName(), newPerson.getLastName(), newPerson.getBirthDate(), newPerson.getDeathDate());
+            int newPersonId = jdbcTemplate.queryForObject(sql,int.class, newPerson.getFirstName(), newPerson.getLastName(), newPerson.getBirthDate(), newPerson.getDeathDate());
 
-            newPerson = getPersonById(newPersonId);
+            person = getPersonById(newPersonId);
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
         } catch (DataIntegrityViolationException e) {
             throw new DaoException("Data Integrity violation", e);
         }
-            return newPerson;
+            return person;
     }
 
     @Override
     public int deletePersonById(int personId) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        int numberOfRowsReturned = 0;
+
+        String sql = "DELETE from person WHERE person_id = ?;";
+
+        try {
+            numberOfRowsReturned = jdbcTemplate.update(sql,personId);
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data Integrity violation", e);
+        }
+
+        return numberOfRowsReturned;
     }
 
     private Person mapRowToPerson(SqlRowSet results) {
