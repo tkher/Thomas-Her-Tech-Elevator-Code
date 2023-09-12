@@ -23,11 +23,14 @@ public class JdbcPersonDao implements PersonDao {
         String sql = "SELECT person_id, first_name, last_name, birthdate, deathdate" +
                 " FROM person WHERE person_id = ?;";
 
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, personId);
-        if (results.next()) {
-            person = mapRowToPerson(results);
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, personId);
+            if (results.next()) {
+                person = mapRowToPerson(results);
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
         }
-
         return person;
     }
 
@@ -55,10 +58,18 @@ public class JdbcPersonDao implements PersonDao {
     public int deletePersonById(int personId) {
         int numberOfRowsReturned = 0;
 
-        String sql = "DELETE from person WHERE person_id = ?;";
+        String deleteScreenWriterSql = "DELETE FROM movie_screenwriter WHERE screenwriter_id = ?;";
+
+        //String deleteMovieIds = "DELETE FROM movie WHERE director_id = ? OR music_by_id = ?;";
+
+        String deletePersonSql = "DELETE FROM person WHERE person_id = ?;";
 
         try {
-            numberOfRowsReturned = jdbcTemplate.update(sql,personId);
+            jdbcTemplate.update(deleteScreenWriterSql,personId);
+
+            //jdbcTemplate.update(deleteMovieIds,personId,personId);
+
+            numberOfRowsReturned = jdbcTemplate.update(deletePersonSql,personId);
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
         } catch (DataIntegrityViolationException e) {
