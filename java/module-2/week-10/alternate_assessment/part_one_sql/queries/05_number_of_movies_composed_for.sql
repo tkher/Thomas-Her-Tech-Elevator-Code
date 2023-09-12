@@ -3,4 +3,4 @@
 -- Order the results by the release year in descending order (highest first), then by alphabetical order by title.
 -- (28 rows)
 
-SELECT movie.title, movie.release_year, person.first_name | ' ' | person.last_name as director, person.first_name | ' ' | person.last_name as director
+--SELECT movie.title, movie.release_year, person.first_name | ' ' | person.last_name as director, person.first_name | ' ' | person.last_name as director
