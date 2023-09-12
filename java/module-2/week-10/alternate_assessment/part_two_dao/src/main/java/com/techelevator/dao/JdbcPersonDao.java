@@ -1,6 +1,9 @@
 package com.techelevator.dao;
 
+import com.techelevator.exception.DaoException;
 import com.techelevator.model.Person;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
@@ -30,7 +33,22 @@ public class JdbcPersonDao implements PersonDao {
 
     @Override
     public Person createPerson(Person newPerson) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Person newPerson = null;
+
+        String sql = "INSERT INTO person (first_name, last_name, birthdate, deathdate) " +
+                    "VALUES (?,?,?,?) " +
+                    "RETURNING person_id;";
+
+        try{
+            int newPersonId = jdbcTemplate.queryForObject(sql, newPerson.getFirstName(), newPerson.getLastName(), newPerson.getBirthDate(), newPerson.getDeathDate());
+
+            newPerson = getPersonById(newPersonId);
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data Integrity violation", e);
+        }
+            return newPerson;
     }
 
     @Override
