@@ -1,0 +1,43 @@
+/* Why isn't the background color showing? */
+html {
+  height: 100%;
+  background: rgb(217,226,232);
+  background: linear-gradient(0deg, rgba(217,226,232,0.891281512605042) 0%, rgba(141,149,232,0.8996848739495799) 69%);
+}
+
+/*
+I want to apply these styles to the body element,
+but it's not working...
+.body {
+  box-sizing: border-box;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  text-align: center;
+  margin: 0;
+}
+
+I want my h1 to have a background and a nice blueviolet color,
+but it's not working...
+h1 {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 3rem;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  padding: 20px;
+  background-color: rgba(224, 218, 203, 0.459);
+  color-scheme: blueviolet;
+}
+
+After I create the <form> element in the html,
+I want some space at the bottom of the input element
+
+I want my house sections to display horizontally across with a border
+section {
+  border: 1px solid black;
+  width: 200px;
+}
+
+ul {
+  list-style-position: inside;
+  padding: 0 10px;
+}
+*/
