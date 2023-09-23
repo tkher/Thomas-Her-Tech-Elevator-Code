@@ -1,0 +1,20 @@
+body {
+    background-color: blueviolet;
+    color: gold;
+}
+
+h1 {
+    text-align: center;
+    color: whitesmoke;
+}
+
+h2{
+    color: rgb(20, 241, 120);
+    text-decoration: underline;
+    text-align: left;
+}
+
+thead {
+    text-align: center;
+}
+
