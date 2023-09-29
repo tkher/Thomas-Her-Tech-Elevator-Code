@@ -1,0 +1,16 @@
+.btn-primary {
+  background-color: pink;
+  color: green;
+}
+
+.btn-primary:hover {
+  background-color: indigo;
+}
+
+h1 {
+  font-family: 'Pixelify Sans', cursive;
+}
+
+img.card-img-top { 
+  width: 200px;
+}
