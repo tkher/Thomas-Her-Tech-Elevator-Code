@@ -135,7 +135,7 @@ You'll make changes in the corresponding `style.css` file in each step. *Do not 
 
 Initially, this page displays all items listed down the page, like this:
 
-![Align rows before](./img/part1-2-1-before.png)
+![Align rows before](./img/part1-2-1-nbefore.png)
 
 Your task is to use flexbox to display the boxes in a row with equal space on each side of the boxes, like this:
 
