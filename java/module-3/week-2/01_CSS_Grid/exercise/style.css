@@ -13,6 +13,79 @@ body {
     background-color: rgba(192, 192, 192, 0.1);
 }
 
+#main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 50px;
+    row-gap: 20px;
+    align-items: center;
+    justify-items: center;
+    grid-template-areas:
+        "headline headline picture"
+        "quote quote picture"
+        "profile profile contact"
+        "experience experience experience";
+    
+    
+    }
+
+#headline {
+    grid-area: headline;
+    width: 100%;
+    height: auto;
+}
+
+#student-picture {
+    grid-area: picture;
+    text-align: center;
+    
+    
+}
+
+#student-quote {
+    grid-area: quote;
+}
+ 
+#student-profile {
+    grid-area: profile;
+    
+    margin: 0;
+}
+
+#student-contact {
+    grid-area: contact;
+    text-align: center;
+    
+}
+
+#experience-grid {
+    grid-area: experience;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    row-gap: 20px;
+    grid-template-areas: 
+        "code code"
+        "database database"
+        "web design";
+}
+
+#experience-code {
+    grid-area: code
+}
+
+#experience-database {
+    grid-area: database;
+}
+
+#experience-web {
+    grid-area: web;
+}
+
+#experience-design {
+    grid-area: design;
+}
+
 h1 {
     font-size: 2em;
 }
@@ -49,4 +122,68 @@ header img {
 
 #student-picture img{
     border-radius: 50%;
+}
+
+footer {
+    font-size: 16px;
+}
+
+@media screen and (max-width: 1024px) {
+
+    body{
+        background-color: aqua;
+    }
+
+    #main-grid{
+        grid-template-columns: 1fr 1fr;
+        justify-items: center;
+        gap: 35px;
+        row-gap: 20px;
+        grid-template-areas:
+            "headline headline"
+            "quote picture"
+            "quote contact"
+            "profile profile"
+            "experience experience";
+    }
+    
+    #experience-grid{
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        row-gap: 20px;
+        grid-template-areas:
+            "code web"
+            "database design";
+    }
+}
+
+@media screen and (max-width: 450px) {
+
+    body{
+        background-color: red;
+    }
+
+    #main-grid{
+        grid-template-columns: 100%;
+        grid-template-areas: 
+            "headline"
+            "picture"
+            "contact"
+            "quote"
+            "profile"
+            "experience";
+
+
+    }
+
+    #experience-grid {
+        grid-template-areas: 
+            "code"
+            "web"
+            "database"
+            "design";
+    }
+
+
+    
 }
