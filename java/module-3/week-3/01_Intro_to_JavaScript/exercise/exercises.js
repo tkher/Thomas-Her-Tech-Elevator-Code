@@ -167,6 +167,16 @@ In all other cases return the original number.
 	filterEvens([100, 8, 21, 24, 62, 9, 7]) → [100, 8, 24, 62]
 */
 
+		function filterEvens (numbers) {
+			const newArray = [];
+
+			for (let i=0; i < numbers.length; i++) {
+				if (numbers[i] % 2 == 0) {
+					newArray.push(numbers[i]); 
+				}
+			}
+			return newArray;
+		}
 /*
 10. **filterBigNumbers** Write a function that filters numbers greater than or equal to 100.
 
@@ -174,6 +184,17 @@ In all other cases return the original number.
 	filterBigNumbers([3, 2, 7, 1, -100, -120]) → []
 	filterBigNumbers([]) → []
 */
+
+		function filterBigNumbers (numbers) {
+			const newArray = [];
+
+			for (let i=0; i < numbers.length; i++) {
+				if (numbers[i] >= 100) {
+					newArray.push(numbers[i]); 
+				}
+			}
+			return newArray;
+		}
 
 /*
 11. **filterMultiplesOfX** Write a function to filter numbers that are a multiple of a 
