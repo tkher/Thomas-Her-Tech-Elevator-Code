@@ -20,6 +20,20 @@
  * @returns {boolean} true if they are admitted
  */
 
+    function isAdmitted (gpa, satScore=0, recommendation = false) {
+        if (gpa > 3.0 && recommendation) {
+            return true;
+        } else if (satScore > 1200 && recommendation) {
+            return true;
+        } else if (gpa >= 4.0) {
+            return true;
+        } else if (satScore > 1300) {
+            return true; 
+        } else {
+            return false;
+        }
+    }
+
 /**
  * Write a function called useParameterToFilterArray that accepts a filter function
  * as a parameter. Use this function to filter unfilteredArray and return the result.
@@ -28,6 +42,12 @@
  * @returns {number[]} the filtered array
  */
 let unfilteredArray = [1, 2, 3, 4, 5, 6];
+
+    function useParameterToFilterArray (filterFunction) {
+        return unfilteredArray.filter((number=0) => {
+            return filterFunction(number);
+        });
+    }
 
 /**
  * Write a function called makeNumber that takes two strings
@@ -42,6 +62,11 @@ let unfilteredArray = [1, 2, 3, 4, 5, 6];
  * @returns {number} the resultant number
  */
 
+    function makeNumber (first, second='') {
+        const numberString = first + second;
+        return Number.parseInt(numberString);
+    }
+
 /**
  * Write a function called addAll that takes an unknown number of parameters
  * and adds all of them together. Return the sum.
@@ -50,11 +75,27 @@ let unfilteredArray = [1, 2, 3, 4, 5, 6];
  * @returns {number} the sum of all the parameters (or arguments)
  */
 
+    function addAll (...args) {
+        let number = 0;
+        for (arg of args) {
+            number += arg;
+        }
+        return number;
+    }
+
 /*
  * Write and document a function called makeHappy that takes
  * an array and prepends 'Happy ' to the beginning of all the
  * words and returns them as a new array. Use the `map` function.
  */
+
+/**
+ * Function named is makeHappy
+ * Takes an arry and prepends 'Happy" to the beginning of all the words" 
+ * @param {}
+ * @returns {}
+ */
+    
 
 /*
  * Write and document a function called getFullAddressesOfProperties

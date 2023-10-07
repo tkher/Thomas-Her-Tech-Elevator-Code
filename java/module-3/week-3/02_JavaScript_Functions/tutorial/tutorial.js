@@ -6,6 +6,9 @@
  * @returns {boolean} true
  */
 
+  function turnOn () {
+    return true;
+  }
 /**
  * Create a function called returnsName.
  *
@@ -14,6 +17,10 @@
  * @returns {string} your name
  */
 
+  function returnsName () {
+    return 'Tom';
+  }
+
 /**
  * Create a function called returnGivenParameter that takes a
  * single parameter and then returns it.
@@ -21,6 +28,10 @@
  * @param {any} thing any value
  * @returns {any} the parameter that we were given
  */
+
+  function returnGivenParameter (thing) {
+    return thing;
+  }
 
 /**
  * Now create a function called takeOptionalParameter
@@ -31,6 +42,10 @@
  * @param {any} [thing=0] any value
  * @returns {any} the parameter given, or 0 if none is given
  */
+
+  function takeOptionalParameter (thing = 0) {
+    return thing;
+  }
 
 /**
  * Write an anonymous function in the filter that will
@@ -44,9 +59,9 @@
  * @returns {number[]} the filtered array
  */
 function filterArrayToOnlySingleDigitNumbers(arrayToFilter) {
-  return arrayToFilter.filter(
-    // WRITE CODE HERE
-  );
+  return arrayToFilter.filter( (number) => {
+    return number < 10 && number > -10;
+  });
 }
 
 /**
@@ -60,8 +75,9 @@ function filterArrayToOnlySingleDigitNumbers(arrayToFilter) {
  * @returns {number[]} a array that has each number doubled
  */
 function mapArrayToDoubleAllNumbers(arrayToDouble) {
-  return arrayToDouble.map(
-    // WRITE CODE HERE
+  return arrayToDouble.map( (number) => {
+    return number * 2; 
+  }
   );
 }
 
@@ -77,7 +93,9 @@ function mapArrayToDoubleAllNumbers(arrayToDouble) {
  * @returns {number} the product of the array
  */
 function reduceArrayToFindProduct(arrayToMultiply) {
-  return arrayToMultiply.reduce(
+  return arrayToMultiply.reduce( (calculatedSum, currentNumber) => {
+    return calculatedSum * currentNumber;
+  }
     // WRITE CODE HERE
   );
 }
@@ -90,7 +108,8 @@ function reduceArrayToFindProduct(arrayToMultiply) {
  * @returns {string[]} the filtered array
  */
 function filterStringArrayForSon(arrayToFilter) {
-  return arrayToFilter.filter(
+  return arrayToFilter.filter((element) => { 
+    return element.includes('son'); }
     // WRITE CODE HERE
   );
 }
@@ -103,7 +122,8 @@ function filterStringArrayForSon(arrayToFilter) {
  * @returns {string[]} names in all upper case
  */
 function makeNamesAllCaps(arrayToCapitalize) {
-  return arrayToCapitalize.map(
+  return arrayToCapitalize.map((element) => { 
+    return element.toUpperCase(); }
     // WRITE CODE HERE
   );
 }
