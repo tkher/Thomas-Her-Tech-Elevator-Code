@@ -1,0 +1,11 @@
+span {
+  margin: 0 5px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: green;
+}
+
+.new-elements {
+  color: blueviolet;
+  font-size: 1.5rem;
+}
