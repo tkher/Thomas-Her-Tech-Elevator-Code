@@ -1,0 +1,28 @@
+:root {
+  --max-image-height: 300px;
+}
+
+button {
+  margin: 10px;
+  width: 200px;
+}
+
+input[placeholder='quantity']{
+  margin-left: 10px;
+}
+
+.buttons {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.button-label{
+  display: flex;
+  align-items: center;
+}
+
+img {
+  height: var(--max-image-height);
+}
