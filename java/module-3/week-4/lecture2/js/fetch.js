@@ -28,7 +28,7 @@ function addButtonListeners(){
 function onGetProduct(){
 
   // For GET requests, the following is optional, { method: 'GET' }
-  fetch(PRODUCTS_ENDPOINT, { method: 'GET' })
+  fetch(PRODUCTS_ENDPOINT, { method: 'GET' })  //When setting endpoint, you can define the method
   .then( response => {
     console.log(`response: ${response}`);
     return response.json();
@@ -38,7 +38,7 @@ function onGetProduct(){
     displayData(data);
     return data;
   })
-  .catch(error => {
+  .catch(error => {                         //this is like the try-catch 
     console.error('error ', error)
   });
 
@@ -107,7 +107,7 @@ function onPostCart(){
       'Authorization': `Bearer ${BEARER_TOKEN}`,
       'Content-type': 'application/json',
     },
-    body: JSON.stringify(postData)
+    body: JSON.stringify(postData)  // stringify turns json into a string 
   })
   .then((response) => {
     return response.json();
