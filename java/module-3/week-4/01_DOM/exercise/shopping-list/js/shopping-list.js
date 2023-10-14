@@ -1,8 +1,8 @@
 // add pageTitle
-let title = document.getElementById('title');
-let groceriesId = document.getElementById('groceries');
+const title = document.getElementById('title');
+const groceriesId = document.getElementById('groceries');
 
-let pageTitle = 'My Shopping List';
+let pageTitle = "My Shopping List";
 let groceries = [];
 
 
