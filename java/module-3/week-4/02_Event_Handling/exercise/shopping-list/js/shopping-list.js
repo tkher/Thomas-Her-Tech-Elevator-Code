@@ -67,26 +67,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   //mark all items complete with All button push 
-  const allItemsComplete = document.getElementById('toggleAll');
-  allItemsComplete.addEventListener('click', () => {
-    toBuyList.forEach((item) => {
-      item.classList.add('completed');
-      item.querySelector('i').classList.add('completed');
+  const toggleAll = document.getElementById('toggleAll');
+  let allItemsIncomplete = true;
+  toggleAll.addEventListener('click', () => {
+    if (allItemsIncomplete) {
+      toBuyList.forEach((item) => {
+        item.classList.add('completed');
+        item.querySelector('i').classList.add('completed');
+      })
+      toggleAll.innerText = "Mark All Incomplete";
+      allItemsIncomplete = false;
+    } else {
+      toBuyList.forEach((item) => {
+      item.classList.remove('completed');
+      item.querySelector('i').classList.remove('completed');
     })
-    allItemsComplete.innerText = "Mark All Incomplete";
+    toggleAll.innerText = "Mark All Complete";
+    allItemsIncomplete = true; }
   });
 
-  //mark all items incomplete with all button push 
-//  const allItemsIncomplete = document.getElementById('toggleAll');
-//  allItemsIncomplete.addEventListener('click', () => {
-//    toBuyList.forEach((item) => {
-//      if (item.classList.contains ('completed')) {
-//        item.classList.remove('completed');
-//       item.querySelector('i').classList.remove('completed');
-//      }
-//    })
-    
-//  });
+
+  
   
 
 })
