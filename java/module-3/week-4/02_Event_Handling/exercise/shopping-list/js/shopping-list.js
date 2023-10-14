@@ -36,3 +36,63 @@ function displayGroceries() {
     ul.appendChild(li);
   });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  setPageTitle();
+  displayGroceries();
+
+  //reference for each list item
+  const toBuyList = document.querySelectorAll('li')
+
+  //add class 'completed' for every classlist item with no class, also for circle
+  toBuyList.forEach((item) => {
+    item.addEventListener('click', () => {
+      if(!item.classList.contains('completed')) {
+        item.classList.add('completed');
+        item.querySelector('i').classList.add('completed');
+      }
+    })
+    
+  });
+
+  //mark incomplete if double click
+  toBuyList.forEach((item) => {
+    item.addEventListener('dblclick', () => {
+      if (item.classList.contains('completed')) {
+        item.classList.remove('completed');
+        item.querySelector('i').classList.remove('completed');
+      }
+    })
+  });
+
+
+  //mark all items complete with All button push 
+  const allItemsComplete = document.getElementById('toggleAll');
+  allItemsComplete.addEventListener('click', () => {
+    toBuyList.forEach((item) => {
+      item.classList.add('completed');
+      item.querySelector('i').classList.add('completed');
+    })
+    
+  });
+
+  //mark all items incomplete with all button push 
+//  const allItemsIncomplete = document.getElementById('toggleAll');
+//  allItemsIncomplete.addEventListener('click', () => {
+//    toBuyList.forEach((item) => {
+//      if (item.classList.contains ('completed')) {
+//        item.classList.remove('completed');
+//       item.querySelector('i').classList.remove('completed');
+//      }
+//    })
+    
+//  });
+
+  //change the text?
+  //const changeText = document.querySelector('.completed');
+  //changeText.addEventListener('click', () => { 
+    //changeText.innerText = "Mark All Incomplete";
+  //})
+  
+
+})
