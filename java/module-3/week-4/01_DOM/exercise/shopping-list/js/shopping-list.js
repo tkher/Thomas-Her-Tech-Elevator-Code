@@ -27,9 +27,7 @@ function myGroceries() {
  * of the pageTitle variable that was set above.
  */
 function setPageTitle() {
-  const heading = document.createElement('h1');
-  heading.innerText = pageTitle;
-  title.appendChild(heading);
+  title.innerText = pageTitle;
 }
 
 /**
