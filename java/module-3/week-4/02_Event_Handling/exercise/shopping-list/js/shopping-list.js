@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
       item.classList.add('completed');
       item.querySelector('i').classList.add('completed');
     })
-    
+    allItemsComplete.innerText = "Mark All Incomplete";
   });
 
   //mark all items incomplete with all button push 
@@ -87,12 +87,6 @@ document.addEventListener("DOMContentLoaded", () => {
 //    })
     
 //  });
-
-  //change the text?
-  //const changeText = document.querySelector('.completed');
-  //changeText.addEventListener('click', () => { 
-    //changeText.innerText = "Mark All Incomplete";
-  //})
   
 
 })
