@@ -1,0 +1,54 @@
+body {
+    height: 100vh;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body * {
+    box-sizing: border-box;
+}
+
+#grid-containter {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: 
+        "header     header          header"
+        "hero       hero            aside"
+        "title      main-article    aside"
+        "article1   article2        article3";
+}
+
+header {
+    grid-area: header;
+}
+
+#hero-img {
+    grid-area: hero;
+}
+
+#grid-container > h1 {
+    grid-area: title;
+}
+
+#main-article {
+    grid-area: main-article;
+}
+
+#grid-container > aside {
+    grid-area: aside;
+}
+
+
+#grid-container > .article:nth-child(1) {
+    grid-area: article1;
+    background-color: red;
+}
+
+#grid-container > .article:nth-child(2) {
+    grid-area: article2;
+}
+
+#grid-container > .article:nth-child(3) {
+    grid-area: article3;
+}
