@@ -82,15 +82,23 @@ addProductsToList();
 //**step 8 */
 //Add event handlier for shopping Cart
 //create window-Alert
+function emptyWindowMessage () {
+    const windowMessage = querySelector('')
+    let cartItemAdded = false;
+
+    if(!cartItemAdded) {
+
+    }
+}
 
 
 
 
 //event handlier
-const toggleCart = document.querySelectorAll('.cart');
-toggleCart.addEventListener('click', () => {
+//const toggleCart = document.querySelectorAll('.cart');
+//toggleCart.addEventListener('click', () => {
     
-})
+//})
 
 
 });
@@ -109,11 +117,11 @@ toggleCart.addEventListener('click', () => {
 //************************UN-USED CODE: TO DELETE***************************/
 //***********************test area********************
 
-console.log(productCardList[0].children[3].children[0]);
+
 
 
 //gets the 1st attribute
-const test = productCardList[0].children[0].getAttribute('class');
+//const test = productCardList[0].children[0].getAttribute('class');
 
 // **This selected ths sku of the 1st item
 //productCardList[0].children[0]

@@ -54,7 +54,10 @@ header {
     margin-left: auto;
 }
 
-.nav-button:last-child
+.nav-button:nth-last-child(2){
+    flex-basis:50%;
+    margin-left: 40%;
+}
 
 
 
