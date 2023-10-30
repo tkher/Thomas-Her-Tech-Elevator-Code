@@ -11,7 +11,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><input type="text" id="firstNameFilter"/></td>
+        <td><input type="text" id="firstNameFilter" v-model="search"/></td>
         <td><input type="text" id="lastNameFilter"/></td>
         <td><input type="text" id="usernameFilter"/></td>
         <td><input type="text" id="emailFilter"/></td>
@@ -24,14 +24,23 @@
         </td>
       </tr>
       <!-- user listing goes here -->
+      <tr v-for="user in users" :key="user.index">
+          <td>{{user.firstName }}</td>
+          <td>{{user.lastName}}</td>
+          <td>{{user.username}}</td>
+          <td>{{user.emailAddress}}</td>
+          <td>{{user.status}}</td>
+      </tr>
     </tbody>
   </table>
 </template>
 
 <script>
+import { computed } from 'vue'
 export default {
   data() {
     return {
+      search: '',
       users: [
         { firstName: 'John', lastName: 'Smith', username: 'jsmith', emailAddress: 'jsmith@gmail.com', status: 'Active' },
         { firstName: 'Anna', lastName: 'Bell', username: 'abell', emailAddress: 'abell@yahoo.com', status: 'Active' },
@@ -41,6 +50,10 @@ export default {
         { firstName: 'Mark', lastName: 'Smith', username: 'msmith', emailAddress: 'msmith@foo.com', status: 'Inactive' }
       ]
     }
+    //computed: {
+      // firstName: 
+    // }
+    
   }
 }
 </script>
