@@ -2,8 +2,10 @@
   <section class="todo-list">
     <h1>My Daily Routine</h1>
     <ul>
+      <!--This is how you import the vuex store to your componet. 
+      Vuex is unverisal and is accessbile by all component (does not need to be imported)  -->
       <li v-for="todo in $store.state.todos" v-bind:key="todo.name" v-bind:class="{ 'todo-completed': todo.done }">
-        <input type="checkbox" name="checkbox-done" v-model="todo.done"/>
+        <input type="checkbox" name="checkbox-done" v-bind:checked="todo.done" v-on:click="checkTodoBox(todo)"/>
         <span v-bind:class="{ completed: todo.done }">{{todo.name}}</span>
       </li>
     </ul>
@@ -12,6 +14,11 @@
 
 <script>
 export default {
+  methods: {
+  checkTodoBox(todo) {
+    this.$store.commit('FLIP_DONE', todo);
+  }
+}
   
 }
 </script>

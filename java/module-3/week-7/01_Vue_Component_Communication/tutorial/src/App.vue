@@ -1,18 +1,22 @@
 <template>
   <div id="todo-app">
+    <todo-summary />
     <todo-list />
-    <new-todo />
+    <new-todo /> <!-- new component must be added here as well-->
+  
   </div>
 </template>
 
-<script>
+<script> /*here is were we load the componets into the main app*/
 import TodoList from './components/TodoList.vue';
 import NewTodo from './components/NewTodo.vue';
+import TodoSummary from './components/TodoSummary.vue';
 
 export default {
   components: {
     TodoList,
-    NewTodo
+    NewTodo,
+    TodoSummary
   }
 }
 </script>

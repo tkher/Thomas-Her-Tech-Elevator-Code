@@ -1,3 +1,5 @@
+/*This is the main vuex data store that will hold all data for the components*/
+
 import { createStore as _createStore } from 'vuex';
 
 export function createStore() {
@@ -14,9 +16,16 @@ export function createStore() {
         { name: 'Fix a bug', done: false, category: 'Work' },
       ]
     },
+    /*Step 3- This allows us the 2-way binding between the Newtodo component, 
+    and storing in the vuex datastore*/
     mutations: {
       ADD_NEW_TODO(state, todo) {
         state.todos.push(todo);
+      },
+      /* the Add_new_todo take the new todo passed in by the component, 
+      and pushes it to the State(data) array. */
+      FLIP_DONE(state, todo) {
+        todo.done = ! todo.done;
       }
     },
     actions: {},

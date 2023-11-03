@@ -1,6 +1,7 @@
 <template>
   <section class="new-todo">
-    <form v-on:submit.prevent="saveTodo">
+    <form v-on:submit.prevent="saveTodo"> <!-- the "v-on:submit.prevent="saveTodo", configures the form to call the 'saveTodo" method. 
+                                                  (submit.prevent - submit event will no longer reload the page) -->
       <input type="text" name="input-name" placeholder="Name" v-model="newTodo.name">
       <select name="select-category" v-model="newTodo.category">
         <option value="" disabled>--- Select a category ---</option>
@@ -20,6 +21,8 @@ export default {
     }
   },
   methods: {
+    /*after the new Todo has been mutated to the state, this method gives a 'false/done' status 
+    and "commits it" to the datastore - this allows the data to be cleared for the next todo*/
     saveTodo() {
       this.newTodo.done = false;
       this.$store.commit('ADD_NEW_TODO', this.newTodo);
