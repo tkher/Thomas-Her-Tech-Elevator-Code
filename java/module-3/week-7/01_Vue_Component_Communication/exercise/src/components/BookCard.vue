@@ -1,12 +1,17 @@
 <template>
-  <div class="card">
-
+  <div class="card" v-bind:class="{read:book.read}">
+<h2 class="book-title"> {{book.title}} </h2>
+<h3 class="book-author"> {{book.author}} </h3>
+<img class="book-image" :src="'http://covers.openlibrary.org/b/isbn/' + book.isbn + '-M.jpg'"/> 
+  <button v-bind:class="{'mark-read':book.read, 'mark-unread':!book.read}">
+    {{book.read ? 'Unread': 'Read'}}</button>
   </div>
 </template>
 
 <script>
 export default {
-
+name:"book-card",
+props: ['book']
 }
 </script>
 
