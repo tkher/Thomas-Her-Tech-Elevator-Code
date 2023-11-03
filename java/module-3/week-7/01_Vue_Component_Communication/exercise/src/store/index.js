@@ -30,7 +30,12 @@ export function createStore() {
         }
       ],
     },
-    mutations: {},
+    mutations: {
+      TOGGLE_READ_STATE(state, isbn) {
+        const book = this.state.books.find(b => b.isbn === isbn);
+        book.read =!book.read;
+      }
+    },
     actions: {},
     modules: {},
     // Strict should not be used in production code. It is used here as a
