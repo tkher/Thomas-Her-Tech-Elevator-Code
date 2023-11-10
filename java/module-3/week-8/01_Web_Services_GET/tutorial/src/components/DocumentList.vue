@@ -25,6 +25,9 @@
 </template>
 
 <script>
+//step 4.2 - import DocsService 
+import docsService from '../services/DocsService';
+
 export default {
   data() {
     return {
@@ -47,8 +50,12 @@ export default {
       this.$router.push({name: 'DocumentView', params: { id: id }});
     }
   },
-  created() {
 
+  //We are setting the data()'s docs array to the retrieved array from DocService
+  created() {
+    docsService.list().then(response => {
+      this.docs = response.data;
+    })
   }
 };
 </script>

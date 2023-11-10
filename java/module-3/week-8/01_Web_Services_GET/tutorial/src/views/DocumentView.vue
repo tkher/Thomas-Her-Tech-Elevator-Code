@@ -7,6 +7,8 @@
 
 <script>
 import DocumentDetail from '../components/DocumentDetail.vue';
+import DocsService from '../services/DocsService';
+
 
 export default {
   components: {
@@ -18,7 +20,11 @@ export default {
     };
   },
   created() {
-
+    DocsService
+      .get(this.$route.params.id)
+      .then(response => {
+        this.document = response.data;
+      });
   }
 };
 </script>
