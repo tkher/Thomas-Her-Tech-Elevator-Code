@@ -36,8 +36,17 @@ export default {
   methods: {
     deleteMessage() {
       if (confirm("Are you sure you want to delete this message? This action cannot be undone.")) {
-        
         // TODO - Do a delete, then navigate to Topic Details on success
+        messageService.deleteMessage(this.message.id)
+        .then(response => {
+          if(response.status === 200){
+            this.$router.push({name: 'TopicDetailsView'});
+          }
+        })
+        .catch(error => {
+          this.handleErrorResponse(error);
+        })
+
         // For errors, call handleErrorResponse
 
       }

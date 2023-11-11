@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import MessageService from '../services/MessageService';
 import messageService from '../services/MessageService';
 
 export default {
@@ -47,13 +48,27 @@ export default {
       }
       // Check for add or edit
       if (this.editMessage.id === 0) {
-        
         // TODO - Do an add, then navigate Home on success.
+        MessageService.createMessage(this.editMessage)
+        .then(response => {
+          if(response.status === 201)
+          this.$router.push({name: 'TopicDetailsView'});
+        })
         // For errors, call handleErrorResponse
-
+        .catch(error => {
+          this.handleErrorResponse(error);
+        })  
       } else {
-        
         // TODO - Do an edit, then navigate back to Message Details on success
+        MessageService.updateMessage(this.editMessage.id, this.editMessage)
+          .then(response => {
+            if(response.status === 200){
+              this.$router.push({name: 'MessageDetailsView'})
+            }
+          })
+          .catch((error) => {
+          this.handleErrorResponse(error)
+          })
         // For errors, call handleErrorResponse
 
       }
