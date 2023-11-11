@@ -4,44 +4,60 @@
   </div>
   <div v-else>
     <nav>
-      <router-link v-bind:to="{ name: 'TopicDetailsView', params: { topicId: topicId } }">Back to Topic Details</router-link>
+      <router-link
+        v-bind:to="{ name: 'TopicDetailsView', params: { topicId: topicId } }"
+        >Back to Topic Details</router-link
+      >
     </nav>
     <message-details v-bind:message="message" />
   </div>
 </template>
 
 <script>
-import MessageDetails from '../components/MessageDetails.vue';
+import MessageDetails from "../components/MessageDetails.vue";
+import MessageService from "../services/MessageService";
 
 export default {
   components: {
     MessageDetails,
   },
-  data(){
+  data() {
     return {
       topicId: this.$route.params.topicId,
       message: {},
-      isLoading: true
-    }
+      isLoading: true,
+    };
   },
   methods: {
     getMessage(id) {
-      
+      this.isLoading = true;
+      MessageService.getMessage(id)
+        .then((response) => {
+          this.message = response.data;
+        })
+        .catch((error) => {
+          this.errorMessage = error.response.statusText;
+        })
+        .finally(() => {
+          this.isLoading = false;
+        });
       // TODO - Get data from API and set `topics` property
-
     },
     handleErrorResponse(error) {
       if (error.response.status == 404) {
-          this.$router.push({name: 'NotFoundView'});
-        } else {
-          this.isLoading = false;
-          this.$store.commit('SET_NOTIFICATION', `Could not get message data from server.`);
-        }
-    }
+        this.$router.push({ name: "NotFoundView" });
+      } else {
+        this.isLoading = false;
+        this.$store.commit(
+          "SET_NOTIFICATION",
+          `Could not get message data from server.`
+        );
+      }
+    },
   },
   created() {
     this.getMessage(this.$route.params.messageId);
-  }
+  },
 };
 </script>
 
