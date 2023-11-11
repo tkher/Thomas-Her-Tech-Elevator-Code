@@ -28,6 +28,13 @@ export default {
     getTopics() {
       TopicService.list().then(response => {
         this.topics = response.data;
+      
+      })
+      .catch(error => {
+        this.errorMessage = error.response.statusText;
+      }) 
+      .finally(() => {
+        this.isLoading = false;
       })
       // TODO - Get data from API and set `topics` property
 

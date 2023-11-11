@@ -12,6 +12,7 @@
 
 <script>
 import TopicDetails from '../components/TopicDetails.vue';
+import TopicService from '../services/TopicService';
 
 export default {
   components: {
@@ -24,11 +25,21 @@ export default {
     }
   },
   methods: {
+
     getTopic(id) {
-
       // TODO - Get data from API and set `topics` property
-
-    },
+      this.isLoading=true;
+    TopicService.getTopic(id)
+    .then((response) => {
+      this.topic = response.data;
+    })
+    .catch((error) => {
+      this.errorMessage = error.response.statusText;
+    })
+    .finally(() => {
+      this.isLoading = false;
+    })
+  },
     handleErrorResponse(error) {
       if (error.response.status == 404) {
           this.$router.push({name: 'NotFoundView'});
