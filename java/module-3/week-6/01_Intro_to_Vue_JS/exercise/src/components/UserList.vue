@@ -32,7 +32,7 @@
         </td>
       </tr>
       <!-- user listing goes here -->
-      <tr v-for="user in filteredList" :key="user.index">
+      <tr v-for="user in filteredList" :key="user.index" v-bind:class="{'active':user.status =='Active', 'inactive':user.status == 'Inactive' }">
         <td>{{ user.firstName }}</td>
         <td>{{ user.lastName }}</td>
         <td>{{ user.username }}</td>
@@ -130,6 +130,9 @@ td {
 }
 tr.inactive {
   color: red;
+}
+tr.active {
+  color: green;
 }
 input,
 select {
