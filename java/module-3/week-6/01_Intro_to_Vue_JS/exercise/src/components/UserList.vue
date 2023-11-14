@@ -131,9 +131,6 @@ td {
 tr.inactive {
   color: red;
 }
-tr.active {
-  color: green;
-}
 input,
 select {
   font-size: 16px;
