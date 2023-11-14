@@ -1,22 +1,30 @@
 <template>
   <table id="tblUsers">
     <thead>
-    <tr>
+      <tr>
         <th>First Name</th>
         <th>Last Name</th>
         <th>Username</th>
         <th>Email Address</th>
         <th>Status</th>
-    </tr>
+      </tr>
     </thead>
     <tbody>
       <tr>
-        <td><input type="text" id="firstNameFilter" v-model="search"/></td>
-        <td><input type="text" id="lastNameFilter"/></td>
-        <td><input type="text" id="usernameFilter"/></td>
-        <td><input type="text" id="emailFilter"/></td>
         <td>
-          <select id="statusFilter">
+          <input type="text" id="firstNameFilter" v-model="search.firstName" v-on:keyup="handleInput" />
+        </td>
+        <td>
+          <input type="text" id="lastNameFilter" v-model="search.lastName" v-on:keyup="handleInput" />
+        </td>
+        <td>
+          <input type="text" id="usernameFilter" v-model="search.username" v-on:keyup="handleInput" />
+        </td>
+        <td>
+          <input type="text" id="emailFilter" v-model="search.emailAddress" v-on:keyup="handleInput" />
+        </td>
+        <td>
+          <select id="statusFilter" v-model="search.status" v-on:keyup="handleInput">
             <option value="">Show All</option>
             <option value="Active">Active</option>
             <option value="Inactive">Inactive</option>
@@ -24,47 +32,98 @@
         </td>
       </tr>
       <!-- user listing goes here -->
-      <tr v-for="user in users" :key="user.index">
-          <td>{{user.firstName }}</td>
-          <td>{{user.lastName}}</td>
-          <td>{{user.username}}</td>
-          <td>{{user.emailAddress}}</td>
-          <td>{{user.status}}</td>
+      <tr v-for="user in userList" :key="user.index">
+        <td>{{ user.firstName }}</td>
+        <td>{{ user.lastName }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.emailAddress }}</td>
+        <td>{{ user.status }}</td>
       </tr>
     </tbody>
   </table>
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed } from "vue";
 export default {
-  data() {
+  data()  {
     return {
-      search: '',
+      search: {
+        firstName: "",
+        lastName: "",
+        username: "",
+        emailAddress: "",
+        status: "",
+      },
       users: [
-        { firstName: 'John', lastName: 'Smith', username: 'jsmith', emailAddress: 'jsmith@gmail.com', status: 'Active' },
-        { firstName: 'Anna', lastName: 'Bell', username: 'abell', emailAddress: 'abell@yahoo.com', status: 'Active' },
-        { firstName: 'George', lastName: 'Best', username: 'gbest', emailAddress: 'gbest@gmail.com', status: 'Inactive' },
-        { firstName: 'Ben', lastName: 'Carter', username: 'bcarter', emailAddress: 'bcarter@gmail.com', status: 'Active' },
-        { firstName: 'Katie', lastName: 'Jackson', username: 'kjackson', emailAddress: 'kjackson@yahoo.com', status: 'Active' },
-        { firstName: 'Mark', lastName: 'Smith', username: 'msmith', emailAddress: 'msmith@foo.com', status: 'Inactive' }
+        {
+          firstName: "John",
+          lastName: "Smith",
+          username: "jsmith",
+          emailAddress: "jsmith@gmail.com",
+          status: "Active",
+        },
+        {
+          firstName: "Anna",
+          lastName: "Bell",
+          username: "abell",
+          emailAddress: "abell@yahoo.com",
+          status: "Active",
+        },
+        {
+          firstName: "George",
+          lastName: "Best",
+          username: "gbest",
+          emailAddress: "gbest@gmail.com",
+          status: "Inactive",
+        },
+        {
+          firstName: "Ben",
+          lastName: "Carter",
+          username: "bcarter",
+          emailAddress: "bcarter@gmail.com",
+          status: "Active",
+        },
+        {
+          firstName: "Katie",
+          lastName: "Jackson",
+          username: "kjackson",
+          emailAddress: "kjackson@yahoo.com",
+          status: "Active",
+        },
+        {
+          firstName: "Mark",
+          lastName: "Smith",
+          username: "msmith",
+          emailAddress: "msmith@foo.com",
+          status: "Inactive",
+        },
       ]
     }
-    //computed: {
-      // firstName: 
-    // }
-    
-  }
-}
+  },
+  methods: {
+  },
+  computed: {
+    filteredList() {
+      return this.users
+      .filter(u => u.firstName.includes(this.search.firstName))
+      .filter(u => u.lastName.includes(this.search.lastName))
+      .filter(u => u.username.includes(this.search.username))
+      .filter(u => u.emailAddress.includes(this.search.emailAddress))
+      .filter(u => u.status.includes(this.search.status))
+      }
+  },
+};
 </script>
 
 <style scoped>
 table {
   margin-top: 20px;
-  font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 th {
-  text-transform: uppercase
+  text-transform: uppercase;
 }
 td {
   padding: 10px;
@@ -72,7 +131,8 @@ td {
 tr.inactive {
   color: red;
 }
-input, select {
+input,
+select {
   font-size: 16px;
 }
 </style>
