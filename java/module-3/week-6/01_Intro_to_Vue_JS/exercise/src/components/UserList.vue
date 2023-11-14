@@ -12,19 +12,19 @@
     <tbody>
       <tr>
         <td>
-          <input type="text" id="firstNameFilter" v-model="search.firstName" v-on:keyup="handleInput" />
+          <input type="text" id="firstNameFilter" v-model="search.firstName"/>
         </td>
         <td>
-          <input type="text" id="lastNameFilter" v-model="search.lastName" v-on:keyup="handleInput" />
+          <input type="text" id="lastNameFilter" v-model="search.lastName"/>
         </td>
         <td>
-          <input type="text" id="usernameFilter" v-model="search.username" v-on:keyup="handleInput" />
+          <input type="text" id="usernameFilter" v-model="search.username"/>
         </td>
         <td>
-          <input type="text" id="emailFilter" v-model="search.emailAddress" v-on:keyup="handleInput" />
+          <input type="text" id="emailFilter" v-model="search.emailAddress"/>
         </td>
         <td>
-          <select id="statusFilter" v-model="search.status" v-on:keyup="handleInput">
+          <select id="statusFilter" v-model="search.status">
             <option value="">Show All</option>
             <option value="Active">Active</option>
             <option value="Inactive">Inactive</option>
@@ -32,7 +32,7 @@
         </td>
       </tr>
       <!-- user listing goes here -->
-      <tr v-for="user in userList" :key="user.index">
+      <tr v-for="user in filteredList" :key="user.index">
         <td>{{ user.firstName }}</td>
         <td>{{ user.lastName }}</td>
         <td>{{ user.username }}</td>
@@ -106,11 +106,11 @@ export default {
   computed: {
     filteredList() {
       return this.users
-      .filter(u => u.firstName.includes(this.search.firstName))
-      .filter(u => u.lastName.includes(this.search.lastName))
-      .filter(u => u.username.includes(this.search.username))
-      .filter(u => u.emailAddress.includes(this.search.emailAddress))
-      .filter(u => u.status.includes(this.search.status))
+      .filter(user => user.firstName.toUpperCase().includes(this.search.firstName.toUpperCase()))
+      .filter(user => user.lastName.toUpperCase().includes(this.search.lastName.toUpperCase()))
+      .filter(user => user.username.includes(this.search.username))
+      .filter(user => user.emailAddress.includes(this.search.emailAddress))
+      .filter(user => user.status.includes(this.search.status))
       }
   },
 };
