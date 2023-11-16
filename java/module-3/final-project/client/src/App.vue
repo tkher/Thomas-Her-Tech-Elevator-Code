@@ -6,6 +6,7 @@
     <nav class="navigation-bar">
         <router-link to="/" class='nav-button'> Home </router-link>
         <router-link to="/cart" class='nav-button'> Cart </router-link>
+        <a class='nav-button'> Message(to be replaced w/ v-show) </a>
         <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token" class='nav-button'>
           Logout
         </router-link>
@@ -14,16 +15,20 @@
     <main>
       <router-view/>
     </main>
-    <footer></footer>
+    <footer class="footer">
+      <footer-data></footer-data>
+    </footer>
   </div>
 </template>
 
 <script>
-import HeaderLogo from './components/HeaderLogo.vue'
+import HeaderLogo from './components/HeaderData.vue'
+import FooterData from './components/FooterData.vue'
 
 export default {
   components: {
     HeaderLogo,
+    FooterData,
   },
 };
 </script>
@@ -35,7 +40,7 @@ export default {
   position: sticky;
   margin-left:auto;
   margin-right: auto;
-  width: 50%;
+  width: 40%;
 }
 
 .navigation-bar {
@@ -62,5 +67,14 @@ export default {
     margin-left: auto;
 }
 
+.nav-button:nth-last-child(2){
+    flex-basis:50%;
+    margin-left: 40%;
+}
+
+.footer{
+    position: fixed;
+    bottom: 0;
+}
 </style>
 

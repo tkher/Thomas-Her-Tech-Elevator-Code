@@ -49,7 +49,7 @@
 
 <script>
 import LoadingSpinner from "../components/LoadingSpinner.vue";
-import HeaderLogo from "../components/HeaderLogo.vue";
+import HeaderLogo from "../components/HeaderData.vue";
 export default {
   components: {
     LoadingSpinner,
