@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/global.css">
+  <link rel="stylesheet" href="./css/styles.css">
+
+  <script src="./js/bookmarkService.js"></script>
+  <script src="./js/app.js"></script>
+</head>
+
+<body id="book-app">
+
+  <!-- Header -->
+  <header id="app-header">
+    <div id="app-info">
+      <img class="app-logo" src="./images/logo.png" alt="app logo" />
+      <h1>Bookmark Manager</h1>
+    </div>
+    <div id="user-info">
+      <div id="user-logout">
+        <div class="user-name">A. User</div>
+        <a href="#">Logout</a>
+      </div>
+      <i class="img-profile fa-solid fa-user"></i>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <div id="main-nav">
+    <nav class="nav-list">
+      <div class="nav-link"><a href="./profile.html">Profile</a></div>
+      <div class="nav-link"><a href="./index.html">Public Bookmarks</a></div>
+    </nav>
+  </div>
+
+  <main id="main-content">
+    <header class="view-header">
+      <h2>My Profile</h2>
+    </header>
+
+    <div id="view-content">
+      <form id="form-my-profile">
+        <div class="form-control">
+          <label for="username">Username:</label>
+          <div id="username">A. User</div>
+        </div>
+        <div class="form-control">
+          <label for="displayName">Display Name:</label>
+          <input type="text" id="displayName" size=40 autofocus>
+        </div>
+        <div class="form-control">
+          <label for="imageUrl">Profile Image Url:</label>
+          <input type="text" id="imageUrl" size=82>
+        </div>
+        <div class="form-control">
+          <label for="shortBio">Short Bio:</label>
+          <textarea id="shortBio" rows="3" cols="80"></textarea>
+        </div>
+        <div class="button-group">
+          <button type="submit">Save</button>
+          <button>Cancel</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer id="app-footer">
+    <div>&copy; 2022 Example, Inc.</div>
+    <div>
+      <a href="/about.html">About</a>
+      &nbsp;|&nbsp;
+      <a href="mailto:support@example.com">Contact Us</a>
+    </div>
+  </footer>
+</body>
+
+</html>
