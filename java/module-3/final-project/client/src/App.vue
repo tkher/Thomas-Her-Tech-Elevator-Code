@@ -4,8 +4,8 @@
       <header-logo></header-logo>
     </header>
     <nav class="navigation-bar">
-        <router-link to="/" class='nav-button'> Home </router-link>
-        <router-link to="/cart" class='nav-button'> Cart </router-link>
+        <router-link v-bind:to="{ name: 'home' }" class='nav-button'> Home </router-link>
+        <router-link v-bind:to="{ name: 'cart' }" class='nav-button'> Cart </router-link>
         <a class='nav-button'> Message(to be replaced w/ v-show) </a>
         <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token" class='nav-button'>
           Logout
