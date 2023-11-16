@@ -6,6 +6,7 @@ import ProductsView from '../views/ProductsView.vue'
 import LoginView from '../views/LoginView.vue'
 import LogoutView from '../views/LogoutView.vue'
 import RegisterView from '../views/RegisterView.vue'
+import CartView from '../views/CartView.vue'
 
 
 /**
@@ -52,6 +53,14 @@ const routes = [
       component: RegisterView,
       meta: {
         requiresAuth: false
+      }
+    },
+    {
+      path: "/cart",
+      name: "cart",
+      component: CartView,
+      meta: {
+        requiresAuth: true
       }
     }
   ];
