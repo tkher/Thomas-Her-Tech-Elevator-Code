@@ -2,7 +2,7 @@
   <section>
     <h2>Products</h2>
     <div class="product-list">
-      <product-card v-bind:product="product" v-for="product in products"  v-bind:key="product.index"/>
+      <Product-Card v-bind:productData="productList" />
     </div>
   </section>
 </template>
@@ -14,7 +14,7 @@ import ProductService from '../services/ProductService.js'
 export default {
     data () {
         return{
-            products: []
+            productList: []
         }
         
     },
@@ -33,7 +33,7 @@ export default {
         ProductCard
     },
     created() {
-    this.getTopics();
+    this.getProducts();
   }
   
     

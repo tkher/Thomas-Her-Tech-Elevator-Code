@@ -3,14 +3,31 @@
     <div id="heading-line">
       <h1>
         Products
+        {{test}}
+        Break
+        
+        <section v-for="product in products"  v-bind:key="product.index">
+         <product-card v-bind:productData = "products"/>
+        
+          <!--
+      <div> {{product.name}} </div>
+           <div class="sku">{{product.productSku}}</div>
+            <div class="price">{{product.price}}</div>
+            <div class="product-name action" v-bind:data-id="{ product: product.productId}">{{product.name}}</div>
+            <div class="product-image">
+              <img v-bind:src ="{product: product.imageName}">
+            </div>
+            <div class="cart">
+              <i class="fa-solid fa-cart-plus icon action" title="Add item to cart"></i>
+            </div> -->
+          
+          
+
+
         <loading-spinner id="spinner" v-bind:spin="isLoading" />
       </h1>
+      
     </div>
-      <!-- <product-list v-bind:products="products"/> --> <!-- need to display a product card-->
-      <product-list></product-list>
-    <div >
-
-    </div>  
     <h2>Loading spinner demonstration</h2>
     <p>
       This is a demonstration of how you can show or hide a "spinner" icon to
@@ -54,19 +71,22 @@
 
 <script>
 import LoadingSpinner from "../components/LoadingSpinner.vue";
-import ProductService from "../services/ProductService.js"
-import ProductsList from "../components/ProductList.vue";
-import ProductList from '../components/ProductList.vue';
+import ProductCard from '../components/ProductCard.vue';
+import ProductService from '../services/ProductService';
+
 
 export default {
   components: {
     LoadingSpinner,
-    ProductList,
+    ProductCard,
+   
+    
   },
   data() {
     return {
       isLoading: false,
       cardView: true,
+      test: '*** This Test Works',
       products: []
     };
   },
@@ -78,22 +98,19 @@ export default {
   },
 
   methods: {
-    getProducts() {
-      ProductService.list().then(response => {
-        this.products = response.data
-
-      })
-      .catch(error => {
-        this.errorMessage = error.response.statusText;
-      }) 
-      .finally(() => {
-        this.isLoading = false;
-      })
-    }
+   
+   
   },
 
   created() {
-    this.getProducts();
+    ProductService
+      .getProductList()
+      .then( (response) => {
+        this.products = response.data
+      })
+      .catch( (error) => {
+        window.alert(`ERROR: ${error}`);
+      })
   },
 };
 </script>

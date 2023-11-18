@@ -5,7 +5,7 @@ const http = axios.create({
 });
 
 export default {
-    productList() {
+    getProductList() {
         return http.get('/products');
     }
 }
