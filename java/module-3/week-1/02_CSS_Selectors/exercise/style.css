@@ -71,7 +71,42 @@ aside > nav > ul > li:first-child {
 
 body > main {
   position: absolute;
+  padding: 20px;
   left: 200px;
-  margin: 10px;
+}
+
+main > header > img {
+  height: 100px;
+  margin-bottom: 15px;
+};
+
+#placeholder > img {
+  display: block;
+  margin: 15px auto;
+  width: auto;
+}
+
+/*step four*/
+
+main > section > div {
+  width: 33%;
+  display: inline-block;
   padding: 10px;
+  
+}
+
+section > div > h2 {
+  color: #8CC36F;
+}
+
+.fas {
+  margin: 10px;
+}
+
+#what-we-do {
+  border-right: solid 1px rgba(170, 239, 135, 0.8);
+}
+
+#our-work {
+  border-right: solid 1px rgba(170, 239, 135, 0.8);
 }
