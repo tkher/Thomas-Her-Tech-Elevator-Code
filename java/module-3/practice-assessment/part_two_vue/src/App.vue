@@ -1,6 +1,6 @@
 <template>
   <div id="book-list-app">
-    <header id="app-header"><h1>The Book List</h1></header>
+    <app-header></app-header>
     <main id="main-content">
       <router-view />
     </main>
@@ -9,8 +9,14 @@
 
 <script>
 import '@/assets/reset.css'
+import AppHeader from './components/AppHeader.vue'
+
+
 export default {
-  components: {},
+  components: {
+    AppHeader,
+    
+  },
   name: 'App'
 }
 </script>
