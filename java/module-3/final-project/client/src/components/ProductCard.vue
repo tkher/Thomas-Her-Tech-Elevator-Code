@@ -1,4 +1,5 @@
 <template>
+  <section v-for="product in products"  v-bind:key="product.index">
     <div> {{product.name}} </div> 
   <!--<div class="sku">{{ product.productSku }}</div>
   <div class="price">{{ product.price }}</div>
@@ -17,12 +18,17 @@
 
 <script>
 
+
 export default {
-  props: ["productData"],
+  props: {
+    products:{
+      type:Array,
+    }
+  },
 
   data() {
     return {
-      products: [],
+      productList: [], /* prob don't need*/
     }
   },
   

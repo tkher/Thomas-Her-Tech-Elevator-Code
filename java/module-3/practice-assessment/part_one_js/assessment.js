@@ -9,7 +9,13 @@
  * Example 3: filteredSum([]) --> 0
  */
 function filteredSum(arr) {
-
+    let result = 0;
+    for (i of arr) {
+        if (i > 0 && i <= 100) {
+            result += i;
+        }
+    }
+    return result;
 }
 
 /**
@@ -29,6 +35,36 @@ function filteredSum(arr) {
  *   }
  */
 function yearlyBookCount(year, bookArray) {
+    let totalCount = {
+        pagesFiction: 0,
+        pagesNonFiction: 0,
+    }
+
+    const yearMatch = bookArray.filter(function(book) {
+        return book.datesRead.includes(year)});
+
+
+        /* do not use
+    yearMatch.forEach((book) => {
+        if(book.genres.toLowerCase.includes('fiction')) {
+            totalCount.pagesFiction += book.pageCount;
+        } else {
+            totalCount.pagesNonFiction += book.pageCount;
+        }
+    })*/
+
+    /* need to filter an array inside of my book object. 
+    yearMatch.forEach((book) => {
+        book.filter(function(genre) {{
+            totalCount.pagesFiction += book.pageCount;
+        } else {
+            totalCount.pagesNonFiction += book.pageCount;
+        }
+    })
+    */
+
+    return totalCount;
+    
 
 }
 
@@ -54,5 +90,7 @@ function yearlyBookCount(year, bookArray) {
  * }
  */
 function yearlyBookStatistics(year, bookArray) {
+
+    
     
 }

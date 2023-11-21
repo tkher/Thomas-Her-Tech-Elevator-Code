@@ -6,10 +6,16 @@
         {{test}}
         Break
         
+        <section>
+          <product-card v-bind:products="products"/>
+        </section>
+          
+
+        <!--
         <section v-for="product in products"  v-bind:key="product.index">
-         <product-card v-bind:productData = "products"/>
+         <product-card v-bind:products="products"/>
         
-          <!--
+          
       <div> {{product.name}} </div>
            <div class="sku">{{product.productSku}}</div>
             <div class="price">{{product.price}}</div>
@@ -73,6 +79,7 @@
 import LoadingSpinner from "../components/LoadingSpinner.vue";
 import ProductCard from '../components/ProductCard.vue';
 import ProductService from '../services/ProductService';
+
 
 
 export default {
