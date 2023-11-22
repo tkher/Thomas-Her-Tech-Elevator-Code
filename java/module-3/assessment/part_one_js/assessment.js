@@ -70,15 +70,39 @@ function orderVolume(stateCode, orderArray) {
 
     /*filter out orders matching deliver/shipped */
 
+    /*i think this function is not working correctly */
     const ordersShipped = ordersMatchingState.filter(function(order) {
-        return order.status.includes('Delivered' || 'Shipped') /*i think this function is not working correctly*/
+        return order.status.includes('Delivered' || 'Shipped') 
     });
 
     for(i in ordersShipped) {
-        count += 1;
-        weight += i.weight;
-        sales += i.sales;
+        finalCount.count = finalCount.count += 1;
+        finalCount.weight = finalCount.weight += i.weight;
+        finalCount.sales = finalCount.sales += i.sales;
     }
+
+    /*tried sorting by shipped vs delivered -- did not work*/
+    /*
+    const ordersShipped = ordersMatchingState.filter(function(order) {
+        return order.status.includes('Shipped')
+    });
+
+    for(i in ordersShipped) {
+        finalCount.count += 1;
+        finalCount.weight += i.weight;
+        finalCount.sales += i.sales;
+    }
+
+    const ordersDelivered = ordersMatchingState.filter(function(order) {
+        return order.status.includes('Delivered')
+    });
+
+    for(i in ordersDelivered) {
+        finalCount.count += 1;
+        finalCount.weight += i.weight;
+        finalCount.sales += i.sales;
+    }
+    */
 
     return finalCount;
 
