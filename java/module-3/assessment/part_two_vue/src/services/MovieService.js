@@ -34,6 +34,12 @@ export default {
     } else {
         return axios.get(`/movies-api/movies?${qs}`);
     }
-  }
+  },
+
+  //get list of all genres from server 
+    getGenres() {
+      return axios.get(`/movies-api/genres`)
+    }
+  
 
 }

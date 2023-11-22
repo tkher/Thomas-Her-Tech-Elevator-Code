@@ -24,6 +24,8 @@
 </template>
 
 <script>
+import MovieService from '../services/MovieService';
+
 export default {
   data() {
     return {
@@ -32,6 +34,16 @@ export default {
       titleString: "",
       selectedGenreList: []
     };
+  },
+  created(){
+    MovieService.getGenres()
+      .then(response => {
+        this.allGenres = response.data;
+      })
+      .catch((error) => {
+        this.error = `Could not get the genres list for the filter.`;
+        console.log(this.error, error.response);
+      });
   },
   methods: {
     filter() {

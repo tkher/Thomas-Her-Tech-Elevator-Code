@@ -1,7 +1,7 @@
 <template>
   <div id="movie-app">
     <header id="app-header">
-      <h1>The Movie List</h1>
+      <app-header></app-header>
     </header>
     <main id="main-content">
       <router-view />
@@ -11,8 +11,12 @@
 
 <script>
 import '@/assets/reset.css'
+import AppHeader from './components/AppHeader.vue'
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    AppHeader,
+  }
 }
 </script>
 
