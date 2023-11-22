@@ -27,7 +27,7 @@ function filteredCount(matchStr, arr) {
  function inProgressOrders(stateCode, orderArray) {
     let count = 0;
 
-    /*filter out states matching stateCode */
+    /*filter out orders matching stateCode */
     const ordersMatchingState = orderArray.filter(function(order) {
         return order.state.includes(stateCode)
     });
@@ -62,5 +62,25 @@ function orderVolume(stateCode, orderArray) {
         weight: 0,
         sales: 0.00,
     }
+
+    /*filter out orders matching stateCode */
+    const ordersMatchingState = orderArray.filter(function(order) {
+        return order.state.includes(stateCode)
+    });
+
+    /*filter out orders matching deliver/shipped */
+
+    const ordersShipped = ordersMatchingState.filter(function(order) {
+        return order.status.includes('Delivered' || 'Shipped') /*i think this function is not working correctly*/
+    });
+
+    for(i in ordersShipped) {
+        count += 1;
+        weight += i.weight;
+        sales += i.sales;
+    }
+
+    return finalCount;
+
 
 }
