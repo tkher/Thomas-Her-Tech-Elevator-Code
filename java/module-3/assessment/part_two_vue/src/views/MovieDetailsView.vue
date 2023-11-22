@@ -31,7 +31,7 @@ export default {
   },
   created() {
     this.isLoading = true;
-    movieService.getMovieById(this.movieId)
+    movieService.getMovieById(this.$route.params.movieId) //<--updated this and it worked!!!
       .then(response => {
         this.movieData = response.data;
         this.isLoading = false;
@@ -41,6 +41,21 @@ export default {
         this.error = `Could not get movie for movie id ${this.movieId}.`;
         console.log(this.error, error.response);
       });
+  },
+  methods: {
+    getMovieById(id) {
+      this.isLoading=true;
+      movieService.getMovieById(id)
+      .then((response) => {
+        this.movie = response.data;
+      })
+      .catch((error) => {
+      this.errorMessage = error.response.statusText;
+      })
+      .finally(() => {
+      this.isLoading = false;
+      })
+    }
   }
 }
 </script>

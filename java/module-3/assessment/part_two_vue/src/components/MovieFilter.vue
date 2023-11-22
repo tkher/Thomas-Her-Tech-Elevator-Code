@@ -9,7 +9,7 @@
       <div class="form-group" v-if="allGenres.length > 0">
         <label for="genre-list">Genres:</label>
         <select id="genre-list" v-model="selectedGenreList" multiple>
-          <option v-for="genre of allGenres" v-bind:key="genre.id"
+          <option v-for="genre of allApiGenres" v-bind:key="genre.id"
               v-bind:value="genre.name">{{genre.name}}</option>
         </select>
       </div>
@@ -29,8 +29,10 @@ import MovieService from '../services/MovieService';
 export default {
   data() {
     return {
-      // TODO - Currently using hard-coded list of genres
+      // TODO - Currently using hard-coded list of genres *** no longer need hardcoded ones.
       allGenres: [{"id":2201,"name":"Drama"},{"id":2202,"name":"Action"},{"id":2204,"name":"Comedy"}],
+      // created a new array to hold imported api list. 
+      allApiGenres: [],
       titleString: "",
       selectedGenreList: []
     };
@@ -38,7 +40,7 @@ export default {
   created(){
     MovieService.getGenres()
       .then(response => {
-        this.allGenres = response.data;
+        this.allApiGenres = response.data;
       })
       .catch((error) => {
         this.error = `Could not get the genres list for the filter.`;
