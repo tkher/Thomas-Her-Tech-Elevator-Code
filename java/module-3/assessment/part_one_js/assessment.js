@@ -8,6 +8,13 @@
  * Example 4: filteredCount('A', []) --> 0
  */
 function filteredCount(matchStr, arr) {
+    let count = 0;
+    for (i of arr) {
+        if (matchStr === i) {
+            count += 1;
+        }
+    }
+    return count;
 
 }
 
@@ -18,6 +25,20 @@ function filteredCount(matchStr, arr) {
  * Order objects have properties for state, status, weight, and cost.
  */
  function inProgressOrders(stateCode, orderArray) {
+    let count = 0;
+
+    /*filter out states matching stateCode */
+    const ordersMatchingState = orderArray.filter(function(order) {
+        return order.state.includes(stateCode)
+    });
+
+    for (i of ordersMatchingState) {
+        if (i.status.includes('In-Progress')) {
+            count += 1;
+        }
+    }
+
+    return count;
 
 }
 
@@ -36,5 +57,10 @@ function filteredCount(matchStr, arr) {
  *   }
  */
 function orderVolume(stateCode, orderArray) {
+    let finalCount = {
+        count: 0,
+        weight: 0,
+        sales: 0.00,
+    }
 
 }

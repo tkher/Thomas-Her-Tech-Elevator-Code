@@ -55,6 +55,8 @@ export default {
 </script>
 
 <style scoped>
+
+
 #movie-filter {
   display: flex;
   flex-wrap: nowrap;
@@ -63,6 +65,8 @@ export default {
   margin-bottom: 2rem;
   padding: 1rem 2rem;
   width: fit-content;
+  background-color: #C0B387;
+  border: solid 1px;
 }
 
 form {
@@ -116,6 +120,10 @@ select {
 
 option {
   padding: 0.25rem 0.5rem;
+}
+
+button[type=submit] {
+  background-color: #E69C60;
 }
 
 </style>

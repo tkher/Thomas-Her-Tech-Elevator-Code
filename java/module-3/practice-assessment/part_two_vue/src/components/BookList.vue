@@ -1,14 +1,17 @@
 <template>
   <div id="card-container">
-    <div v-for="book of bookList" v-bind:key="book.id" v-bind:book="book">
+    <book-card v-for="book of bookList" v-bind:key="book.id" v-bind:book="book">
       {{JSON.stringify(book)}}
-    </div>
+    </book-card>
   </div>
 </template>
 
 <script>
+import BookCard from './BookCard.vue'
+
 export default {
-  props: ['bookList']
+  props: ['bookList'],
+  components: {BookCard}
 }
 </script>
 

@@ -38,6 +38,10 @@ export default {
     } else {
         return axios.get(`/books-api/books?${qs}`);
     }
+  },
+
+  getAuthor(authorId) {
+    return axios.get(`/books-api/authors/${authorId}`);
   }
 
 }

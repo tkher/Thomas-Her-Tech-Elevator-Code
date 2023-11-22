@@ -66,6 +66,7 @@ aside > nav > ul > li > a {
 
 aside > nav > ul > li:first-child {
   text-decoration: underline #00ADEE;
+  background-color: red;
 
 }
 

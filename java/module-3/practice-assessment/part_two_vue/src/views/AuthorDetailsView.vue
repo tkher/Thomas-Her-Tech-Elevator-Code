@@ -16,6 +16,7 @@
 <script>
 import LoadingSpinner from '../components/LoadingSpinner.vue';
 import AuthorDetails from '../components/AuthorDetails.vue';
+import BookService from '../services/BookService';
 
 export default {
   components: { LoadingSpinner, AuthorDetails },
@@ -43,7 +44,17 @@ export default {
     }
   },
   created() {
-    this.isLoading = false;
+    this.isLoading = true;
+    BookService.getAuthor(this.authorId)
+      .then(response => {
+        this.authorData = response.data;
+        this.isLoading = false;
+      })
+      .catch((error) => {
+        this.isLoading = false;
+        this.error = `Could not get book for id ${this.bookId}.`;
+        console.log(this.error, error.response);
+      });
   }
 }
 </script>
