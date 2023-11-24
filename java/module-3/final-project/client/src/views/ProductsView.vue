@@ -1,14 +1,17 @@
 <template>
   <div class="home">
     <div id="heading-line">
-      <h1>
-        Products
+      <header>
+        <h1>
+          Products
+        </h1>
+      </header>
+      <section>
         {{test}}
         Break
-        
-        <section>
-          <product-card v-bind:products="products"/>
-        </section>
+        <product-list v-bind:products="products"/>
+      </section>
+      <h1>
           
 
         <!--
@@ -77,15 +80,19 @@
 
 <script>
 import LoadingSpinner from "../components/LoadingSpinner.vue";
-import ProductCard from '../components/ProductCard.vue';
+import ProductList from '../components/ProductList.vue';
 import ProductService from '../services/ProductService';
+
+
 
 
 
 export default {
   components: {
     LoadingSpinner,
-    ProductCard,
+    ProductList,
+  
+    
    
     
   },
@@ -110,12 +117,15 @@ export default {
   },
 
   created() {
+    this.isLoading = true;
     ProductService
       .getProductList()
       .then( (response) => {
         this.products = response.data
+        this.isLoading = false;
       })
       .catch( (error) => {
+        this.isLoading = false;
         window.alert(`ERROR: ${error}`);
       })
   },
