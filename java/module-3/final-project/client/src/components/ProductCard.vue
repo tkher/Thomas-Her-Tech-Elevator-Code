@@ -35,27 +35,6 @@ export default {
 </script>
 
 <style scoped>
-#product-cards {
-    grid-area: product;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-};
-
-.product-card{
-    width: 350px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas: 
-        "sku            .               price"
-        "product-name   product-name    . "
-        "product-image  product-image   product-image"
-        ".              .               cart";
-    margin: 20px;
-    padding: 10px; 
-    border-style: solid;
-    justify-items: start;
-}
 
 .product-card {
     width: 350px;
@@ -101,6 +80,7 @@ export default {
 .cart {
     grid-area: cart;
     justify-self: end;
+    background-color: gold;
     
 }
 

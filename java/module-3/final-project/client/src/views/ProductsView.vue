@@ -1,38 +1,8 @@
 <template>
   <div class="home">
     <div id="heading-line">
-      <header>
-        <h1>
-          Products
-        </h1>
-      </header>
-      <section>
-        {{test}}
-        Break
-        <product-list v-bind:products="products"/>
-      </section>
+
       <h1>
-          
-
-        <!--
-        <section v-for="product in products"  v-bind:key="product.index">
-         <product-card v-bind:products="products"/>
-        
-          
-      <div> {{product.name}} </div>
-           <div class="sku">{{product.productSku}}</div>
-            <div class="price">{{product.price}}</div>
-            <div class="product-name action" v-bind:data-id="{ product: product.productId}">{{product.name}}</div>
-            <div class="product-image">
-              <img v-bind:src ="{product: product.imageName}">
-            </div>
-            <div class="cart">
-              <i class="fa-solid fa-cart-plus icon action" title="Add item to cart"></i>
-            </div> -->
-          
-          
-
-
         <loading-spinner id="spinner" v-bind:spin="isLoading" />
       </h1>
       
@@ -75,6 +45,18 @@
       icon="fa-solid fa-table"
       title="View table"
     />
+  </div>
+  <div id="product-section">
+    <header>
+        <h1>
+          Products
+        </h1>
+    </header>
+    <section>
+      {{test}}
+      Break
+      <product-list v-bind:products="products" class="grid-container"/>
+    </section>
   </div>
 </template>
 
@@ -159,4 +141,12 @@ export default {
   color: blue;
   background-color: rgba(255, 255, 255, 0.7);
 }
+
+/*added code*/
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+        "product        product         product         product";
+    }
 </style>
