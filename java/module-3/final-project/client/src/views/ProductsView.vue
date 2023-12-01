@@ -33,6 +33,15 @@
       one to indicate a "tile" view of products, and another to indicate a "table" view. There's also a little bit
       of styling to get you started, but you can style it your own way. And there's a property to track which view is "active".
     </p>
+    
+  </div>
+  <div id="product-section">
+    
+    <header class="header-products">
+      <h1 id="title-products">
+          Products
+      </h1>
+    <section id='display-icons'>
     <font-awesome-icon
       v-bind:class="{ 'view-icon': true, active: cardView }"
       v-on:click="cardView = true"
@@ -45,12 +54,12 @@
       icon="fa-solid fa-table"
       title="View table"
     />
-  </div>
-  <div id="product-section">
-    <header>
-        <h1>
-          Products
-        </h1>
+    </section>
+    <div id="search-button">
+      <button>
+        <input name='Search' type='text' placeholder="Try Searching Here..."/>
+      </button>
+    </div>    
     </header>
     <section>
       {{test}}
@@ -149,4 +158,34 @@ export default {
     grid-template-areas:
         "product        product         product         product";
     }
+
+
+
+.header-products{
+  display: flex;
+  margin: 15px;
+  padding: 5px;
+}
+
+#title-products {
+  color: blue;
+  font-size: 40px;
+  text-decoration: underline;
+  font-weight: bolder;
+  font-family: cursive;
+}
+
+#display-icons {
+  flex-basis:auto;
+  margin-left: 75%;
+  margin-top: 2%;
+  font-size: 50px;
+}
+
+#search-button {
+  margin-top: 4%;
+}
+
+  
+
 </style>
